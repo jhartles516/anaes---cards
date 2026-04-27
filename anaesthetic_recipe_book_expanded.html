@@ -1,0 +1,1977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anaesthetic Recipe Book — Expanded</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap');
+:root {
+  --bg:#0a0c0f; --surface:#111318; --surface2:#181b22;
+  --border:#252830; --border2:#2e3340;
+  --c1:#4fc3f7; --c2:#ce93d8; --c3:#81c784; --c4:#ffb74d;
+  --c5:#80cbc4; --c6:#b0bec5; --c7:#fff176; --c8:#ffcc80;
+  --c9:#a5d6a7; --c10:#ef9a9a; --c11:#f48fb1; --c12:#80deea;
+  --c13:#bcaaa4; --c14:#ffe082; --c15:#90caf9; --c16:#ff8a65;
+  --text:#e2e6ef; --text2:#9aa3b8; --text3:#5c6580;
+  --mono:'IBM Plex Mono',monospace; --sans:'IBM Plex Sans',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13.5px;line-height:1.65;min-height:100vh;}
+header{background:var(--surface);border-bottom:1px solid var(--border);padding:16px 26px 12px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;position:sticky;top:0;z-index:100;}
+.hdr-left{display:flex;flex-direction:column;gap:3px;}
+.hdr-dept{font-family:var(--mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text3);}
+.hdr-title{font-size:15px;font-weight:600;color:var(--text);}
+.hdr-sub{font-size:11px;color:var(--text2);font-style:italic;}
+.hdr-meta{font-family:var(--mono);font-size:9px;color:var(--text3);text-align:right;line-height:1.8;}
+.tab-scroll{background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;position:sticky;top:68px;z-index:99;}
+.tab-scroll::-webkit-scrollbar{display:none;}
+.tab-bar{display:flex;padding:0 12px;min-width:max-content;}
+.tab{padding:9px 13px;font-family:var(--mono);font-size:9.5px;letter-spacing:0.07em;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;color:var(--text3);transition:all .18s;user-select:none;white-space:nowrap;}
+.tab:hover:not(.active){color:var(--text2);}
+.tab.active{border-bottom-color:var(--tab-color,var(--c1));color:var(--tab-color,var(--c1));}
+.plan{display:none;padding:20px 20px 60px;max-width:1040px;margin:0 auto;}
+.plan.visible{display:block;}
+.section{margin-bottom:16px;}
+.section-hdr{display:flex;align-items:center;gap:9px;margin-bottom:9px;padding-bottom:5px;border-bottom:1px solid var(--border);}
+.sdot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+.slbl{font-family:var(--mono);font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text3);flex:1;}
+.snum{font-family:var(--mono);font-size:9px;color:var(--text3);}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;}
+@media(max-width:700px){.g2,.g3,.g4{grid-template-columns:1fr;}}
+.card{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:12px 14px;}
+.ct{font-family:var(--mono);font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);margin-bottom:8px;}
+table{width:100%;border-collapse:collapse;font-size:12.5px;}
+th{font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);text-align:left;padding:5px 9px;border-bottom:1px solid var(--border);}
+td{padding:5px 9px;border-bottom:1px solid var(--border);vertical-align:top;color:var(--text2);}
+tr:last-child td{border-bottom:none;}
+td:first-child{color:var(--text);font-weight:500;}
+tr:hover td{background:rgba(255,255,255,.02);}
+ul.cl{list-style:none;padding:0;}
+ul.cl li{display:flex;gap:8px;align-items:baseline;padding:4px 0;border-bottom:1px solid var(--border);font-size:12.5px;}
+ul.cl li:last-child{border-bottom:none;}
+ul.cl li::before{content:'›';font-family:var(--mono);color:var(--text3);flex-shrink:0;}
+ul.cl li .lb{color:var(--text);font-weight:500;min-width:118px;flex-shrink:0;}
+ul.cl li .vl{color:var(--text2);}
+ul.bl{list-style:none;padding:0;}
+ul.bl li{padding:3px 0 3px 13px;position:relative;color:var(--text2);font-size:12.5px;border-bottom:1px solid var(--border);}
+ul.bl li:last-child{border-bottom:none;}
+ul.bl li::before{content:'·';position:absolute;left:0;color:var(--text3);font-family:var(--mono);}
+ul.bl li strong{color:var(--text);}
+.badge{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.06em;padding:2px 7px;border-radius:3px;font-weight:500;}
+.bw{background:rgba(255,183,77,.15);color:var(--c4);border:1px solid rgba(255,183,77,.25);}
+.bg{background:rgba(129,199,132,.12);color:var(--c3);border:1px solid rgba(129,199,132,.2);}
+.br{background:rgba(239,154,154,.12);color:var(--c10);border:1px solid rgba(239,154,154,.2);}
+.bb{background:rgba(79,195,247,.1);color:var(--c1);border:1px solid rgba(79,195,247,.2);}
+.bp{background:rgba(206,147,216,.1);color:var(--c2);border:1px solid rgba(206,147,216,.2);}
+.alert{border-left:3px solid;padding:9px 13px;border-radius:0 5px 5px 0;font-size:12.5px;margin-bottom:9px;background:var(--surface2);}
+.alert-w{border-color:var(--c4);}
+.alert-r{border-color:var(--c10);}
+.alert-g{border-color:var(--c3);}
+.alert-b{border-color:var(--c1);}
+.ak{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px;}
+.alert-w .ak{color:var(--c4);}
+.alert-r .ak{color:var(--c10);}
+.alert-g .ak{color:var(--c3);}
+.alert-b .ak{color:var(--c1);}
+.recipe{background:var(--surface2);border:1px solid var(--border);border-radius:6px;margin-bottom:10px;overflow:hidden;}
+.rh{display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(255,255,255,.03);border-bottom:1px solid var(--border);cursor:pointer;user-select:none;}
+.rh:hover{background:rgba(255,255,255,.05);}
+.rt{font-weight:600;font-size:13px;color:var(--text);flex:1;}
+.rtags{display:flex;gap:5px;flex-wrap:wrap;}
+.rchev{font-family:var(--mono);color:var(--text3);font-size:11px;transition:transform .2s;}
+.recipe.open .rchev{transform:rotate(90deg);}
+.rb{display:none;padding:14px;}
+.recipe.open .rb{display:block;}
+ol.steps{list-style:none;padding:0;counter-reset:step;}
+ol.steps li{counter-increment:step;display:flex;gap:10px;padding:5px 0;border-bottom:1px solid var(--border);font-size:12.5px;color:var(--text2);}
+ol.steps li:last-child{border-bottom:none;}
+ol.steps li::before{content:counter(step);font-family:var(--mono);font-size:9px;color:var(--text3);background:var(--border);border-radius:2px;padding:2px 5px;flex-shrink:0;height:fit-content;margin-top:2px;}
+.gap{margin-bottom:9px;}
+.drug{display:inline-block;font-family:var(--mono);font-size:11px;padding:1px 6px;border-radius:3px;margin:1px 2px;background:rgba(255,255,255,.06);border:1px solid var(--border2);color:var(--text);}
+/* Quick ref big number */
+.qnum{font-family:var(--mono);font-size:22px;font-weight:600;color:var(--text);line-height:1;}
+.qsub{font-size:11px;color:var(--text2);margin-top:2px;}
+.qcard{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:14px;text-align:center;}
+footer{text-align:center;padding:14px;font-family:var(--mono);font-size:9.5px;color:var(--text3);border-top:1px solid var(--border);margin-top:32px;}
+</style>
+</head>
+<body>
+<header>
+  <div class="hdr-left">
+    <div class="hdr-dept">Anaesthesia · Clinical Reference</div>
+    <div class="hdr-title">Anaesthetic Recipe Book — Expanded Edition</div>
+    <div class="hdr-sub">16-tab specialty reference · ANZCA / NALHN / AAGBI / RCoA framework</div>
+  </div>
+  <div class="hdr-meta">ARB-v4.0<br>April 2026<br>James Hartley</div>
+</header>
+<div class="tab-scroll">
+  <div class="tab-bar">
+    <div class="tab active" style="--tab-color:var(--c16)" onclick="showTab(0)">⚡ Quick Ref</div>
+    <div class="tab" style="--tab-color:var(--c1)" onclick="showTab(1)">1 · Safety</div>
+    <div class="tab" style="--tab-color:var(--c2)" onclick="showTab(2)">2 · Obstetrics</div>
+    <div class="tab" style="--tab-color:var(--c3)" onclick="showTab(3)">3 · Orthopaedics</div>
+    <div class="tab" style="--tab-color:var(--c4)" onclick="showTab(4)">4 · General</div>
+    <div class="tab" style="--tab-color:var(--c5)" onclick="showTab(5)">5 · ENT</div>
+    <div class="tab" style="--tab-color:var(--c6)" onclick="showTab(6)">6 · Ophthalmic</div>
+    <div class="tab" style="--tab-color:var(--c7)" onclick="showTab(7)">7 · Paediatrics</div>
+    <div class="tab" style="--tab-color:var(--c8)" onclick="showTab(8)">8 · Day-case Spinal</div>
+    <div class="tab" style="--tab-color:var(--c9)" onclick="showTab(9)">9 · Non-theatre</div>
+    <div class="tab" style="--tab-color:var(--c11)" onclick="showTab(10)">10 · Cardiac/Thoracic</div>
+    <div class="tab" style="--tab-color:var(--c12)" onclick="showTab(11)">11 · Vascular</div>
+    <div class="tab" style="--tab-color:var(--c13)" onclick="showTab(12)">12 · Regional</div>
+    <div class="tab" style="--tab-color:var(--c14)" onclick="showTab(13)">13 · Airway</div>
+    <div class="tab" style="--tab-color:var(--c15)" onclick="showTab(14)">14 · ICU/Pain/Urology</div>
+    <div class="tab" style="--tab-color:var(--c10)" onclick="showTab(15)">15 · References</div>
+  </div>
+</div>
+
+
+<!-- ══════════════════ QUICK REF ══════════════════ -->
+<div class="plan visible" id="tab-0">
+<div class="alert alert-r gap"><div class="ak">⚠ Emergency Reference</div>All doses are starting points for average adults (~70 kg). Always titrate to effect and cross-check against local protocols. Have resuscitation equipment immediately available.</div>
+
+<div class="section">
+<div class="section-hdr"><div class="sdot" style="background:var(--c16);box-shadow:0 0 5px var(--c16)"></div><div class="slbl">Vasopressors &amp; Inotropes — Ready Infusions</div><div class="snum">01</div></div>
+<div class="card gap">
+<table>
+<thead><tr><th>Drug</th><th>Preparation</th><th>Dose range</th><th>Primary use</th><th>Key caution</th></tr></thead>
+<tbody>
+<tr><td>Metaraminol</td><td>10 mg in 100 mL NaCl = 100 mcg/mL</td><td>Bolus 0.5–2 mg; infusion 1–10 mg/h</td><td>Spinal hypotension, vasodilation</td><td>Reflex bradycardia; ↑ SVR</td></tr>
+<tr><td>Phenylephrine</td><td>10 mg in 100 mL = 100 mcg/mL</td><td>Bolus 50–100 mcg; infusion 25–100 mcg/min</td><td>Obstetric spinal hypotension (preferred)</td><td>↓ HR; avoid tachyarrhythmias</td></tr>
+<tr><td>Noradrenaline</td><td>4 mg in 50 mL = 80 mcg/mL (via CVC)</td><td>0.02–0.5 mcg/kg/min</td><td>Distributive shock, septic shock</td><td>Peripheral necrosis if extravasates; CVC preferred</td></tr>
+<tr><td>Adrenaline</td><td>4 mg in 50 mL = 80 mcg/mL</td><td>0.01–1 mcg/kg/min; arrest: 1 mg IV bolus</td><td>Anaphylaxis, cardiac arrest, low-output states</td><td>Tachyarrhythmias; ↑ lactate</td></tr>
+<tr><td>Vasopressin</td><td>20 units in 50 mL = 0.4 units/mL</td><td>0.01–0.04 units/min</td><td>Refractory vasodilatory shock, post-cardiac surgery</td><td>Coronary/mesenteric ischaemia at high doses</td></tr>
+<tr><td>Dopamine</td><td>200 mg in 50 mL = 4 mg/mL</td><td>2–20 mcg/kg/min</td><td>Low CO, bradycardia (rarely first-line)</td><td>Tachyarrhythmias; displaced by norad/adrenaline</td></tr>
+<tr><td>Dobutamine</td><td>250 mg in 50 mL = 5 mg/mL</td><td>2–20 mcg/kg/min</td><td>Low CO (cardiogenic shock, post-CPB)</td><td>↑ HR; vasodilatory → ↓ BP if hypovolaemic</td></tr>
+<tr><td>Milrinone</td><td>10 mg in 50 mL = 200 mcg/mL</td><td>0.25–0.75 mcg/kg/min</td><td>RV failure, post-CPB low output</td><td>Vasodilatory; long half-life; arrhythmias</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div class="section">
+<div class="section-hdr"><div class="sdot" style="background:var(--c16);box-shadow:0 0 5px var(--c16)"></div><div class="slbl">Emergency Drug Doses (70 kg Adult)</div><div class="snum">02</div></div>
+<div class="g2 gap">
+<div class="card">
+<div class="ct">Cardiac Arrest / Resuscitation</div>
+<table>
+<thead><tr><th>Drug</th><th>Dose</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td>Adrenaline</td><td>1 mg IV Q3–5 min</td><td>VF/pVT after 3rd shock; PEA/asystole immediately</td></tr>
+<tr><td>Amiodarone</td><td>300 mg IV bolus → 150 mg → 900 mg/24h</td><td>Shock-refractory VF/pVT after 3rd shock</td></tr>
+<tr><td>Atropine</td><td>0.6–1.2 mg IV</td><td>Symptomatic bradycardia; max 3 mg total</td></tr>
+<tr><td>Calcium chloride 10%</td><td>10 mL IV</td><td>Hyperkalaemia, hypermagnesaemia, CCB toxicity</td></tr>
+<tr><td>Sodium bicarbonate 8.4%</td><td>50 mL IV</td><td>Hyperkalaemia, TCA OD, prolonged arrest</td></tr>
+<tr><td>Magnesium</td><td>2 g IV over 10 min</td><td>Torsades de pointes, refractory VF</td></tr>
+<tr><td>Adenosine</td><td>6 mg → 12 mg → 18 mg IV rapid push</td><td>SVT; warn patient; flush fast; proximal vein</td></tr>
+<tr><td>Intralipid 20%</td><td>1.5 mL/kg bolus → 15 mL/kg/h</td><td>LA toxicity; max 10 mL/kg in 30 min</td></tr>
+</tbody>
+</table>
+</div>
+<div class="card">
+<div class="ct">Anaphylaxis Protocol</div>
+<ul class="cl">
+<li><span class="lb">Adrenaline IM</span><span class="vl">0.5 mg (0.5 mL of 1:1000) IM anterolateral thigh — FIRST TREATMENT</span></li>
+<li><span class="lb">Adrenaline IV</span><span class="vl">Titrated boluses 10–100 mcg IV if cardiovascular collapse; start infusion 0.05–0.1 mcg/kg/min</span></li>
+<li><span class="lb">Fluid</span><span class="vl">500–1000 mL crystalloid bolus; repeat as needed</span></li>
+<li><span class="lb">Chlorphenamine</span><span class="vl">10 mg slow IV (H1 blocker)</span></li>
+<li><span class="lb">Ranitidine</span><span class="vl">50 mg IV (H2 blocker)</span></li>
+<li><span class="lb">Hydrocortisone</span><span class="vl">200 mg IV (delayed effect — prevents biphasic)</span></li>
+<li><span class="lb">Salbutamol</span><span class="vl">2.5–5 mg nebulised if bronchospasm persists</span></li>
+<li><span class="lb">Position</span><span class="vl">Supine + legs elevated if hypotensive; sitting if respiratory distress predominates</span></li>
+</ul>
+</div>
+</div>
+<div class="g2 gap">
+<div class="card">
+<div class="ct">Reversal Agents</div>
+<table>
+<thead><tr><th>Drug</th><th>Reverses</th><th>Dose</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td>Sugammadex</td><td>Rocuronium / vecuronium</td><td>2 mg/kg (TOF ≥2); 4 mg/kg (deep/PTC 1–2); 16 mg/kg (immediate post-intubation)</td><td>TOFR must be ≥0.9 before extubation; quantitative monitor</td></tr>
+<tr><td>Neostigmine</td><td>NDMR (moderate block)</td><td>50 mcg/kg + glycopyrrolate 10 mcg/kg</td><td>Only if TOFR 0.4–0.9; not for deep block</td></tr>
+<tr><td>Flumazenil</td><td>Benzodiazepines</td><td>0.2 mg IV; repeat 0.1 mg Q1 min; max 1 mg</td><td>Short half-life — resedation risk; not for chronic BZD users</td></tr>
+<tr><td>Naloxone</td><td>Opioids</td><td>0.1–0.4 mg IV titrated; infusion 2/3 reversal dose/h</td><td>Short half-life (30–60 min) — resedation risk; titrate to respiration not sedation</td></tr>
+<tr><td>Protamine</td><td>Heparin</td><td>1 mg per 100 units heparin given; max 50 mg</td><td>Anaphylaxis risk (fish allergy, prior vasectomy, protamine-insulin); give slowly</td></tr>
+<tr><td>Vitamin K</td><td>Warfarin</td><td>1–5 mg IV (slow) or PO</td><td>Effect in 6–12 h; for urgent reversal use PCC (Prothrombinex)</td></tr>
+<tr><td>PCC (Prothrombinex)</td><td>Warfarin / Factor Xa inhibitors</td><td>25–50 units/kg IV</td><td>Urgent reversal; check INR after</td></tr>
+</tbody>
+</table>
+</div>
+<div class="card">
+<div class="ct">Airway Emergency Drugs</div>
+<table>
+<thead><tr><th>Drug</th><th>Dose</th><th>Use</th></tr></thead>
+<tbody>
+<tr><td>Suxamethonium</td><td>1.5 mg/kg IV (RSI); 4 mg/kg IM if no IV</td><td>RSI; laryngospasm (0.1 mg/kg IV)</td></tr>
+<tr><td>Rocuronium (RSI)</td><td>1.2 mg/kg IV</td><td>RSI when sux contraindicated; reverse with sugammadex 16 mg/kg</td></tr>
+<tr><td>Propofol</td><td>0.5–1 mg/kg IV</td><td>Laryngospasm; reduce dose in compromised patients</td></tr>
+<tr><td>Dexamethasone</td><td>8 mg IV</td><td>Airway oedema, stridor, post-extubation; also PONV</td></tr>
+<tr><td>Adrenaline nebulised</td><td>5 mL 1:1000 nebulised</td><td>Croup, post-extubation stridor, airway oedema</td></tr>
+<tr><td>Heliox</td><td>21% O₂ / 79% He via mask</td><td>Stridor, upper airway obstruction — buys time</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div class="section">
+<div class="section-hdr"><div class="sdot" style="background:var(--c16);box-shadow:0 0 5px var(--c16)"></div><div class="slbl">Induction Agents — Quick Comparison</div><div class="snum">03</div></div>
+<div class="card gap">
+<table>
+<thead><tr><th>Agent</th><th>Induction dose</th><th>Onset</th><th>Key advantages</th><th>Avoid / caution</th></tr></thead>
+<tbody>
+<tr><td>Propofol</td><td>1.5–2.5 mg/kg IV (titrate)</td><td>30–60 s</td><td>Smooth; ↓ PONV; TIVA capable</td><td>Pain on injection; hypotension; ↓ dose elderly/compromised</td></tr>
+<tr><td>Thiopentone</td><td>3–5 mg/kg IV</td><td>30 s</td><td>Rapid; ↓ ICP/IOP; neuroprotection</td><td>No analgesia; porphyria CI; extravasation necrosis</td></tr>
+<tr><td>Ketamine</td><td>1–2 mg/kg IV; 4–6 mg/kg IM</td><td>1–2 min IV</td><td>↑ BP/HR; bronchodilator; analgesia; IM option</td><td>↑ ICP/IOP; emergence phenomena; ↑ secretions (give glycopyrrolate)</td></tr>
+<tr><td>Etomidate</td><td>0.3 mg/kg IV</td><td>30–60 s</td><td>Cardiovascular stable; useful in haemodynamic compromise</td><td>Adrenal suppression (single dose OK); myoclonus; no analgesia</td></tr>
+<tr><td>Midazolam</td><td>0.05–0.1 mg/kg IV titrated</td><td>2–3 min</td><td>Anxiolysis; amnesia; anticonvulsant</td><td>Slow onset; respiratory depression; ↓ dose elderly</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div class="section">
+<div class="section-hdr"><div class="sdot" style="background:var(--c16);box-shadow:0 0 5px var(--c16)"></div><div class="slbl">Infusions — Common Perioperative</div><div class="snum">04</div></div>
+<div class="g2">
+<div class="card">
+<div class="ct">Analgesic Infusions</div>
+<table>
+<thead><tr><th>Drug</th><th>Preparation</th><th>Rate</th></tr></thead>
+<tbody>
+<tr><td>Morphine PCA</td><td>50 mg in 50 mL = 1 mg/mL</td><td>Bolus 1 mg; lockout 5 min; 4h limit 20–30 mg</td></tr>
+<tr><td>Fentanyl PCA</td><td>500 mcg in 50 mL = 10 mcg/mL</td><td>Bolus 10–20 mcg; lockout 5–10 min</td></tr>
+<tr><td>Remifentanil</td><td>5 mg in 100 mL = 50 mcg/mL</td><td>TCI Minto 1–6 ng/mL or 0.05–0.2 mcg/kg/min</td></tr>
+<tr><td>Lignocaine infusion</td><td>2 g in 100 mL = 20 mg/mL</td><td>Bolus 1.5 mg/kg → 1–1.5 mg/kg/h; stop at skin closure</td></tr>
+<tr><td>Ketamine infusion</td><td>500 mg in 50 mL = 10 mg/mL</td><td>Sub-anaesthetic: 0.1–0.3 mg/kg/h; chronic pain: 0.1–0.2 mg/kg/h</td></tr>
+<tr><td>Magnesium</td><td>10 g in 100 mL = 100 mg/mL</td><td>Loading 50 mg/kg over 15 min → 10–15 mg/kg/h maintenance</td></tr>
+</tbody>
+</table>
+</div>
+<div class="card">
+<div class="ct">Haemostasis / Fluid Management</div>
+<table>
+<thead><tr><th>Drug</th><th>Dose</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td>TXA</td><td>1 g IV over 10 min; repeat 1 g at 8 h if ongoing</td><td>Give within 3 h of injury/surgery; ↓ mortality in trauma; avoid if thromboembolic risk high</td></tr>
+<tr><td>FFP</td><td>10–15 mL/kg</td><td>Coagulopathy (PT/APTT &gt;1.5×normal); ABO-matched</td></tr>
+<tr><td>Platelets</td><td>1 adult pool (≈300 mL)</td><td>Trigger: &lt;50 × 10⁹/L active bleeding; &lt;100 × 10⁹/L CNS/eye surgery</td></tr>
+<tr><td>Cryoprecipitate</td><td>2 pools (10 units)</td><td>Fibrinogen &lt;1.5 g/L; DIC; massive haemorrhage</td></tr>
+<tr><td>Fibrinogen concentrate</td><td>2–4 g IV</td><td>Target fibrinogen &gt;2 g/L in active bleeding</td></tr>
+<tr><td>Desmopressin (DDAVP)</td><td>0.3 mcg/kg IV over 20 min</td><td>vWD type 1; platelet dysfunction; haemophilia A (mild)</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div class="section">
+<div class="section-hdr"><div class="sdot" style="background:var(--c16);box-shadow:0 0 5px var(--c16)"></div><div class="slbl">PONV — Apfel Score &amp; Triple Prophylaxis</div><div class="snum">05</div></div>
+<div class="g3">
+<div class="card">
+<div class="ct">Apfel Score (1 point each)</div>
+<ul class="bl">
+<li>Female sex</li>
+<li>Non-smoker</li>
+<li>History of PONV or motion sickness</li>
+<li>Postoperative opioid use</li>
+<li>Score 0–1 = low; 2 = moderate; 3–4 = high risk</li>
+</ul>
+</div>
+<div class="card">
+<div class="ct">Prophylaxis by Risk</div>
+<ul class="cl">
+<li><span class="lb">Low (0–1)</span><span class="vl">No routine prophylaxis; ondansetron rescue only</span></li>
+<li><span class="lb">Moderate (2)</span><span class="vl">1–2 agents: dexamethasone 8 mg + ondansetron 4 mg</span></li>
+<li><span class="lb">High (3–4)</span><span class="vl">Triple: dex + ondansetron + droperidol 0.625 mg (or TIVA instead of volatile)</span></li>
+<li><span class="lb">Rescue PACU</span><span class="vl">Ondansetron 4 mg IV; metoclopramide 10 mg; cyclizine 50 mg</span></li>
+</ul>
+</div>
+<div class="card">
+<div class="ct">Non-pharmacological</div>
+<ul class="bl">
+<li>TIVA (propofol) vs volatile — ↓ PONV by ~25%</li>
+<li>Avoid N₂O — ↑ PONV, bowel distension</li>
+<li>Minimise opioids — multimodal analgesia</li>
+<li>Adequate IV hydration intraoperatively</li>
+<li>P6 acupressure (Neiguan point)</li>
+<li>Scopolamine patch 1.5 mg trans-dermal pre-op</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+<!-- ══════════════════ TAB 1 SAFETY ══════════════════ -->
+<div class="plan" id="tab-1">
+<div class="alert alert-r gap"><div class="ak">⚠ Disclaimer</div>Educational tool for trained anaesthetists. Doses, concentrations and techniques are starting points — always cross-check against local protocols, BNF/BNFc and individual clinical context.</div>
+
+<div class="section">
+<div class="section-hdr"><div class="sdot" style="background:var(--c1);box-shadow:0 0 5px var(--c1)"></div><div class="slbl">TIVA — Safe Conduct (AAGBI/SIVA 2019)</div><div class="snum">01</div></div>
+<div class="g2 gap">
+<div class="card"><div class="ct">Equipment Checklist</div><ul class="cl">
+<li><span class="lb">TCI pump</span><span class="vl">2-person check: correct drug, concentration, algorithm, patient weight/details</span></li>
+<li><span class="lb">Anti-reflux valve</span><span class="vl">On IV fluid line; anti-syphon valves on all drug lines</span></li>
+<li><span class="lb">Connections</span><span class="vl">Luer-lock syringes; lines joined close to patient; avoid 3-way taps on drug line</span></li>
+<li><span class="lb">Propofol</span><span class="vl">1% in general theatres; 2% in neuro/ICU</span></li>
+<li><span class="lb">Remifentanil TCI</span><span class="vl">Dilute to 50 mcg/mL; Minto model; correct sex/age/weight/height entered</span></li>
+<li><span class="lb">Cannula</span><span class="vl">Secure, visible, not antecubital fossa if avoidable; check patency before induction</span></li>
+</ul></div>
+<div class="card"><div class="ct">Marsh Plasma Targets (Healthy Adult)</div>
+<table><thead><tr><th>State</th><th>Propofol Ce (mcg/mL)</th></tr></thead><tbody>
+<tr><td>Induction</td><td>4–6</td></tr>
+<tr><td>Maintenance (no opioid)</td><td>3–6</td></tr>
+<tr><td>Maintenance (with opioid)</td><td>2.5–4</td></tr>
+<tr><td>Older / frail</td><td>Reduce targets; titrate carefully</td></tr>
+<tr><td>Obese</td><td>Use Adjusted Body Weight; depth monitor essential</td></tr>
+</tbody></table></div>
+</div>
+<div class="g3">
+<div class="card"><div class="ct">Non-Negotiables</div><ul class="bl">
+<li>Depth-of-anaesthesia monitor whenever NMB used (ANZCA PS26)</li>
+<li>Never mix opioid with propofol in one syringe</li>
+<li>Flush line after use with &gt;2× dead-space volume</li>
+<li>Paediatric TIVA only if specifically trained</li>
+<li>Always have volatile backup agent available and checked</li>
+</ul></div>
+<div class="card"><div class="ct">Depth Monitoring Targets</div>
+<table><thead><tr><th>Monitor</th><th>GA target</th><th>Sedation</th></tr></thead><tbody>
+<tr><td>BIS</td><td>40–60</td><td>60–80</td></tr>
+<tr><td>Entropy (SE)</td><td>40–60</td><td>60–80</td></tr>
+<tr><td>BSR</td><td>0%</td><td>0%</td></tr>
+<tr><td>RE–SE gap</td><td>&lt;10</td><td>EMG artifact if &gt;10</td></tr>
+</tbody></table></div>
+<div class="card"><div class="ct">TIVA Failure / Awareness</div><ul class="bl">
+<li><strong>High risk:</strong> line disconnect, pump malfunction, infusion site failure, cannula tissuing</li>
+<li>BIS rising &gt;60 → check infusion, pump, cannula immediately</li>
+<li>Record TCI targets and times in anaesthetic record</li>
+<li>Document any suspected awareness; debrief patient compassionately</li>
+<li>AAGBI/SIVA Anaesthesia 2019;74:211–224</li>
+</ul></div>
+</div>
+</div>
+
+<div class="section">
+<div class="section-hdr"><div class="sdot" style="background:var(--c1);box-shadow:0 0 5px var(--c1)"></div><div class="slbl">LAST — Local Anaesthetic Systemic Toxicity</div><div class="snum">02</div></div>
+<div class="alert alert-r"><div class="ak">⚠ Critical Emergency — Intralipid immediately available at all block locations</div>LAST can present up to 30 min after injection. Subarachnoid injection from eye block → immediate total spinal: intubate, ventilate, support CVS.</div>
+<div class="g3">
+<div class="card"><div class="ct">Progressive Signs</div><ul class="bl">
+<li>Peri-oral tingling, light-headedness, metallic taste</li>
+<li>Tremor, tinnitus, blurred vision</li>
+<li>Twitching → loss of consciousness</li>
+<li>Seizures → cardiovascular collapse / arrest</li>
+<li>CVS toxicity: bupivacaine &gt; ropivacaine &gt; lignocaine</li>
+</ul></div>
+<div class="card"><div class="ct">Management</div><ul class="cl">
+<li><span class="lb">Stop injection</span><span class="vl">Call for help; ABC; 100% O₂; secure IV access</span></li>
+<li><span class="lb">Intralipid 20%</span><span class="vl">1.5 mL/kg bolus IV then 15 mL/kg/h; max 10 mL/kg first 30 min</span></li>
+<li><span class="lb">Seizures</span><span class="vl">Midazolam 0.1 mg/kg or thiopentone; avoid propofol if CVS unstable</span></li>
+<li><span class="lb">Cardiac arrest</span><span class="vl">CPR &gt;1 h may be required; transfer ICU; ECMO if refractory</span></li>
+</ul></div>
+<div class="card"><div class="ct">Maximum Dose Ceilings</div>
+<table><thead><tr><th>Agent</th><th>Max dose</th></tr></thead><tbody>
+<tr><td>Bupivacaine</td><td>2 mg/kg</td></tr>
+<tr><td>Ropivacaine</td><td>3 mg/kg</td></tr>
+<tr><td>Lignocaine plain</td><td>3 mg/kg</td></tr>
+<tr><td>Lignocaine + adrenaline</td><td>7 mg/kg</td></tr>
+<tr><td>Levobupivacaine</td><td>2–3 mg/kg</td></tr>
+</tbody></table></div>
+</div>
+</div>
+
+<div class="section">
+<div class="section-hdr"><div class="sdot" style="background:var(--c1);box-shadow:0 0 5px var(--c1)"></div><div class="slbl">Malignant Hyperthermia</div><div class="snum">03</div></div>
+<div class="alert alert-r"><div class="ak">⚠ MH — Life-Threatening Emergency</div>Triggered by volatile agents and suxamethonium. Incidence ~1:10,000–1:100,000. Autosomal dominant RYR1 mutation most common.</div>
+<div class="g2">
+<div class="card"><div class="ct">Clinical Features</div><ul class="cl">
+<li><span class="lb">Early</span><span class="vl">↑ EtCO₂ (first sign), masseter spasm after sux, ↑ HR, ↑ temp (&gt;0.5°C/15 min)</span></li>
+<li><span class="lb">Late</span><span class="vl">Hyperthermia (&gt;40°C), metabolic acidosis, rhabdomyolysis, hyperkalaemia, DIC, cardiac arrest</span></li>
+<li><span class="lb">MH-susceptible</span><span class="vl">Prior MH episode, positive IVCT, RYR1 mutation, King-Denborough syndrome, central core disease</span></li>
+</ul></div>
+<div class="card"><div class="ct">Management</div><ul class="cl">
+<li><span class="lb">Stop trigger</span><span class="vl">Remove volatile; change circuit; increase fresh gas flow; use charcoal filters if available</span></li>
+<li><span class="lb">Dantrolene</span><span class="vl">2.5 mg/kg IV bolus → repeat up to 10 mg/kg total; mix each vial with 60 mL sterile water</span></li>
+<li><span class="lb">Cooling</span><span class="vl">IV cold saline; ice packs to axillae, groin; cooling blanket; target temp &lt;38.5°C</span></li>
+<li><span class="lb">Treat consequences</span><span class="vl">Hyperkalaemia (Ca gluconate, bicarb, insulin/dextrose); acidosis (bicarb); coagulopathy (FFP/cryo)</span></li>
+<li><span class="lb">ICU</span><span class="vl">Minimum 24 h; dantrolene 1 mg/kg Q6H × 24–48 h; monitor CK, urine myoglobin, K⁺</span></li>
+</ul></div>
+</div>
+</div>
+
+<div class="section">
+<div class="section-hdr"><div class="sdot" style="background:var(--c1);box-shadow:0 0 5px var(--c1)"></div><div class="slbl">Rib Fracture Pathway</div><div class="snum">04</div></div>
+<div class="g2">
+<div class="card"><div class="ct">Risk Stratification</div><ul class="cl">
+<li><span class="lb">High-risk features</span><span class="vl">&gt;3 ribs; age &gt;65; bilateral; flail segment; pre-existing COPD; SpO₂ &lt;93%</span></li>
+<li><span class="lb">Scoring</span><span class="vl">Rib Fracture Score in ED → HDU/ICU if high</span></li>
+<li><span class="lb">Complications</span><span class="vl">Pneumothorax, haemothorax, pneumonia, respiratory failure</span></li>
+</ul></div>
+<div class="card"><div class="ct">Management</div><ul class="cl">
+<li><span class="lb">Regional (early)</span><span class="vl">Serratus anterior plane catheter; paravertebral block; thoracic epidural</span></li>
+<li><span class="lb">Systemic</span><span class="vl">Paracetamol + NSAID + opioid PRN (avoid opioid-heavy — ↑ respiratory depression)</span></li>
+<li><span class="lb">Respiratory</span><span class="vl">Humidified O₂; chest physio; suction; incentive spirometry; early mobilisation</span></li>
+<li><span class="lb">Escalation</span><span class="vl">ICU if SpO₂ &lt;92% on ≥4 L/min O₂; RR &gt;25; fatigue; &gt;5 ribs</span></li>
+</ul></div>
+</div>
+</div>
+</div>
+
+
+<!-- ══════════════════ TAB 2 OBSTETRICS ══════════════════ -->
+<div class="plan" id="tab-2">
+<div class="alert alert-w gap"><div class="ak">Consultant Escalation</div>Cat 1 LSCS; any GA for obstetric patient; placenta praevia/abruption; severe pre-eclampsia; BMI &gt;50; prematurity &lt;32 wk; haemorrhage &gt;1500 mL with ongoing loss; failed epidural extension; accidental dural puncture; eclampsia or collapse.</div>
+
+<div class="recipe open"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Elective LSCS — Spinal (NALHN)</div><div class="rtags"><span class="badge bp">Spinal</span><span class="badge bb">Obstetric</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<div class="g2 gap">
+<div class="card"><div class="ct">Intrathecal Mix</div><ul class="cl">
+<li><span class="lb">Bupivacaine</span><span class="vl">2.2–2.4 mL 0.5% hyperbaric (2.2 mL if short stature; 2.4 mL standard)</span></li>
+<li><span class="lb">Fentanyl</span><span class="vl">15 mcg (0.3 mL) — draw into same syringe as morphine</span></li>
+<li><span class="lb">Morphine PF</span><span class="vl">100 mcg (0.2 mL) preservative-free</span></li>
+<li><span class="lb">Total volume</span><span class="vl">~2.7–2.9 mL combined</span></li>
+</ul></div>
+<div class="card"><div class="ct">Setup</div><ul class="cl">
+<li><span class="lb">Co-load</span><span class="vl">500–1000 mL crystalloid at spinal insertion</span></li>
+<li><span class="lb">Vasopressor</span><span class="vl">Phenylephrine infusion (preferred) or metaraminol attached — prophylactic</span></li>
+<li><span class="lb">Uterotonic</span><span class="vl">Carbetocin 100 mcg slow IV (2 separate pushes post-delivery; keep syringe separate)</span></li>
+<li><span class="lb">Analgesia</span><span class="vl">Parecoxib IV; NO ibuprofen ×12 h; chart on EMR</span></li>
+<li><span class="lb">Rescue</span><span class="vl">GTN standby; IV fentanyl for breakthrough pain; always offer GA if block inadequate</span></li>
+</ul></div>
+</div>
+<div class="g3">
+<div class="card"><div class="ct">Block Testing</div><ul class="bl">
+<li>Two modalities: cold + pinprick or light touch + cold</li>
+<li>OAA target: light touch loss T5, cold (ice) T4 to sacral</li>
+<li>Loss of hip flexion — SLR not possible = adequate</li>
+<li>Ankle movement does NOT exclude sacral sparing</li>
+</ul></div>
+<div class="card"><div class="ct">Dermatome Asymmetry</div><ul class="cl">
+<li><span class="lb">≤4 levels diff</span><span class="vl">Lie low-side down; further bolus; reassess</span></li>
+<li><span class="lb">≥5 levels diff</span><span class="vl">Positioning unlikely to rescue — alternatives; call consultant early</span></li>
+<li><span class="lb">Not rising after 15 mL</span><span class="vl">Call consultant — GA may be safer</span></li>
+</ul></div>
+<div class="card"><div class="ct">Haemorrhage</div><ul class="cl">
+<li><span class="lb">Acceptable EBL</span><span class="vl">&lt;1500 mL</span></li>
+<li><span class="lb">Escalate at</span><span class="vl">&gt;1500 mL ongoing → consultant + MHP</span></li>
+<li><span class="lb">Hypotension tip</span><span class="vl">Think concealed blood loss first</span></li>
+</ul></div>
+</div>
+</div></div>
+
+<div class="recipe open"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Major Obstetric Haemorrhage (MOH / PPH)</div><div class="rtags"><span class="badge br">Emergency</span><span class="badge bw">PPH</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<div class="alert alert-r"><div class="ak">⚠ Call for Help Early — Activate MHP at EBL &gt;1000 mL or rate of loss demands it</div>PPH defined as EBL &gt;500 mL (vaginal) or &gt;1000 mL (CS). Major PPH &gt;1500 mL with ongoing loss.</div>
+<div class="g2 gap">
+<div class="card"><div class="ct">Immediate Management (4 Ts)</div>
+<table><thead><tr><th>Cause</th><th>Action</th></tr></thead><tbody>
+<tr><td><strong>Tone</strong> (80%)</td><td>Uterine massage; bimanual compression; oxytocin infusion 40 units/500 mL over 4 h; ergometrine 0.25 mg IV/IM; carboprost 0.25 mg IM Q15 min (max 8 doses; avoid asthma)</td></tr>
+<tr><td><strong>Trauma</strong></td><td>Repair lacerations; ensure adequate exposure; consider interventional radiology</td></tr>
+<tr><td><strong>Tissue</strong></td><td>Manual removal retained products; examine placenta for completeness</td></tr>
+<tr><td><strong>Thrombin</strong></td><td>Correct coagulopathy; send ROTEM/TEG; transfuse products as guided</td></tr>
+</tbody></table></div>
+<div class="card"><div class="ct">Anaesthetic Actions</div><ul class="cl">
+<li><span class="lb">2× large-bore IV</span><span class="vl">16G minimum; consider arterial line and CVC early</span></li>
+<li><span class="lb">TXA</span><span class="vl">1 g IV immediately; repeat 1 g at 30 min if ongoing; give within 3 h</span></li>
+<li><span class="lb">Fluid strategy</span><span class="vl">Hartmann's 1:1 with pRBC in early phase; avoid excess crystalloid; permissive hypotension (MAP 50–65) until haemostasis</span></li>
+<li><span class="lb">Blood products</span><span class="vl">MHP: pRBC:FFP:platelets 1:1:1 ratio; fibrinogen early (target &gt;2 g/L); cryoprecipitate 2 pools</span></li>
+<li><span class="lb">Calcium</span><span class="vl">Calcium chloride 10 mL 10% IV with every 4 units pRBC (citrate chelation)</span></li>
+<li><span class="lb">Warming</span><span class="vl">Warm all fluids; patient active warming — hypothermia worsens coagulopathy</span></li>
+<li><span class="lb">GA if needed</span><span class="vl">RSI with ketamine 1–2 mg/kg (preserves BP) if regional inadequate; avoid propofol in haemodynamic compromise</span></li>
+</ul></div>
+</div>
+<div class="g3">
+<div class="card"><div class="ct">Uterotonics Summary</div>
+<table><thead><tr><th>Drug</th><th>Dose</th><th>CI</th></tr></thead><tbody>
+<tr><td>Oxytocin</td><td>5 units slow IV then 40 units/500 mL infusion</td><td>Rapid bolus → ↓ BP</td></tr>
+<tr><td>Carbetocin</td><td>100 mcg IV slow (LSCS)</td><td>Slower onset than oxytocin bolus</td></tr>
+<tr><td>Ergometrine</td><td>0.25–0.5 mg IV/IM</td><td>Hypertension, PET, asthma</td></tr>
+<tr><td>Carboprost (PGF₂α)</td><td>0.25 mg IM Q15 min (max 8 doses)</td><td>Asthma (relative CI)</td></tr>
+<tr><td>Misoprostol</td><td>800 mcg SL or PR</td><td>Pyrexia common</td></tr>
+</tbody></table></div>
+<div class="card"><div class="ct">Surgical Options</div><ul class="bl">
+<li>Uterine balloon tamponade (Bakri balloon)</li>
+<li>B-Lynch suture / uterine compression sutures</li>
+<li>Uterine artery ligation (O'Leary sutures)</li>
+<li>Internal iliac artery ligation</li>
+<li>Interventional radiology (UAE) if haemodynamically stable</li>
+<li>Hysterectomy — life-saving; ensure consent obtained if possible</li>
+</ul></div>
+<div class="card"><div class="ct">Monitoring Targets (Active MOH)</div><ul class="cl">
+<li><span class="lb">Hb</span><span class="vl">Target ≥80 g/L; transfuse if &lt;70 g/L</span></li>
+<li><span class="lb">Fibrinogen</span><span class="vl">Target &gt;2 g/L; replace early with cryo/fibrinogen concentrate</span></li>
+<li><span class="lb">Platelets</span><span class="vl">Target &gt;75 × 10⁹/L in active haemorrhage</span></li>
+<li><span class="lb">pH</span><span class="vl">Target &gt;7.2; treat acidosis to improve coagulation</span></li>
+<li><span class="lb">Temp</span><span class="vl">Target ≥36.5°C — hypothermia ↑ coagulopathy</span></li>
+<li><span class="lb">Calcium (ionised)</span><span class="vl">Target &gt;1.1 mmol/L; supplement actively</span></li>
+</ul></div>
+</div>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Severe Pre-Eclampsia &amp; Eclampsia</div><div class="rtags"><span class="badge br">High risk</span><span class="badge bw">Magnesium</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<div class="alert alert-w"><div class="ak">Severe PET Criteria (any one of)</div>BP ≥160/110 on 2 occasions ≥15 min apart; proteinuria &gt;5 g/24 h; pulmonary oedema; oliguria &lt;500 mL/24 h; thrombocytopenia &lt;100 × 10⁹/L; hepatic dysfunction; neurological symptoms; fetal compromise.</div>
+<div class="g2 gap">
+<div class="card"><div class="ct">Antihypertensive Management</div><ul class="cl">
+<li><span class="lb">Labetalol IV</span><span class="vl">20 mg IV bolus over 2 min; repeat 40 mg → 80 mg Q10 min; max 300 mg; infusion 20–160 mg/h — first-line</span></li>
+<li><span class="lb">Hydralazine IV</span><span class="vl">5 mg IV over 2 min; repeat 5–10 mg Q20 min; max 20 mg; onset 10–20 min</span></li>
+<li><span class="lb">Nifedipine PO</span><span class="vl">10–20 mg oral (immediate release); repeat after 30 min if needed</span></li>
+<li><span class="lb">Target BP</span><span class="vl">Systolic 140–155; diastolic 90–105 — avoid rapid ↓ (uteroplacental insufficiency)</span></li>
+</ul></div>
+<div class="card"><div class="ct">Magnesium Sulphate (Eclampsia / Seizure Prophylaxis)</div><ul class="cl">
+<li><span class="lb">Loading dose</span><span class="vl">4 g IV over 20 min (via infusion pump — not rapid bolus)</span></li>
+<li><span class="lb">Maintenance</span><span class="vl">1 g/h IV infusion; continue 24 h post-delivery or last seizure</span></li>
+<li><span class="lb">Toxicity signs</span><span class="vl">Loss of DTRs (serum Mg 3.5–5 mmol/L) → respiratory depression (5–6.5) → cardiac arrest (&gt;7.5)</span></li>
+<li><span class="lb">Monitor</span><span class="vl">DTRs Q1h; RR Q1h; UO ≥25 mL/h; serum Mg if concerns</span></li>
+<li><span class="lb">Antidote</span><span class="vl">Calcium gluconate 1 g IV over 3 min (if toxicity)</span></li>
+</ul></div>
+</div>
+<div class="g2">
+<div class="card"><div class="ct">Regional vs GA for PET</div><ul class="cl">
+<li><span class="lb">Spinal preferred</span><span class="vl">If platelets &gt;75 × 10⁹/L, no coagulopathy, no rapidly evolving signs — safer than GA</span></li>
+<li><span class="lb">Epidural preferred</span><span class="vl">Gradual BP lowering; avoids pressor response of intubation; top-up for CS if labour epidural in situ</span></li>
+<li><span class="lb">GA concerns</span><span class="vl">Laryngeal oedema → difficult airway; pressor response to intubation → ↑ BP; airway oedema post-extubation</span></li>
+<li><span class="lb">If GA needed</span><span class="vl">Blunt intubation response: alfentanil 10–20 mcg/kg or remifentanil 1 mcg/kg before laryngoscopy; video laryngoscope; have surgical airway kit ready</span></li>
+</ul></div>
+<div class="card"><div class="ct">HELLP Syndrome</div><ul class="cl">
+<li><span class="lb">Definition</span><span class="vl">Haemolysis + ↑ Liver enzymes + Low Platelets</span></li>
+<li><span class="lb">Regional</span><span class="vl">Platelets &gt;75 × 10⁹/L for spinal; &gt;80 × 10⁹/L for epidural (local thresholds may vary)</span></li>
+<li><span class="lb">Platelet trend</span><span class="vl">Check Q4–6h if &lt;100 — can fall rapidly in HELLP; recheck before any block</span></li>
+<li><span class="lb">Delivery</span><span class="vl">Definitive treatment — consult MFM; dexamethasone for lung maturity if &lt;34 wk</span></li>
+</ul></div>
+</div>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Placenta Praevia / Accreta Spectrum</div><div class="rtags"><span class="badge br">Haemorrhage risk</span><span class="badge bw">Complex</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<div class="alert alert-r"><div class="ak">⚠ Placenta Accreta / Increta / Percreta — Highest Haemorrhage Risk in Obstetrics</div>Anticipate massive haemorrhage. Ideally deliver in a centre with interventional radiology, cell salvage, and MHP capability. Consultant anaesthetist and haematologist involved from booking.</div>
+<div class="g2 gap">
+<div class="card"><div class="ct">Pre-op Planning</div><ul class="cl">
+<li><span class="lb">MDT</span><span class="vl">Obstetrics + anaesthesia + haematology + interventional radiology + urology if percreta</span></li>
+<li><span class="lb">Blood products</span><span class="vl">Crossmatch ≥4 units pRBC; pre-order FFP and platelets; cryoprecipitate ready</span></li>
+<li><span class="lb">Cell salvage</span><span class="vl">Set up before incision; leucocyte depletion filter mandatory in obstetrics</span></li>
+<li><span class="lb">Balloon catheters</span><span class="vl">Interventional radiology: bilateral iliac balloons inflated at delivery of baby</span></li>
+<li><span class="lb">Access</span><span class="vl">Two large-bore IV + arterial line + CVC; ROTEM/TEG on site</span></li>
+</ul></div>
+<div class="card"><div class="ct">Anaesthetic Approach</div><ul class="cl">
+<li><span class="lb">Regional vs GA</span><span class="vl">Spinal acceptable for praevia without accreta; GA strongly preferred for accreta/increta/percreta — anticipate massive EBL requiring depth titration</span></li>
+<li><span class="lb">GA induction</span><span class="vl">RSI with ketamine 1–2 mg/kg (haemodynamic stability) + suxamethonium; TIVA maintenance</span></li>
+<li><span class="lb">Maintenance</span><span class="vl">Propofol/remifentanil TIVA — volatile may cause uterine relaxation at high concentrations (&gt;0.5 MAC in obstetrics)</span></li>
+<li><span class="lb">Vasopressors</span><span class="vl">Noradrenaline infusion via CVC; anticipate loss of vasomotor tone after uterine devascularisation</span></li>
+<li><span class="lb">TXA</span><span class="vl">1 g at incision; repeat as needed (no max established in massive obstetric haemorrhage)</span></li>
+</ul></div>
+</div>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Labour Epidural — Loading, Maintenance &amp; Troubleshooting</div><div class="rtags"><span class="badge bp">Epidural</span><span class="badge bb">Labour</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<div class="g2 gap">
+<div class="card"><div class="ct">Loading (0.2% Ropivacaine)</div><ol class="steps">
+<li>Check indication, Hb, platelets, coags; consent; skin LA</li>
+<li>Test dose 6 mL before securing catheter</li>
+<li>1 mL post-fixation to check patency</li>
+<li>Wait 5 min → check no motor block, check BP → 5 mL</li>
+<li>Wait 5 min → 5 mL; total 14–20 mL</li>
+<li>Aim 45 min skin-infiltration to comfort; do not start PCEA until 30 min after loading</li>
+</ol></div>
+<div class="card"><div class="ct">Troubleshooting</div><ul class="cl">
+<li><span class="lb">Check sequence</span><span class="vl">Machine → catheter → patient → block level</span></li>
+<li><span class="lb">Sudden stop</span><span class="vl">Suspect migration — re-site</span></li>
+<li><span class="lb">One-sided</span><span class="vl">Lie affected side down; bolus 5 mL 0.25% bupivacaine</span></li>
+<li><span class="lb">Patchy/failing</span><span class="vl">Replace early — a partially working epidural will fail at CS. Do not flog it under time pressure</span></li>
+<li><span class="lb">Breakthrough</span><span class="vl">5 mL 0.25% bupivacaine or 5 mL 2% lidocaine + flush</span></li>
+</ul></div>
+</div>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Difficult Obstetric Airway — Management Plan</div><div class="rtags"><span class="badge br">GA</span><span class="badge br">Failed intubation</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<div class="alert alert-r"><div class="ak">⚠ Maternal Oxygenation is the Priority — Not Intubation</div>The obstetric airway is more difficult than the general population — higher Mallampati, oedema, breast enlargement, reduced FRC. Incidence of failed intubation ~1:390 GA CS (10× general surgical).</div>
+<div class="g2 gap">
+<div class="card"><div class="ct">Pre-op Airway Planning</div><ul class="cl">
+<li><span class="lb">Assess</span><span class="vl">Mallampati, mouth opening, neck mobility, thyromental distance; repeat assessment in labour (oedema evolves)</span></li>
+<li><span class="lb">Equipment</span><span class="vl">VL as first-line (particularly high BMI, short neck, Mallampati 3–4); bougie; supraglottic device (i-gel size 4); surgical airway kit opened</span></li>
+<li><span class="lb">Pre-oxygenate</span><span class="vl">3 min tidal breathing / ETO₂ &gt;0.85; ramped position (ear to sternal notch); high-flow nasal O₂ throughout</span></li>
+<li><span class="lb">Awake FOI</span><span class="vl">Consider if anticipated extremely difficult airway — coordinate with experienced team; nebulised LA; nasal approach preferred in obstetrics</span></li>
+</ul></div>
+<div class="card"><div class="ct">Failed Intubation Algorithm (Obstetric)</div><ol class="steps">
+<li>Call for help immediately; do not make more than 2 intubation attempts</li>
+<li>Maintain oxygenation — face mask; 2-person technique; THRIVE if available</li>
+<li>Insert supraglottic airway (i-gel or ProSeal LMA size 4) if mask ventilation difficult</li>
+<li>Declare "cannot intubate" — decision: wake up patient OR proceed with SGA if immediately life-threatening (Cat 1)</li>
+<li>If proceeding: use i-gel in left lateral tilt; cricoid pressure modified; low aspiration risk = no cricoid</li>
+<li>Cannot intubate, cannot oxygenate (CICO): emergency front-of-neck access — scalpel cricothyroidotomy; bougie-guided</li>
+</ol></div>
+</div>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Epidural Top-Up for LSCS / CSE / GA for CS</div><div class="rtags"><span class="badge bp">Epidural</span><span class="badge bw">Urgency</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<div class="g3 gap">
+<div class="card"><div class="ct">Recipe A (Preferred)</div><ul class="cl">
+<li><span class="lb">Solution</span><span class="vl">15 mL 0.75% ropivacaine + 2 mL fentanyl (100 mcg) = 17 mL</span></li>
+<li><span class="lb">Technique</span><span class="vl">3 mL test → 5 mL reassess → 5 mL reassess</span></li>
+<li><span class="lb">Post-op opioid</span><span class="vl">Add 2.5 mg diamorphine epidural at end if no IT opioid given</span></li>
+</ul></div>
+<div class="card"><div class="ct">Recipe B / Urgency</div><ul class="cl">
+<li><span class="lb">Solution</span><span class="vl">10 mL 2% lidocaine + 10 mL 0.5% bupivacaine</span></li>
+<li><span class="lb">Adjuvant</span><span class="vl">Fentanyl 50–100 mcg epidural — blunts visceral/vagal discomfort</span></li>
+<li><span class="lb">Top-up</span><span class="vl">3 mL at a time after 45 min if needed</span></li>
+</ul></div>
+<div class="card"><div class="ct">CSE for LSCS</div><ul class="cl">
+<li><span class="lb">Approach</span><span class="vl">Needle-through-needle or 2-level technique</span></li>
+<li><span class="lb">IT adjunct</span><span class="vl">Fentanyl 15 mcg intrathecal acceptable</span></li>
+<li><span class="lb">Epidural top-up</span><span class="vl">5 mL increments 2% lidocaine + adrenaline at 60–90 min</span></li>
+</ul></div>
+</div>
+<div class="alert alert-r"><div class="ak">Key Rule</div>Do not perform a spinal after a failed epidural top-up without consultant present — high spinal risk persists even with reduced dose. CSE is a safer extension strategy.</div>
+</div></div>
+</div>
+
+
+<!-- ══════════════════ TAB 3 ORTHOPAEDICS ══════════════════ -->
+<div class="plan" id="tab-3">
+
+<div class="recipe open"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">#NOF / Hemi / DHS / TFNA / Gamma Nail</div><div class="rtags"><span class="badge bg">Trauma</span><span class="badge bw">Elderly</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<div class="alert alert-b"><div class="ak">TIVA Preference</div>Strongly consider TIVA to lower post-op delirium. If pre-op delirious — sevoflurane + haloperidol 0.5–1 mg.</div>
+<div class="g2 gap">
+<div class="card"><div class="ct">Anaesthetic Options</div><ul class="cl">
+<li><span class="lb">Spinal</span><span class="vl">3 mL 0.5% plain bupivacaine + 20 mcg fentanyl — lateral bad-side-up; isobaric</span></li>
+<li><span class="lb">Long spinal</span><span class="vl">3 mL 0.5% plain + 100 mcg morphine if prolonged surgery</span></li>
+<li><span class="lb">GA</span><span class="vl">Sparing propofol (~60 mg); LMA or ETT; bladder temperature probe; bite-block</span></li>
+<li><span class="lb">TIVA</span><span class="vl">Propofol/remifentanil TCI — preferred to ↓ delirium and PONV</span></li>
+</ul></div>
+<div class="card"><div class="ct">Regional Analgesia</div><ul class="cl">
+<li><span class="lb">Hemi / NOF</span><span class="vl">Fascia iliaca block + LCFN block</span></li>
+<li><span class="lb">THR</span><span class="vl">PENG block + LCFN block (motor-sparing)</span></li>
+<li><span class="lb">Fascia iliaca</span><span class="vl">Ropivacaine 0.375% 40 mL infrainguinal approach; US-guided</span></li>
+<li><span class="lb">PENG</span><span class="vl">Targets femoral, obturator, accessory obturator at hip capsule</span></li>
+<li><span class="lb">Timing</span><span class="vl">Perform before positioning where possible — ↓ positioning pain</span></li>
+</ul></div>
+</div>
+<div class="g3">
+<div class="card"><div class="ct">Delirium Prevention</div><ul class="bl">
+<li>TIVA preferred over volatile — evidence for ↓ delirium</li>
+<li>Avoid benzodiazepines, anticholinergics, pethidine</li>
+<li>Dexmedetomidine infusion 0.2–0.7 mcg/kg/h if high risk</li>
+<li>Hearing aids and glasses in situ early post-op</li>
+<li>Orientation, familiar voices, early mobilisation</li>
+</ul></div>
+<div class="card"><div class="ct">Multimodal Analgesia</div><ul class="bl">
+<li>Paracetamol 1 g Q6H regular IV/PO</li>
+<li>NSAID if renal function adequate (celecoxib 200 mg BD)</li>
+<li>Oxycodone IR 5 mg PRN — caution elderly; ↓ dose</li>
+<li>Avoid IM opioids — erratic absorption in elderly</li>
+<li>Gabapentin 100–300 mg if chronic pain background</li>
+</ul></div>
+<div class="card"><div class="ct">VTE Prophylaxis</div><ul class="bl">
+<li>Enoxaparin 40 mg SC OD (20 mg if high bleed risk)</li>
+<li>Aspirin 75–100 mg BD if LMWH not appropriate</li>
+<li>IPC intraoperatively and until mobile</li>
+<li>Early mobilisation is key — day 1 post-op</li>
+</ul></div>
+</div>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Total Hip Replacement (THR)</div><div class="rtags"><span class="badge bg">Elective</span><span class="badge bb">PENG block</span></div><div class="rchev">▶</div></div>
+<div class="rb"><div class="g2">
+<div class="card"><div class="ct">Technique</div><ul class="cl">
+<li><span class="lb">Airway</span><span class="vl">GA LMA/ETT ± arterial line (significant CVS disease or BMI &gt;40)</span></li>
+<li><span class="lb">Spinal option</span><span class="vl">Lateral asleep spinal — isobaric bupivacaine 0.5% 2.5–3 mL ± fentanyl 25 mcg</span></li>
+<li><span class="lb">TIVA</span><span class="vl">Consider to ↓ delirium; propofol/remifentanil TCI</span></li>
+<li><span class="lb">TXA</span><span class="vl">1 g IV at induction — ↓ EBL ~500–800 mL without ↑ VTE</span></li>
+<li><span class="lb">Cement</span><span class="vl">Bone cement implantation syndrome — monitor BP at cementing; vasopressor ready; ensure adequate volume pre-cement</span></li>
+</ul></div>
+<div class="card"><div class="ct">Regional &amp; Post-op</div><ul class="cl">
+<li><span class="lb">PENG block</span><span class="vl">Pericapsular nerve group: targets femoral, obturator, accessory obturator at hip capsule; ropivacaine 0.375% 20 mL</span></li>
+<li><span class="lb">LCFN block</span><span class="vl">Lateral cutaneous femoral nerve: thigh lateral analgesia — ropivacaine 0.375% 5 mL</span></li>
+<li><span class="lb">Surgeon LIA</span><span class="vl">Periarticular infiltration: ropivacaine ± ketorolac ± adrenaline</span></li>
+<li><span class="lb">Post-op</span><span class="vl">Paracetamol + celecoxib regular; oxycodone PRN; PCA if high pain scores</span></li>
+</ul></div>
+</div></div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Total Knee Replacement (TKR)</div><div class="rtags"><span class="badge bg">Elective</span><span class="badge bb">Adductor canal</span></div><div class="rchev">▶</div></div>
+<div class="rb"><div class="g3">
+<div class="card"><div class="ct">Technique</div><ul class="cl">
+<li><span class="lb">Airway</span><span class="vl">GA LMA/ETT ± spinal (hyperbaric bupivacaine 0.5% 2.5–3 mL ± fentanyl 25 mcg)</span></li>
+<li><span class="lb">TXA</span><span class="vl">1 g IV at induction ± topical intraarticular</span></li>
+<li><span class="lb">Tourniquet</span><span class="vl">Deflation → ↓ BP, ↑ K⁺, reperfusion — anticipate and manage</span></li>
+</ul></div>
+<div class="card"><div class="ct">Regional Analgesia</div><ul class="cl">
+<li><span class="lb">Adductor canal</span><span class="vl">Ropivacaine 0.375% 15–20 mL — preserves quadriceps (↑ early mobilisation vs femoral nerve block)</span></li>
+<li><span class="lb">IPACK block</span><span class="vl">Infiltration between popliteal artery and capsule of knee — posterior pain; ropivacaine 0.25% 20 mL</span></li>
+<li><span class="lb">Surgeon LIA</span><span class="vl">Periarticular infiltration at closure</span></li>
+<li><span class="lb">Avoid</span><span class="vl">Femoral nerve block — quadriceps weakness → fall risk</span></li>
+</ul></div>
+<div class="card"><div class="ct">Post-op</div><ul class="cl">
+<li><span class="lb">Regular</span><span class="vl">Paracetamol 1 g Q6H + celecoxib 200 mg BD</span></li>
+<li><span class="lb">PRN</span><span class="vl">Oxycodone IR 5–10 mg; PCA morphine if high scores</span></li>
+<li><span class="lb">Physio</span><span class="vl">Day 1 mobilisation with motor-sparing block; range-of-motion exercises</span></li>
+</ul></div>
+</div></div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Shoulder Arthroscopy / Shoulder Surgery</div><div class="rtags"><span class="badge bg">Elective</span><span class="badge bb">Interscalene</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<div class="alert alert-w"><div class="ak">Beach Chair Position</div>Cerebral hypoperfusion risk in sitting position — MAP targets higher than standard. Avoid neck flexion/rotation. Risk of VAE (venous air embolism) and paradoxical embolism.</div>
+<div class="g2 gap">
+<div class="card"><div class="ct">Technique</div><ul class="cl">
+<li><span class="lb">Airway</span><span class="vl">ETT preferred in beach chair (LMA can move); secure tube carefully; check position after positioning</span></li>
+<li><span class="lb">Positioning</span><span class="vl">Gradual to beach chair — ↓ BP on sitting; wait for haemodynamics to stabilise before draping</span></li>
+<li><span class="lb">MAP target</span><span class="vl">MAP ≥70–80 mmHg in beach chair (cerebral autoregulation compromised by gravity); arterial line useful</span></li>
+<li><span class="lb">NMB</span><span class="vl">Full relaxation for arthroscopy; TOF monitoring; sugammadex reversal</span></li>
+</ul></div>
+<div class="card"><div class="ct">Regional — Interscalene Block</div><ul class="cl">
+<li><span class="lb">Drug</span><span class="vl">Ropivacaine 0.5% 15–20 mL US-guided; brachial plexus at C5–C6 level</span></li>
+<li><span class="lb">Effect</span><span class="vl">Excellent shoulder and upper arm analgesia; 12–18 h duration</span></li>
+<li><span class="lb">Phrenic nerve</span><span class="vl">100% ipsilateral phrenic nerve block — avoid in contralateral phrenic palsy, severe COPD, or single-functioning lung</span></li>
+<li><span class="lb">Other side effects</span><span class="vl">Horner's syndrome (ptosis, miosis, anhidrosis); hoarseness (RLN); Bezold-Jarisch reflex (bradycardia/asystole in beach chair)</span></li>
+<li><span class="lb">Bezold-Jarisch</span><span class="vl">Sudden bradycardia/asystole in beach chair with block — lay flat immediately; atropine; adrenaline if refractory</span></li>
+</ul></div>
+</div>
+<div class="g2">
+<div class="card"><div class="ct">Arthroscopic Fluid Overload</div><ul class="bl">
+<li>Large volumes of irrigation fluid used in shoulder arthroscopy</li>
+<li>Absorption via breach in capsule/soft tissue → oedema, hyponatraemia</li>
+<li>Neck swelling can compromise airway post-op — inspect before extubation</li>
+<li>If neck or airway oedema evident: delay extubation; consider post-op HDU</li>
+</ul></div>
+<div class="card"><div class="ct">Post-op Analgesia</div><ul class="cl">
+<li><span class="lb">ISB duration</span><span class="vl">12–18 h; prepare patient for block offset — oral analgesia running before block wears off</span></li>
+<li><span class="lb">Regular</span><span class="vl">Paracetamol + NSAID (celecoxib 200 mg BD); start day 1</span></li>
+<li><span class="lb">PRN</span><span class="vl">Oxycodone IR 5 mg; tramadol 50 mg</span></li>
+<li><span class="lb">Sling</span><span class="vl">Arm support while ISB in effect — ↓ weight on shoulder</span></li>
+</ul></div>
+</div>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Ankle / Foot Surgery</div><div class="rtags"><span class="badge bg">Elective / Trauma</span><span class="badge bb">Popliteal sciatic</span></div><div class="rchev">▶</div></div>
+<div class="rb"><div class="g2">
+<div class="card"><div class="ct">Spinal vs Regional vs GA</div><ul class="cl">
+<li><span class="lb">Short case</span><span class="vl">Prilocaine 2% plain 2.0–2.5 mL spinal — ideal for day case bunionectomy, ankle arthroscopy</span></li>
+<li><span class="lb">Longer case</span><span class="vl">Bupivacaine 0.5% hyperbaric 2.5–3 mL ± fentanyl 25 mcg spinal; or GA + popliteal sciatic block</span></li>
+<li><span class="lb">ORIF ankle</span><span class="vl">GA + popliteal sciatic nerve block — excellent post-op analgesia for bony surgery</span></li>
+</ul></div>
+<div class="card"><div class="ct">Popliteal Sciatic Block</div><ul class="cl">
+<li><span class="lb">Approach</span><span class="vl">Lateral or prone; US-guided; 7 cm above popliteal crease; identify bifurcation of common peroneal and tibial</span></li>
+<li><span class="lb">Drug</span><span class="vl">Ropivacaine 0.5% 20 mL — 16–18 h duration; covers foot and ankle</span></li>
+<li><span class="lb">Supplement</span><span class="vl">Saphenous nerve block (medial ankle/foot): ropivacaine 0.5% 5 mL at medial tibial condyle</span></li>
+<li><span class="lb">Foot compartment</span><span class="vl">Compartment syndrome risk with ankle fractures — document block in notes; communicate to surgical team and ward nurses</span></li>
+</ul></div>
+</div></div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Spinal Surgery (Lumbar / Cervical)</div><div class="rtags"><span class="badge bw">Prone</span><span class="badge bg">Major</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<div class="alert alert-w"><div class="ak">Prone Position — Key Risks</div>Airway (ETT displacement, facial oedema); haemodynamic (↑ venous pressure, ↑ EBL); ocular (pressure → blindness); neural (brachial plexus stretch); abdominal (↑ airway pressure if abdomen not free).</div>
+<div class="g2 gap">
+<div class="card"><div class="ct">Technique</div><ul class="cl">
+<li><span class="lb">Airway</span><span class="vl">COETT (south-facing RAE preferred); secure well; test after turning prone — EtCO₂ waveform + bilateral auscultation</span></li>
+<li><span class="lb">Induction</span><span class="vl">Induce supine; intubate; turn prone with controlled movements (log roll); adequate staff (×4–6 persons)</span></li>
+<li><span class="lb">Monitoring</span><span class="vl">Arterial line (for haemodynamic monitoring and frequent ABGs); bilateral upper limb SpO₂ if brachial plexus concern</span></li>
+<li><span class="lb">NMB</span><span class="vl">Maintain full relaxation if neuromonitoring not used; if SSEP/MEP monitoring → minimal NMB or none</span></li>
+<li><span class="lb">Neuromonitoring</span><span class="vl">TIVA (no volatile) if SSEP/MEP required — volatile suppresses signals; avoid long-acting NMB</span></li>
+</ul></div>
+<div class="card"><div class="ct">Prone Positioning — Checklist</div><ul class="cl">
+<li><span class="lb">Frame / bolsters</span><span class="vl">Chest free (↓ abdominal compression, ↓ airway pressure); Wilson frame or bolsters under chest/pelvis</span></li>
+<li><span class="lb">Eyes</span><span class="vl">Taped closed; gel pad protection; no direct pressure on orbits — check after turning and Q30 min</span></li>
+<li><span class="lb">Arms</span><span class="vl">Anatomical position (&lt;90° abduction); padded armboards; check radial pulse</span></li>
+<li><span class="lb">Ankles/knees</span><span class="vl">Padded supports; slight flexion at knee; avoid pressure on patella/tibial tuberosity</span></li>
+<li><span class="lb">Male genitalia</span><span class="vl">Ensure not under direct pressure</span></li>
+<li><span class="lb">Breasts</span><span class="vl">Lateral displacement; avoid pressure on sternum</span></li>
+</ul></div>
+</div>
+<div class="g3">
+<div class="card"><div class="ct">Haemorrhage</div><ul class="bl">
+<li>Complex lumbar / deformity surgery — EBL 500 mL to &gt;3 L</li>
+<li>Cell salvage for major spinal surgery</li>
+<li>TXA 1 g at induction + infusion</li>
+<li>Crossmatch ≥2 units pRBC for major cases</li>
+<li>MAP 60–80 (higher if spinal cord at risk)</li>
+</ul></div>
+<div class="card"><div class="ct">Post-op Analgesia</div><ul class="cl">
+<li><span class="lb">Intrathecal morphine</span><span class="vl">100–300 mcg PF — surgeon may inject at surgery; ×24 h respiratory monitoring</span></li>
+<li><span class="lb">Regular</span><span class="vl">Paracetamol + NSAID + gabapentin 300 mg TDS</span></li>
+<li><span class="lb">PCA</span><span class="vl">Morphine PCA for major multilevel fusion</span></li>
+</ul></div>
+<div class="card"><div class="ct">Visual Loss Prevention</div><ul class="bl">
+<li>Ischaemic optic neuropathy (ION) — leading cause of blindness post-prone surgery</li>
+<li>Risk factors: ♂, obese, long surgery, high EBL, hypotension, anaemia</li>
+<li>Maintain Hb &gt;80 g/L; MAP ≥70; minimise prone time</li>
+<li>Post-op: new visual change → urgent ophthalmology</li>
+</ul></div>
+</div>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Tibia ORIF — Spinal &amp; Compartment Syndrome</div><div class="rtags"><span class="badge bg">Trauma</span><span class="badge bb">Spinal</span></div><div class="rchev">▶</div></div>
+<div class="rb"><div class="g2">
+<div class="card"><div class="ct">Technique</div><ul class="cl">
+<li><span class="lb">Spinal</span><span class="vl">3 mL 0.5% plain bupivacaine + 20 mcg fentanyl — lateral bad-side-up; isobaric</span></li>
+<li><span class="lb">Consider</span><span class="vl">Popliteal sciatic + saphenous nerve block for post-op analgesia if GA used</span></li>
+</ul></div>
+<div class="card"><div class="ct">Compartment Syndrome Warning</div><ul class="cl">
+<li><span class="lb">Risk</span><span class="vl">Tibial shaft fractures — high compartment syndrome risk post-operatively</span></li>
+<li><span class="lb">Block concern</span><span class="vl">Dense neuraxial/peripheral block may mask compartment syndrome pain — document block and expected offset in notes; communicate to surgical team</span></li>
+<li><span class="lb">Monitoring</span><span class="vl">Hourly neurovascular observations; low threshold for compartment pressure measurement</span></li>
+<li><span class="lb">Signs</span><span class="vl">Pain out of proportion; pain on passive stretch; tense compartment; paraesthesia → late</span></li>
+</ul></div>
+</div></div></div>
+</div>
+
+
+<!-- ══════════════════ TAB 4 GENERAL ══════════════════ -->
+<div class="plan" id="tab-4">
+
+<div class="recipe open"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Laparoscopic Right Hemicolectomy (ERAS)</div><div class="rtags"><span class="badge bg">Major</span><span class="badge bb">ERAS</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<div class="g2 gap">
+<div class="card"><div class="ct">Preoperative</div><ul class="cl">
+<li><span class="lb">Assessment</span><span class="vl">P-POSSUM; CFS if elderly; cardiac/resp reserve; bowel prep status; iron deficiency (IV iron if Hb &lt;120 g/L and &gt;4 wk to surgery)</span></li>
+<li><span class="lb">ERAS pre-op</span><span class="vl">CHO drink 2–3 h pre-op; avoid prolonged fasting; omit mechanical bowel prep (oral ABx only)</span></li>
+<li><span class="lb">Premedication</span><span class="vl">Paracetamol 1 g PO + celecoxib 400 mg PO; avoid benzodiazepines</span></li>
+<li><span class="lb">Access</span><span class="vl">16G IV; consider arterial line (complex, elderly, CVS disease)</span></li>
+</ul></div>
+<div class="card"><div class="ct">Induction</div><ul class="cl">
+<li><span class="lb">Agents</span><span class="vl">Propofol 1.5–2 mg/kg; fentanyl 1–2 mcg/kg; rocuronium 0.6 mg/kg</span></li>
+<li><span class="lb">Lignocaine</span><span class="vl">1.5 mg/kg IV bolus at induction → infusion 1–1.5 mg/kg/h throughout (systemic anti-hyperalgesic; ↓ opioid, ↓ ileus)</span></li>
+<li><span class="lb">Dexamethasone</span><span class="vl">8 mg IV at induction (PONV + opioid-sparing)</span></li>
+<li><span class="lb">Airway</span><span class="vl">COETT; lung-protective ventilation from start (TV 6–8 mL/kg IBW, PEEP 5–8 cmH₂O)</span></li>
+<li><span class="lb">RSI</span><span class="vl">If bowel obstruction, emergency, or significant GORD</span></li>
+</ul></div>
+</div>
+<div class="g2 gap">
+<div class="card"><div class="ct">Maintenance &amp; Monitoring</div><ul class="cl">
+<li><span class="lb">Volatile or TIVA</span><span class="vl">Sevoflurane or propofol/remifentanil TCI; BIS 40–60; TOF monitoring</span></li>
+<li><span class="lb">GDT</span><span class="vl">Goal-directed fluid therapy — SVV &gt;13% or PLR positive → 250 mL crystalloid bolus; avoid liberal fluid (↑ ileus, anastomotic oedema)</span></li>
+<li><span class="lb">Baseline fluids</span><span class="vl">Hartmann's 3–5 mL/kg/h; total intraop crystalloid target ≤3 L</span></li>
+<li><span class="lb">Temperature</span><span class="vl">Active warming throughout; target ≥36.5°C; warm all IV fluids</span></li>
+<li><span class="lb">Antibiotic redosing</span><span class="vl">Cephazolin 2 g at 3 h mark if prolonged</span></li>
+</ul></div>
+<div class="card"><div class="ct">Multimodal Analgesia</div><ul class="cl">
+<li><span class="lb">Lignocaine infusion</span><span class="vl">Continue throughout — stop at end of surgery or 60 min post-op (IV systemic)</span></li>
+<li><span class="lb">Ketamine</span><span class="vl">0.1–0.3 mg/kg/h infusion intraoperatively — NMDA antagonism; useful in opioid-tolerant</span></li>
+<li><span class="lb">TAP blocks</span><span class="vl">Bilateral oblique subcostal TAP: ropivacaine 0.375% 20 mL each side — covers laparoscopic port sites and midline</span></li>
+<li><span class="lb">Intrathecal morphine</span><span class="vl">100–200 mcg PF intrathecal pre-induction (if conversion to open anticipated or high pain expected); ×24 h respiratory monitoring</span></li>
+<li><span class="lb">Port-site LA</span><span class="vl">Surgeon: bupivacaine 0.5% at all ports; intraperitoneal LA 20 mL 0.25% bupivacaine</span></li>
+</ul></div>
+</div>
+<div class="g3">
+<div class="card"><div class="ct">PONV Prevention</div><ul class="bl">
+<li>Apfel ≥2 — triple prophylaxis: dex + ondansetron + TIVA</li>
+<li>Minimise opioids (lignocaine infusion, TAP blocks, NSAID)</li>
+<li>Avoid N₂O</li>
+<li>Adequate hydration intraoperatively</li>
+</ul></div>
+<div class="card"><div class="ct">NMB Reversal &amp; Emergence</div><ul class="cl">
+<li><span class="lb">Reversal</span><span class="vl">Sugammadex 2 mg/kg; quantitative TOF TOFR ≥0.9</span></li>
+<li><span class="lb">Extubation</span><span class="vl">Awake; return to supine before extubation; NRS ≤4</span></li>
+<li><span class="lb">PACU</span><span class="vl">Oral fluids within 1–2 h; mobilise day 0 if feasible</span></li>
+</ul></div>
+<div class="card"><div class="ct">Post-op (ERAS)</div><ul class="bl">
+<li>Paracetamol + NSAID regular; opioid PRN only</li>
+<li>Early oral nutrition day 0/1; NGT not routine</li>
+<li>Remove IDC day 1; mobilise day 0–1</li>
+<li>Chewing gum ↓ ileus — offer from day 1</li>
+<li>Discharge criteria: tolerating diet, pain controlled PO, mobile</li>
+</ul></div>
+</div>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Hartmann's Procedure / Emergency Laparotomy</div><div class="rtags"><span class="badge br">Emergency</span><span class="badge bw">High risk</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<div class="alert alert-r"><div class="ak">⚠ Emergency Laparotomy — High Mortality Procedure</div>Predicted mortality 10–15% overall. Assess with P-POSSUM. Involve ICU early. Consider whether surgery is appropriate — palliation discussion if appropriate. Consultant anaesthetist mandatory.</div>
+<div class="g2 gap">
+<div class="card"><div class="ct">Pre-op Optimisation (Rapid)</div><ul class="cl">
+<li><span class="lb">Resuscitation</span><span class="vl">IV access ×2 large-bore; arterial line awake if haemodynamically compromised; CVC if vasopressors anticipated</span></li>
+<li><span class="lb">Bloods</span><span class="vl">FBC, UEC, LFT, coags, lactate, ABG, crossmatch ≥4 units; ROTEM if available</span></li>
+<li><span class="lb">Antibiotics</span><span class="vl">Early broad-spectrum: piperacillin-tazobactam (Tazocin) + metronidazole as per local protocol</span></li>
+<li><span class="lb">Vasopressors</span><span class="vl">Noradrenaline infusion drawn up; metaraminol for immediate support</span></li>
+<li><span class="lb">Time limit</span><span class="vl">EL lap target: knife to skin within 6 h of decision (NELA data)</span></li>
+</ul></div>
+<div class="card"><div class="ct">Induction — Haemodynamically Compromised</div><ul class="cl">
+<li><span class="lb">RSI mandatory</span><span class="vl">Full stomach; bowel obstruction; peritonitis</span></li>
+<li><span class="lb">Ketamine</span><span class="vl">1–2 mg/kg IV — preserves cardiovascular function; first choice in shock</span></li>
+<li><span class="lb">Etomidate</span><span class="vl">0.3 mg/kg if available — minimal cardiovascular depression; single dose adrenal suppression acceptable</span></li>
+<li><span class="lb">Propofol</span><span class="vl">Use cautiously / reduce dose if at all (↓ SVR and myocardial depression in shock)</span></li>
+<li><span class="lb">Suxamethonium</span><span class="vl">1.5 mg/kg RSI — rapid offset if cannot intubate; rocuronium 1.2 mg/kg + sugammadex 16 mg/kg alternative</span></li>
+</ul></div>
+</div>
+<div class="g2">
+<div class="card"><div class="ct">Maintenance</div><ul class="cl">
+<li><span class="lb">Volatile / TIVA</span><span class="vl">Low-concentration volatile (0.5–1 MAC) or propofol/remifentanil TCI; BIS 40–60; lower targets in shock</span></li>
+<li><span class="lb">Fluids</span><span class="vl">Goal-directed; MHP if EBL &gt;1 L; TXA 1 g early; avoid liberal crystalloid</span></li>
+<li><span class="lb">Vasopressors</span><span class="vl">Noradrenaline via CVC; target MAP ≥65 (≥70 in septic shock)</span></li>
+<li><span class="lb">Temperature</span><span class="vl">Active warming; warm fluids; warm humidified gases</span></li>
+</ul></div>
+<div class="card"><div class="ct">Emergence &amp; Post-op</div><ul class="cl">
+<li><span class="lb">ICU</span><span class="vl">Post-op ICU virtually always indicated for emergency laparotomy</span></li>
+<li><span class="lb">Ventilated post-op</span><span class="vl">Consider planned ventilation if haemodynamically unstable, hypothermic, coagulopathic, or extensive contamination</span></li>
+<li><span class="lb">Damage control</span><span class="vl">If abdominal packing used: return to theatre in 24–48 h; plan ICU resuscitation period</span></li>
+</ul></div>
+</div>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Stoma Reversal (Hartmann's Reversal / Loop Ileostomy Reversal)</div><div class="rtags"><span class="badge bg">Elective</span><span class="badge bb">ERAS</span></div><div class="rchev">▶</div></div>
+<div class="rb"><div class="g2">
+<div class="card"><div class="ct">Considerations</div><ul class="cl">
+<li><span class="lb">Prior surgery</span><span class="vl">Adhesions from index procedure — risk of bowel injury on re-entry; longer case than anticipated</span></li>
+<li><span class="lb">Nutrition</span><span class="vl">Often nutritionally depleted (especially Hartmann's reversal); pre-op nutrition optimisation if time permits</span></li>
+<li><span class="lb">RSI</span><span class="vl">Indicate if significant bowel obstruction or at-risk stoma (high output, dehydrated)</span></li>
+<li><span class="lb">Laparoscopic vs open</span><span class="vl">Lap reversal ↓ complications; conversion rate up to 20% — prepare for laparotomy</span></li>
+</ul></div>
+<div class="card"><div class="ct">Anaesthetic Plan</div><ul class="cl">
+<li><span class="lb">Airway</span><span class="vl">COETT; RSI if indicated</span></li>
+<li><span class="lb">Analgesia</span><span class="vl">TAP blocks bilateral; lignocaine infusion; paracetamol + NSAID; opioid-sparing approach</span></li>
+<li><span class="lb">Post-op</span><span class="vl">ERAS principles: early oral intake day 0/1; remove IDC day 1; mobilise early</span></li>
+<li><span class="lb">Ileus</span><span class="vl">Risk ↑ with adhesiolysis; opioid-sparing, gum-chewing, prokinetics as per institutional protocol</span></li>
+</ul></div>
+</div></div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Thyroidectomy (Total / Hemithyroidectomy)</div><div class="rtags"><span class="badge bg">Elective</span><span class="badge bw">Airway</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<div class="alert alert-w"><div class="ak">Airway — Key Consideration</div>Large goitre / retrosternal extension / tracheal deviation may cause difficult/impossible mask ventilation. Plan awake FOI if airway compromise suspected. Have ENT surgeon available for intraoperative airway emergency.</div>
+<div class="g2 gap">
+<div class="card"><div class="ct">Pre-op Assessment</div><ul class="cl">
+<li><span class="lb">Airway imaging</span><span class="vl">CT neck/thorax if large goitre — assess tracheal deviation, subglottic narrowing, retrosternal extent</span></li>
+<li><span class="lb">Stridor</span><span class="vl">Indicates significant tracheal compression — awake FOI strongly recommended; call for ENT backup</span></li>
+<li><span class="lb">Thyroid function</span><span class="vl">Euthyroid before elective surgery (antithyroid drugs, beta-blocker); confirm with TFTs</span></li>
+<li><span class="lb">Hyperthyroid risk</span><span class="vl">Thyroid storm: tachycardia, hyperthermia, CVS instability — treat with beta-blocker, PTU, iodine, hydrocortisone, cooling</span></li>
+<li><span class="lb">Pre-op calcium</span><span class="vl">Baseline — needed to interpret post-op hypocalcaemia</span></li>
+</ul></div>
+<div class="card"><div class="ct">Technique</div><ul class="cl">
+<li><span class="lb">Airway</span><span class="vl">South-facing RAE ETT or Microlaryngeal tube (MLT) — keeps circuit away from surgical field; size 6.0 female / 6.5–7.0 male</span></li>
+<li><span class="lb">Intubation</span><span class="vl">Video laryngoscope preferred; have bougie and difficult airway trolley ready; FOI if pre-op stridor or imaging suggests significant compression</span></li>
+<li><span class="lb">NMB</span><span class="vl">Avoid or minimise if neuromonitoring (NIM ETT for RLN monitoring) — discuss with surgeon; do not give NMB after intubation if NIM used</span></li>
+<li><span class="lb">Maintenance</span><span class="vl">Volatile or TIVA; head-up 15–20° (↓ venous ooze); throat pack (account for and remove before extubation)</span></li>
+<li><span class="lb">PONV</span><span class="vl">High risk — triple prophylaxis; vomiting post-op → ↑ risk haematoma/wound dehiscence</span></li>
+</ul></div>
+</div>
+<div class="g2">
+<div class="card"><div class="ct">Post-op Complications</div><ul class="cl">
+<li><span class="lb">RLN palsy</span><span class="vl">Unilateral: hoarseness; Bilateral: stridor, acute airway obstruction → re-intubate immediately</span></li>
+<li><span class="lb">Haematoma</span><span class="vl">Rapid neck swelling → compresses trachea → asphyxia. Open wound at bedside (clips/sutures); re-intubate; emergency return to theatre</span></li>
+<li><span class="lb">Hypocalcaemia</span><span class="vl">Parathyroid damage — circumoral tingling, carpopedal spasm (Chvostek/Trousseau). Ca2+ &lt;2.0 → IV calcium gluconate; Ca2+ &lt;1.9 → urgent replacement</span></li>
+<li><span class="lb">Tracheomalacia</span><span class="vl">Rare — soften tracheal cartilages with long-standing goitre; stridor on extubation; may require tracheostomy</span></li>
+</ul></div>
+<div class="card"><div class="ct">Extubation Plan</div><ul class="cl">
+<li><span class="lb">Criteria</span><span class="vl">Awake; TOFR ≥0.9; haemostasis confirmed with surgeon; no haematoma; normothermic</span></li>
+<li><span class="lb">High-risk extubation</span><span class="vl">Airway exchange catheter (Cook AEC) as rescue — leave in situ after extubation if difficult intubation; remove when fully awake</span></li>
+<li><span class="lb">Remove throat pack</span><span class="vl">Confirm throat pack removed before extubation — count at start and end</span></li>
+<li><span class="lb">Position</span><span class="vl">Head-up 30° post-op — ↓ venous ooze; ↓ facial/airway oedema</span></li>
+</ul></div>
+</div>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Mastectomy (Simple / Radical / ALND)</div><div class="rtags"><span class="badge bg">Elective</span><span class="badge bb">PECS blocks</span></div><div class="rchev">▶</div></div>
+<div class="rb"><div class="g2">
+<div class="card"><div class="ct">Technique</div><ul class="cl">
+<li><span class="lb">Airway</span><span class="vl">Flexible LMA or ETT depending on surgical access needs; arm usually tucked</span></li>
+<li><span class="lb">Position</span><span class="vl">Supine with arm board; ensure axillary access for surgeon; check arm position after draping</span></li>
+<li><span class="lb">Duration</span><span class="vl">Simple mastectomy 60–90 min; ALND adds 30–60 min; immediate reconstruction adds 2–4 h (see DIEP)</span></li>
+<li><span class="lb">PONV</span><span class="vl">Moderate–high risk — ondansetron + dexamethasone; TIVA if high-risk profile</span></li>
+</ul></div>
+<div class="card"><div class="ct">Regional Analgesia</div><ul class="cl">
+<li><span class="lb">PECS I block</span><span class="vl">Ropivacaine 0.25% 10 mL between pectoralis major and minor — targets medial/lateral pectoral nerves (medial breast pain)</span></li>
+<li><span class="lb">PECS II (serratus plane)</span><span class="vl">Ropivacaine 0.25% 20 mL between pectoralis minor and serratus anterior — targets lateral intercostals, long thoracic, thoracodorsal (lateral breast, axilla)</span></li>
+<li><span class="lb">Paravertebral block</span><span class="vl">Alternative to PECS — T2–T5 paravertebral; excellent coverage; more technically demanding; ropivacaine 0.5% 5 mL per level</span></li>
+<li><span class="lb">Post-op</span><span class="vl">Paracetamol + NSAID regular; oxycodone PRN; block duration 12–18 h</span></li>
+</ul></div>
+</div></div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Diagnostic Lap / Lap Chole / Lap Appendix / Hernia / DIEP</div><div class="rtags"><span class="badge bg">General</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<div class="g2 gap">
+<div class="card"><div class="ct">Diagnostic Lap / I&amp;D (CEPOD)</div><ul class="cl">
+<li><span class="lb">Pre-op</span><span class="vl">Paracetamol PO + NSAID; 75 mcg fentanyl at WHO sign-in; 20G cannula</span></li>
+<li><span class="lb">Induction</span><span class="vl">100 mcg fentanyl + 1 mg alfentanil; pre-KTS alfentanil 250–500 mcg bolus 30 s before knife</span></li>
+<li><span class="lb">Maintenance</span><span class="vl">Propofol TCI 8→5 mcg/mL after LMA, or sevoflurane; dex 6.6 mg + ondansetron 4 mg; final 25 mcg fentanyl for recovery</span></li>
+</ul></div>
+<div class="card"><div class="ct">Day-Case Lap Cholecystectomy</div><ul class="cl">
+<li><span class="lb">Pre-op</span><span class="vl">Paracetamol + NSAID; COETT; 16G cannula; depth monitor</span></li>
+<li><span class="lb">TIVA</span><span class="vl">Remifentanil TCI first → 6 ng/mL; wait 2 min → propofol TCI 6 mcg/mL</span></li>
+<li><span class="lb">End of case</span><span class="vl">Fentanyl 100–200 mcg (TIVA); morphine 2.5–5 mg IV 30 min before end (volatile)</span></li>
+<li><span class="lb">Post-op</span><span class="vl">Paracetamol + ibuprofen + tramadol/codeine; port-site LA; fentanyl 0–200 mcg in recovery</span></li>
+</ul></div>
+</div>
+<div class="g3">
+<div class="card"><div class="ct">Lap Appendicectomy</div><ul class="cl">
+<li><span class="lb">RSI if needed</span><span class="vl">20G → 16G asleep; propofol + rocuronium 1.2 mg/kg; fentanyl ~200 mcg at induction (~300 mcg total)</span></li>
+<li><span class="lb">Adjuncts</span><span class="vl">Diclofenac IV; dex 6.6 mg; ondansetron 4 mg towards end; port-site LA</span></li>
+<li><span class="lb">Complex</span><span class="vl">MgSO₄ 50 mg/kg; morphine 0.1–0.2 mg/kg; HDU</span></li>
+</ul></div>
+<div class="card"><div class="ct">Inguinal Hernia</div><ul class="cl">
+<li><span class="lb">Airway</span><span class="vl">LMA unless specific reason for ETT</span></li>
+<li><span class="lb">Blocks</span><span class="vl">TAP or ilio-inguinal/iliohypogastric field block; ropivacaine 0.375% 20 mL</span></li>
+<li><span class="lb">Post-op</span><span class="vl">NSAID + paracetamol regular; opioid PRN; cephazolin 2 g (mesh)</span></li>
+</ul></div>
+<div class="card"><div class="ct">DIEP Reconstruction</div><ul class="cl">
+<li><span class="lb">Key rule</span><span class="vl">IV fluids ≤1.5–2 L intraop — flap oedema → anastomotic compromise</span></li>
+<li><span class="lb">Technique</span><span class="vl">COETT; propofol/remi TIVA; art line; Mg 50 mg/kg; TXA 1 g; surgeon TAP blocks</span></li>
+<li><span class="lb">Post-op</span><span class="vl">Paracetamol + oxycodone IR 5–10 mg 2-hourly; hourly flap obs; active warming</span></li>
+</ul></div>
+</div>
+</div></div>
+</div>
+
+
+<!-- ══════════════════ TABS 5–9 (ENT, OPHTHALMIC, PAEDS, DAY-CASE, NON-THEATRE) ══════════════════ -->
+<div class="plan" id="tab-5">
+<div class="recipe open"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Microlaryngoscopy (20-min Day Case)</div><div class="rtags"><span class="badge br">Shared airway</span><span class="badge bw">Jet ventilation</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<div class="alert alert-r"><div class="ak">⚠ Airway Plan — Decide at Brief with Surgeon</div>Subglottic jet ventilation catheter / MLT / injector needle / cricothyroidotomy needle. MLT protects from blood/debris but impairs view. Beware stridor — significant subglottic pathology.</div>
+<div class="g2 gap">
+<div class="card"><div class="ct">Technique</div><ul class="cl">
+<li><span class="lb">Pre-op</span><span class="vl">Paracetamol + NSAID; airway assessment; 20G cannula</span></li>
+<li><span class="lb">TIVA</span><span class="vl">Propofol/remifentanil TCI; BIS mandatory; rocuronium 20–30 mg (facilitate scope; allows vocal cord assessment)</span></li>
+<li><span class="lb">PONV</span><span class="vl">Ondansetron 4 mg + dexamethasone 6.6 mg</span></li>
+<li><span class="lb">Jet catheter</span><span class="vl">Tip to cords → insert ~8 cm further; repeat laryngoscopy + suction at end</span></li>
+<li><span class="lb">Barotrauma</span><span class="vl">Pneumothorax / surgical emphysema risk — monitor EtCO₂, chest wall movement, desaturation</span></li>
+<li><span class="lb">Reversal</span><span class="vl">Sugammadex; remove jet catheter and mask-ventilate until spontaneous; fentanyl in recovery</span></li>
+</ul></div>
+<div class="card"><div class="ct">Laser Cases — Additional</div><ul class="cl">
+<li><span class="lb">Fire risk</span><span class="vl">FiO₂ ≤0.3 (ideally ≤0.25); no N₂O; wet swabs around field; water syringe available</span></li>
+<li><span class="lb">ETT</span><span class="vl">Laser-safe ETT (Lasertubus / Medtronic Laser); metallic tape shielding; fill cuff with saline ± methylene blue (leak indicator)</span></li>
+<li><span class="lb">Airway fire</span><span class="vl">Stop gas and laser; flood field with saline; remove ETT; ventilate via mask; rigid bronchoscopy; ICU post-op</span></li>
+</ul></div>
+</div>
+</div></div>
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Grommets (Short Paediatric ENT)</div><div class="rtags"><span class="badge bb">Paediatric</span><span class="badge bg">Day-case</span></div><div class="rchev">▶</div></div>
+<div class="rb"><div class="g2">
+<div class="card"><div class="ct">Technique</div><ul class="cl">
+<li><span class="lb">Pre-op</span><span class="vl">Paracetamol + NSAID PO; EMLA cream</span></li>
+<li><span class="lb">Airway</span><span class="vl">LMA; distant shared airway; spontaneous ventilation; propofol TCI or sevoflurane</span></li>
+<li><span class="lb">Opioid</span><span class="vl">Alfentanil 1.5 mg bolus at induction; 0.5 mg increments as needed</span></li>
+<li><span class="lb">Antiemetic</span><span class="vl">Dexamethasone 0.1 mg/kg IV; avoid opioids (↑ PONV, emergence agitation)</span></li>
+</ul></div>
+<div class="card"><div class="ct">Pearls</div><ul class="bl">
+<li>Emergence agitation common — quiet wake-up; EMLA, low stimulation</li>
+<li>Myringotomy bilateral — be ready for quick bilateral procedure</li>
+<li>Avoid sux if MH risk (Down's, myopathies)</li>
+<li>Adenoidectomy often combined — slight ↑ bleeding risk</li>
+</ul></div>
+</div></div></div>
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Tonsillectomy</div><div class="rtags"><span class="badge bb">Paediatric/Adult</span><span class="badge bw">Bleeding risk</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<div class="alert alert-w"><div class="ak">Post-tonsillectomy Bleeding — Airway Emergency</div>Blood in mouth + haemodynamically unstable child = full stomach RSI in a potentially difficult airway. IV access first. Cross-match. Ketamine induction if haemodynamically compromised.</div>
+<div class="g2">
+<div class="card"><div class="ct">Primary Tonsillectomy</div><ul class="cl">
+<li><span class="lb">Airway</span><span class="vl">South-facing RAE ETT (surgical field access); south-facing through mouth</span></li>
+<li><span class="lb">Position</span><span class="vl">Rose position (head-up, neck extended — Boyle-Davis gag); check ETT post-positioning</span></li>
+<li><span class="lb">NMB</span><span class="vl">Rocuronium or atracurium; TOF monitoring; reversal at end</span></li>
+<li><span class="lb">Analgesia</span><span class="vl">Paracetamol + NSAID (controversial — haemostasis vs analgesia; check local protocol); dexamethasone 0.15 mg/kg IV</span></li>
+<li><span class="lb">Extubation</span><span class="vl">Left lateral head-down position; suction oropharynx; awake extubation; OSA patients → HDU post-op</span></li>
+</ul></div>
+<div class="card"><div class="ct">Secondary (Post-op Bleeding) Tonsillectomy</div><ul class="cl">
+<li><span class="lb">RSI mandatory</span><span class="vl">Full stomach (swallowed blood); airway at risk</span></li>
+<li><span class="lb">Induction</span><span class="vl">Ketamine 1–2 mg/kg if haemodynamic compromise; propofol + sux if stable</span></li>
+<li><span class="lb">Suction</span><span class="vl">Yankauer suction under pillow; second suction device available; surgeon scrubbed before induction</span></li>
+<li><span class="lb">Difficult intubation</span><span class="vl">Blood + swelling + limited mouth opening → VL first-line; have FOI and surgical airway available</span></li>
+<li><span class="lb">IV fluid</span><span class="vl">Resuscitate before induction if possible; crossmatch if significant bleeding</span></li>
+</ul></div>
+</div></div></div>
+</div>
+
+<div class="plan" id="tab-6">
+<div class="alert alert-w gap"><div class="ak">IOP Key Principle</div>Avoid coughing, straining, vomiting and suxamethonium in open-eye cases. Every IOP-raising stimulus risks vitreous extrusion in an open globe. N₂O absolutely contraindicated if SF₆/C₃F₈ gas tamponade in situ.</div>
+<div class="section"><div class="section-hdr"><div class="sdot" style="background:var(--c6);box-shadow:0 0 5px var(--c6)"></div><div class="slbl">IOP — Anaesthetic Factors</div><div class="snum">01</div></div>
+<div class="card gap">
+<table><thead><tr><th>Factor</th><th>IOP Effect</th><th>Clinical Note</th></tr></thead><tbody>
+<tr><td>Head-up 15°</td><td>↓</td><td>Routine in ophthalmic cases</td></tr>
+<tr><td>Cough / strain / vomit</td><td>↑ (significant)</td><td>Deep extubation or LMA preferred</td></tr>
+<tr><td>Propofol / thiopentone</td><td>↓</td><td>Ketamine ↑ IOP — avoid in open-eye</td></tr>
+<tr><td>Volatile agents</td><td>↓ (dose-dependent)</td><td>Deeper anaesthesia = lower IOP</td></tr>
+<tr><td>Suxamethonium</td><td>↑ 5–10 mmHg × 5–10 min</td><td>Avoid in open-eye; use rocuronium/sugammadex for RSI</td></tr>
+<tr><td>NDMR</td><td>↓ or no change</td><td>Preferred NMB for ophthalmic</td></tr>
+<tr><td>Hypocapnia 3.5–4 kPa</td><td>↓</td><td>Moderate hyperventilation useful</td></tr>
+<tr><td>N₂O + SF₆ / C₃F₈ in eye</td><td>↑↑ catastrophic</td><td>Absolute CI — gas tamponade expands → blindness</td></tr>
+<tr><td>Mannitol 1 g/kg 45 min pre-op</td><td>↓ vitreous</td><td>Vitrectomy / corneal graft</td></tr>
+</tbody></table>
+</div></div>
+<div class="recipe open"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Cataract / Peribulbar / Sub-Tenon's / Strabismus</div><div class="rtags"><span class="badge bg">LA/Sedation</span></div><div class="rchev">▶</div></div>
+<div class="rb"><div class="g2 gap">
+<div class="card"><div class="ct">Cataract Surgery</div><ul class="cl">
+<li><span class="lb">LA preferred</span><span class="vl">Topical proxymetacaine drops; sub-Tenon's or peribulbar; GA only if LA CI</span></li>
+<li><span class="lb">Sedation</span><span class="vl">Avoid heavy — patients move suddenly; minimal propofol boluses; O₂ 6 L/min under drape</span></li>
+<li><span class="lb">GA if needed</span><span class="vl">Flexible LMA; deep anaesthesia; avoid coughing on emergence; no relaxant usually needed</span></li>
+</ul></div>
+<div class="card"><div class="ct">Peribulbar Block Technique</div><ol class="steps">
+<li>Mix: 1:1 lidocaine 2% + levobupivacaine 0.75% + hyaluronidase 30 U/mL</li>
+<li>Inferolateral: 25G 25 mm needle perpendicular; if bone → withdraw 1 mm; depth 20–25 mm; aspirate → 5–7 mL</li>
+<li>Medial (caruncle): slight medial angulation; 'click' through medial ligament; 20–25 mm → 3–5 mL</li>
+<li>Massage eye to spread LA; wait 5–10 min; test akinesia</li>
+<li>CI: AL &gt;26 mm (use sub-Tenon's); INR &gt;1.5; infected eye</li>
+</ol></div>
+</div>
+<div class="g2">
+<div class="card"><div class="ct">Sub-Tenon's Block</div><ol class="steps">
+<li>Proxymetacaine drops → iodine → speculum; patient looks up-and-out</li>
+<li>Lift conjunctiva (Moorfield's forceps) → Westcott scissors incision inferonasal quadrant</li>
+<li>Blunt dissect sclera from Tenon's capsule; curved cannula to hub; 3–5 mL LA mix</li>
+<li>Safer than peribulbar; use when AL &gt;26 mm; CI: INR &gt;2.5</li>
+</ol></div>
+<div class="card"><div class="ct">Strabismus Surgery</div><ul class="cl">
+<li><span class="lb">OCR risk</span><span class="vl">50–80% — atropine 15 mcg/kg IV at induction; treat bradycardia aggressively</span></li>
+<li><span class="lb">Technique</span><span class="vl">LMA or ETT; neutral gaze; avoid sux (abnormal tone ×20 min); no opioids if possible; TIVA</span></li>
+<li><span class="lb">Analgesia</span><span class="vl">PR paracetamol 20 mg/kg + diclofenac 1 mg/kg; amethocaine drops at end; cyclizine + ondansetron PRN</span></li>
+<li><span class="lb">MH</span><span class="vl">Higher MH incidence in some syndromes (Down's, King-Denborough) — check history</span></li>
+</ul></div>
+</div>
+</div></div>
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Corneal Graft &amp; Retinal Detachment / Vitrectomy</div><div class="rtags"><span class="badge br">Open eye</span><span class="badge bw">IOP critical</span></div><div class="rchev">▶</div></div>
+<div class="rb"><div class="g2">
+<div class="card"><div class="ct">Corneal Graft (PKP)</div><ul class="cl">
+<li><span class="lb">Duration</span><span class="vl">~90 min; open eye — IOP control throughout</span></li>
+<li><span class="lb">Airway</span><span class="vl">GA LMA/ETT; avoid sux; NDMR with TOF</span></li>
+<li><span class="lb">Ventilation</span><span class="vl">Moderate hyperventilation (PaCO₂ 3.5–4 kPa); permissive mild hypotension</span></li>
+<li><span class="lb">Drugs</span><span class="vl">Paracetamol + NSAID + opioid; aggressive antiemetics; acetazolamide 500 mg post-op</span></li>
+</ul></div>
+<div class="card"><div class="ct">Retinal Detachment / Vitrectomy</div><ul class="cl">
+<li><span class="lb">Duration</span><span class="vl">90–120 min; often elderly with IDDM/HTN/IHD</span></li>
+<li><span class="lb">LA ± sedation</span><span class="vl">Frequently peribulbar/sub-Tenon's + sedation; top-up as wears off</span></li>
+<li><span class="lb">GA</span><span class="vl">Secure airway; muscle relaxation to end; maintain IOP; inaccessible intraop</span></li>
+<li><span class="lb">N₂O CI</span><span class="vl"><span class="badge br">Avoid N₂O if SF₆/C₃F₈ in situ</span> — expands → catastrophic IOP ↑ → blindness</span></li>
+<li><span class="lb">Post-op</span><span class="vl">Face-down if SF₆ tamponade; paracetamol + antiemetic; oramorph PRN</span></li>
+</ul></div>
+</div></div></div>
+</div>
+
+<div class="plan" id="tab-7">
+<div class="alert alert-w gap"><div class="ak">⚠ Always Cross-Check Against BNFc and Local Paediatric Formulary</div>All doses weight-based. Confirm weight before drawing any drug. Paediatric and neonatal TIVA only if specifically trained.</div>
+<div class="section"><div class="section-hdr"><div class="sdot" style="background:var(--c7);box-shadow:0 0 5px var(--c7)"></div><div class="slbl">Drug Ready-Reckoner</div><div class="snum">01</div></div>
+<div class="card gap">
+<table><thead><tr><th>Drug</th><th>Dose</th><th>Notes</th></tr></thead><tbody>
+<tr><td>Adrenaline (croup, nebulised)</td><td>0.5 mg/kg with saline</td><td>Dilute to 4 mL total</td></tr>
+<tr><td>Atropine</td><td>20 mcg/kg IV</td><td>Min 100 mcg; OCR prevention: 15 mcg/kg</td></tr>
+<tr><td>Bupivacaine epidural infusion</td><td>0.4 mg/kg/h (2 mg/kg per 4 h)</td><td>0.2 mg/kg/h under 6 months</td></tr>
+<tr><td>Cephazolin</td><td>25–50 mg/kg IV</td><td>Max 2 g</td></tr>
+<tr><td>Clonidine premed PO</td><td>4–5 mcg/kg</td><td>Sedating; ↓ emergence agitation</td></tr>
+<tr><td>Clonidine for delirium/agitation</td><td>0.5–1 mcg/kg IV</td><td>Emergence agitation</td></tr>
+<tr><td>Dexmedetomidine intranasal</td><td>1–2 mcg/kg</td><td>Premed; onset 30–45 min</td></tr>
+<tr><td>Dexamethasone for croup</td><td>0.5 mg/kg IV</td><td>+ nebulised adrenaline if severe</td></tr>
+<tr><td>Enoxaparin</td><td>0.75 mg/kg SC BD</td><td>Max 20 mg BD</td></tr>
+<tr><td>Fentanyl intranasal</td><td>2 mcg/kg</td><td>Via atomiser; onset 5–10 min</td></tr>
+<tr><td>Gabapentin</td><td>5 mg/kg → max 10 mg/kg TDS</td><td>Max 4 g/24 h</td></tr>
+<tr><td>Glycopyrrolate</td><td>10 mcg/kg</td><td>With neostigmine for NMB reversal</td></tr>
+<tr><td>Ketamine IM premed</td><td>4–5 mg/kg</td><td>Split into two syringes; onset 3–5 min</td></tr>
+<tr><td>Mannitol</td><td>0.5 mg/kg IV (sometimes written as g/kg)</td><td>Wt × 2.5 = mL of 20% solution</td></tr>
+<tr><td>Metoclopramide</td><td>0.5 mg/kg IV once</td><td>Max 10 mg; avoid &lt;1 year</td></tr>
+<tr><td>Midazolam PO premed</td><td>0.5 mg/kg</td><td>Max 15 mg; onset 20–30 min</td></tr>
+<tr><td>Morphine epidural</td><td>60 mcg/kg</td><td>Preservative-free only</td></tr>
+<tr><td>Neostigmine + glycopyrrolate</td><td>50 mcg/kg; 1 mL/10 kg of diluted mix</td><td>Only if TOFR 0.4–0.9</td></tr>
+<tr><td>Parecoxib</td><td>1 mg/kg</td><td>&gt;1 year; check local protocol</td></tr>
+<tr><td>Tazocin (pip-tazo)</td><td>100 mg/kg IV</td><td>Complex appendix / sepsis</td></tr>
+</tbody></table>
+</div></div>
+<div class="section"><div class="section-hdr"><div class="sdot" style="background:var(--c7);box-shadow:0 0 5px var(--c7)"></div><div class="slbl">Neonatal Anaesthesia Pearls</div><div class="snum">02</div></div>
+<div class="g3">
+<div class="card"><div class="ct">TIVA &amp; Drugs</div><ul class="bl">
+<li>TIVA models only go to ~5 kg — track mL/h; convert to mg/kg/h manually</li>
+<li>Fentanyl 1 mcg/kg; dilute to 10 mcg/mL for titration</li>
+<li>Paracetamol 7.5 mg/kg (lower dose in neonates)</li>
+<li>Antibiotics: metronidazole 15 mg/kg; cefuroxime 7.5 mg/kg</li>
+</ul></div>
+<div class="card"><div class="ct">Ventilator Setup</div><ul class="cl">
+<li><span class="lb">Setup order</span><span class="vl">Set ventilator BEFORE attaching; switch auxiliary → circle circuit</span></li>
+<li><span class="lb">Starting</span><span class="vl">TV 4–6 mL/kg (~40–60 mL), RR 26, short I-time 0.4–0.5 s</span></li>
+<li><span class="lb">ETT depth</span><span class="vl">ETT size × 3 (e.g. size 3 cuffed ≈ 9–10 cm at lips)</span></li>
+</ul></div>
+<div class="card"><div class="ct">Environment &amp; Monitoring</div><ul class="bl">
+<li>Warm room + warm fluids + warming blanket — neonates are poikilothermic</li>
+<li>BIS not licensed &lt;1 year — clinical signs + MAC</li>
+<li>Glucose monitoring — check pre/intraop; hypoglycaemia risk</li>
+<li>Fluid: maintenance 4 mL/kg/h; avoid dextrose boluses</li>
+</ul></div>
+</div>
+</div>
+</div>
+
+<div class="plan" id="tab-8">
+<div class="alert alert-b gap"><div class="ak">Prilocaine 2% Plain — Day-Case Spinal Standard</div>Faster offset than bupivacaine. No transient neurological symptoms (unlike lidocaine). Adjust for height, age and patient factors. Always have GA backup prepared.</div>
+<div class="section"><div class="section-hdr"><div class="sdot" style="background:var(--c8);box-shadow:0 0 5px var(--c8)"></div><div class="slbl">Prilocaine 2% Plain — Dose Table</div><div class="snum">01</div></div>
+<div class="card gap"><table><thead><tr><th>Specialty</th><th>Procedure</th><th>Duration</th><th>Dose 2% (mL)</th></tr></thead><tbody>
+<tr><td>Orthopaedic</td><td>Knee arthroscopy ± meniscectomy</td><td>30–60 min</td><td>2.5</td></tr>
+<tr><td>Orthopaedic</td><td>Autograft ACL reconstruction</td><td>45–60 min</td><td>2.5</td></tr>
+<tr><td>Orthopaedic</td><td>Bunionectomy</td><td>30–60 min</td><td>2.5</td></tr>
+<tr><td>Orthopaedic</td><td>Major joint arthroplasty (THR/TKR)</td><td>60–90 min</td><td>2.5–3.0</td></tr>
+<tr><td>General</td><td>Excision of lesion / fissure (anus)</td><td>15–30 min</td><td>2.0</td></tr>
+<tr><td>General</td><td>Stapling haemorrhoidectomy</td><td>30 min</td><td>2.0</td></tr>
+<tr><td>General</td><td>Lateral sphincterotomy</td><td>30 min</td><td>2.0</td></tr>
+<tr><td>General</td><td>Pilonidal sinus surgery</td><td>50–60 min</td><td>2.0 (saddle block)</td></tr>
+<tr><td>General</td><td>Primary inguinal hernia repair</td><td>50–60 min</td><td>2.5–3.0</td></tr>
+<tr><td>Urology</td><td>Optical urethrotomy</td><td>20–30 min</td><td>2.0–2.5</td></tr>
+<tr><td>Urology</td><td>TURP</td><td>40–60 min</td><td>2.5</td></tr>
+<tr><td>Urology</td><td>Correction of hydrocele</td><td>40–60 min</td><td>2.5–3.0</td></tr>
+<tr><td>Gynaecology</td><td>Endometrial biopsy ± hysteroscopy</td><td>30 min</td><td>2.0</td></tr>
+<tr><td>Gynaecology</td><td>Incontinence procedures</td><td>40 min</td><td>2.0–2.5</td></tr>
+<tr><td>Gynaecology</td><td>Colposuspension</td><td>60–70 min</td><td>3.0</td></tr>
+<tr><td>Gynaecology</td><td>Diagnostic laparoscopy</td><td>60 min</td><td>3.0</td></tr>
+</tbody></table></div>
+</div>
+<div class="section"><div class="section-hdr"><div class="sdot" style="background:var(--c8);box-shadow:0 0 5px var(--c8)"></div><div class="slbl">Day-Case Spinal — Practical Pearls</div><div class="snum">02</div></div>
+<div class="g3">
+<div class="card"><div class="ct">Discharge Criteria</div><ul class="bl">
+<li>Able to weight-bear / mobilise safely</li>
+<li>Passed urine (TURP, pelvic surgery)</li>
+<li>Motor block fully resolved (Bromage 0)</li>
+<li>NRS pain ≤4 on oral analgesia</li>
+<li>PONV controlled; tolerating oral fluids</li>
+<li>Responsible adult escort + written instructions</li>
+</ul></div>
+<div class="card"><div class="ct">Adjuncts</div><ul class="cl">
+<li><span class="lb">Fentanyl IT</span><span class="vl">10–25 mcg — ↑ quality and duration; ↑ PONV; cautious day-case</span></li>
+<li><span class="lb">Clonidine IT</span><span class="vl">15–30 mcg — prolongs block; ↑ hypotension</span></li>
+<li><span class="lb">Sedation</span><span class="vl">Propofol TCI 0.5–1.5 mcg/mL Ce — anxiolysis without deep sedation; SpO₂ monitoring</span></li>
+</ul></div>
+<div class="card"><div class="ct">Complications</div><ul class="cl">
+<li><span class="lb">Failed spinal</span><span class="vl">Convert to GA; document; inform team</span></li>
+<li><span class="lb">High block</span><span class="vl">↓ SpO₂ + dyspnoea + upper limb weakness → flat, O₂, IV vasopressor; ETT if unconscious</span></li>
+<li><span class="lb">Total spinal</span><span class="vl">Immediate RSI + CPR if arrest; phenylephrine/metaraminol infusion; call for help</span></li>
+<li><span class="lb">PDPH</span><span class="vl">Postural headache — bed rest, hydration, caffeine, epidural blood patch if severe</span></li>
+</ul></div>
+</div>
+</div>
+</div>
+
+<div class="plan" id="tab-9">
+<div class="recipe open"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">ECT (Electroconvulsive Therapy)</div><div class="rtags"><span class="badge bw">Remote location</span><span class="badge br">Unprotected airway</span></div><div class="rchev">▶</div></div>
+<div class="rb"><div class="g2 gap">
+<div class="card"><div class="ct">Key Considerations &amp; Contraindications</div><ul class="cl">
+<li><span class="lb">Airway</span><span class="vl">Unprotected; remote location; check all equipment independently</span></li>
+<li><span class="lb">Physiology</span><span class="vl">Sympathetic surge at stimulus → ↑ HR, ↑ BP; parasympathetic at onset → bradycardia</span></li>
+<li><span class="lb">↑ IOP/ICP</span><span class="vl">Relevant comorbidities — ↑ IOP, ↑ IGP, ↑ ICP during seizure</span></li>
+<li><span class="lb">Absolute CI</span><span class="vl">MI &lt;3 months; CVA &lt;1 month; phaeochromocytoma</span></li>
+<li><span class="lb">Relative CI</span><span class="vl">↑ ICP; severe cardiac disease; aortic/cerebral aneurysm; sux apnoea / MH risk</span></li>
+</ul></div>
+<div class="card"><div class="ct">Technique (Serial ECT)</div><ol class="steps">
+<li>Fast list; confirm no new medical issues; note previous propofol/sux dose</li>
+<li>IV access; NIBP, SpO₂, ECG; face-mask pre-oxygenation</li>
+<li>Propofol = previous dose − 20–30 mg; wait; top-up to loss of verbal contact (LOV)</li>
+<li>Suxamethonium same dose; flush IV</li>
+<li>Support airway; hyperventilate (↓ seizure threshold → better quality)</li>
+<li>ECT stimulus when fasciculations stop; support airway ± OPA post-stim</li>
+<li>Hudson mask + leave room if stable and spontaneously ventilating</li>
+</ol></div>
+</div>
+<div class="g3">
+<div class="card"><div class="ct">Rescue</div><ul class="cl">
+<li><span class="lb">Hypertension</span><span class="vl">Esmolol 20–30 mg IV at stimulus</span></li>
+<li><span class="lb">Bradycardia</span><span class="vl">Atropine 0.6 mg IV</span></li>
+<li><span class="lb">Prolonged seizure</span><span class="vl">&gt;120 s → midazolam 2–4 mg IV; secure airway</span></li>
+<li><span class="lb">Failed seizure</span><span class="vl">&lt;15 s → discuss with psychiatrist</span></li>
+</ul></div>
+<div class="card"><div class="ct">NMB Alternative (No Sux)</div><ul class="cl">
+<li><span class="lb">MH / sux-apnoea</span><span class="vl">Mivacurium 0.15 mg/kg IV (short-acting NDMR) or rocuronium 0.6 mg/kg + sugammadex reversal at end</span></li>
+<li><span class="lb">Monitoring</span><span class="vl">TOF monitoring even for ECT — confirm fasciculations/block</span></li>
+</ul></div>
+<div class="card"><div class="ct">Drug Interactions</div><ul class="bl">
+<li>Lithium → prolonged sux/NMB block; reduce NMB dose</li>
+<li>MAOIs → avoid pethidine; caution with sympathomimetics</li>
+<li>Clozapine → seizure threshold ↓; longer seizures possible</li>
+<li>Benzodiazepines → ↑ seizure threshold; withhold morning dose</li>
+</ul></div>
+</div>
+</div></div>
+<div class="recipe open"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Endoscopy / UGI / ERCP / Colonoscopy</div><div class="rtags"><span class="badge bw">Shared airway</span><span class="badge bb">Sedation/GA</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<div class="alert alert-b"><div class="ak">First Decision — Sedation vs ETT ± RSI</div>Assess: aspiration risk, BMI, procedure duration, shared airway complexity, hypovolaemia, patient cooperation. ERCP: longer, prone/semi-prone, high aspiration risk — favour GA ETT with RSI.</div>
+<div class="g2 gap">
+<div class="card"><div class="ct">Sedation Protocol</div><ul class="cl">
+<li><span class="lb">Propofol boluses</span><span class="vl">30–60 mg initial; small titrated boluses; or propofol TCI 2–6 mcg/mL Ce</span></li>
+<li><span class="lb">Fentanyl adjunct</span><span class="vl">± 25–100 mcg (↓ propofol requirement)</span></li>
+<li><span class="lb">Airway</span><span class="vl">OptiFlow 30–60 L/min nasal O₂ for UGI; capnography imperfect — watch the patient</span></li>
+<li><span class="lb">Colonoscopy</span><span class="vl">Hudson mask + capnography; roll left lateral for scope</span></li>
+</ul></div>
+<div class="card"><div class="ct">RSI (ERCP / High Risk)</div><ul class="cl">
+<li><span class="lb">Position</span><span class="vl">Sit up; suction under pillow; VL first-line</span></li>
+<li><span class="lb">Induction</span><span class="vl">Propofol + suxamethonium; rocuronium 1.2 mg/kg + sugammadex available if sux CI</span></li>
+<li><span class="lb">ERCP specific</span><span class="vl">Prone/left-lateral oblique; radiation protection; sphincterotomy → monitor for pancreatitis post-op</span></li>
+</ul></div>
+</div>
+</div></div>
+</div>
+
+
+<!-- ══════════════════ TAB 10 CARDIAC/THORACIC ══════════════════ -->
+<div class="plan" id="tab-10">
+<div class="alert alert-r gap"><div class="ak">⚠ Cardiac / Thoracic — Consultant Anaesthetist Only</div>All cardiac and major thoracic cases require specialist input. These are framework templates for exam revision and trainee education — not standalone procedural guides.</div>
+
+<div class="recipe open"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">CABG — Coronary Artery Bypass Grafting</div><div class="rtags"><span class="badge br">CPB</span><span class="badge bw">Major cardiac</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<div class="g2 gap">
+<div class="card"><div class="ct">Pre-op Assessment</div><ul class="cl">
+<li><span class="lb">Cardiac function</span><span class="vl">Echo (EF, wall motion abnormalities, valvular disease); catheterisation report (lesion severity, LMS disease); recent MI date</span></li>
+<li><span class="lb">Medications</span><span class="vl">Continue beta-blockers, statins; cease antiplatelet as per surgery date (aspirin continue; clopidogrel 5–7 days pre-op)</span></li>
+<li><span class="lb">Investigations</span><span class="vl">FBC, UEC, LFT, coags, crossmatch ≥4 units; CXR; PFTs if significant lung disease; carotid Doppler if bruits/CVA history</span></li>
+<li><span class="lb">Risk scoring</span><span class="vl">EuroSCORE II; STS score — discuss with patient and family</span></li>
+</ul></div>
+<div class="card"><div class="ct">Induction</div><ul class="cl">
+<li><span class="lb">Pre-induction</span><span class="vl">Arterial line awake (radial preferred); TOE probe after intubation</span></li>
+<li><span class="lb">Induction</span><span class="vl">Etomidate 0.3 mg/kg (haemodynamic stability) or propofol low-dose + fentanyl 5–10 mcg/kg; avoid rapid propofol bolus</span></li>
+<li><span class="lb">High-dose opioid</span><span class="vl">Fentanyl 10–20 mcg/kg total induction dose (historic) vs balanced lower-dose approach (↑ early extubation)</span></li>
+<li><span class="lb">NMB</span><span class="vl">Rocuronium 0.6–1.2 mg/kg; TOF monitoring throughout</span></li>
+<li><span class="lb">Airway</span><span class="vl">COETT size 7.5–8.5; secure well (sternotomy → no access post-draping)</span></li>
+</ul></div>
+</div>
+<div class="g2 gap">
+<div class="card"><div class="ct">Cardiopulmonary Bypass (CPB) Principles</div><ul class="cl">
+<li><span class="lb">Heparin</span><span class="vl">300–400 units/kg IV; target ACT ≥480 s before cannulation; perfusionist checks</span></li>
+<li><span class="lb">On CPB</span><span class="vl">Pupillary and BIS monitoring; TIVA via CPB (propofol infusion) or volatile via oxygenator; MAP 50–80 mmHg on bypass</span></li>
+<li><span class="lb">Cardioplegia</span><span class="vl">Antegrade ± retrograde; cold or warm blood; protects heart during cross-clamping</span></li>
+<li><span class="lb">Temperature</span><span class="vl">Mild hypothermia (32–35°C) or normothermia; rewarm gradually</span></li>
+<li><span class="lb">Weaning CPB</span><span class="vl">Rewarm to 36.5°C; restore rhythm (pacing if needed); gradually ↑ cardiac work; inotropes if needed</span></li>
+<li><span class="lb">Protamine</span><span class="vl">1 mg per 100 units heparin given; slow IV; anaphylaxis risk; re-check ACT after</span></li>
+</ul></div>
+<div class="card"><div class="ct">Inotropes &amp; Vasoactives (Post-CPB)</div>
+<table><thead><tr><th>Drug</th><th>Dose</th><th>Use</th></tr></thead><tbody>
+<tr><td>Dobutamine</td><td>2–10 mcg/kg/min</td><td>↓ EF, ↓ CO post-bypass</td></tr>
+<tr><td>Noradrenaline</td><td>0.01–0.3 mcg/kg/min</td><td>Vasodilation, ↓ SVR post-bypass</td></tr>
+<tr><td>Adrenaline</td><td>0.01–0.5 mcg/kg/min</td><td>Low CO + hypotension</td></tr>
+<tr><td>Vasopressin</td><td>0.01–0.04 units/min</td><td>Refractory vasodilatory shock</td></tr>
+<tr><td>Milrinone</td><td>0.25–0.75 mcg/kg/min</td><td>RV failure; ↑ PVR; post-bypass ↓ CO</td></tr>
+<tr><td>GTN</td><td>0.5–5 mcg/kg/min</td><td>↑ SVR, coronary vasodilation</td></tr>
+</tbody></table></div>
+</div>
+<div class="g3">
+<div class="card"><div class="ct">TOE — Key Views</div><ul class="bl">
+<li>ME 4-chamber: LV/RV function, mitral valve</li>
+<li>ME 2-chamber: LV anterior/inferior wall</li>
+<li>ME LAX: LVOT, aortic valve, LV outflow</li>
+<li>TG mid-SAX: LV systolic function, 16-segment wall motion</li>
+<li>Bicaval view: RA, IVC, SVC — cannula position</li>
+<li>Desc aorta: assess atheroma before cross-clamp</li>
+</ul></div>
+<div class="card"><div class="ct">Post-op ICU</div><ul class="cl">
+<li><span class="lb">Early extubation</span><span class="vl">Target 4–6 h post-op (fast-track cardiac); TIVA preferred → lower opioid burden</span></li>
+<li><span class="lb">Vasopressors</span><span class="vl">Wean over 12–24 h as cardiac function recovers</span></li>
+<li><span class="lb">Pacing</span><span class="vl">Epicardial pacing wires in situ — ventricular pacing 70–90 bpm if bradycardia</span></li>
+<li><span class="lb">Drains</span><span class="vl">Chest drains — monitor hourly; &gt;200 mL/h × 2h → re-explore</span></li>
+</ul></div>
+<div class="card"><div class="ct">Complications</div><ul class="bl">
+<li>Low cardiac output syndrome — inotropes; IABP; ECMO if refractory</li>
+<li>Perioperative MI — ST changes on TOE/ECG; haemodynamic instability</li>
+<li>Atrial fibrillation (30–40% post-CABG) — amiodarone; cardioversion</li>
+<li>Stroke — aortic atheroma manipulation; air embolism; hypoperfusion on CPB</li>
+<li>AKI — maintain MAP, avoid nephrotoxins, early RRT if needed</li>
+</ul></div>
+</div>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Valve Surgery (AVR / MVR / Repair)</div><div class="rtags"><span class="badge br">CPB</span><span class="badge bw">Valvular</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<div class="g2 gap">
+<div class="card"><div class="ct">Aortic Stenosis (AS) — Principles</div><ul class="cl">
+<li><span class="lb">Pathophysiology</span><span class="vl">Fixed outflow obstruction; LVH; dependent on heart rate (avoid tachycardia), sinus rhythm, adequate preload</span></li>
+<li><span class="lb">Induction</span><span class="vl">Slow, careful titration; avoid SVR drops (propofol large bolus CI); etomidate preferred; maintain HR 60–80</span></li>
+<li><span class="lb">Avoid</span><span class="vl">Rapid vasodilation; tachycardia; AF; hypovolaemia</span></li>
+<li><span class="lb">Post-CPB</span><span class="vl">Sudden ↓ afterload after valve replacement — LV now working into normal SVR; may need inotrope support initially</span></li>
+</ul></div>
+<div class="card"><div class="ct">Aortic Regurgitation (AR) — Principles</div><ul class="cl">
+<li><span class="lb">Pathophysiology</span><span class="vl">Volume overload; dilated LV; forward flow dependent on HR (slightly faster = ↓ regurgitant time)</span></li>
+<li><span class="lb">Haemodynamic goals</span><span class="vl">HR 80–100 (avoid bradycardia → ↑ regurgitant volume); avoid ↑ SVR; maintain preload</span></li>
+<li><span class="lb">Induction</span><span class="vl">Balanced; avoid bradycardia-inducing agents</span></li>
+</ul></div>
+</div>
+<div class="g2">
+<div class="card"><div class="ct">Mitral Stenosis (MS) — Principles</div><ul class="cl">
+<li><span class="lb">Pathophysiology</span><span class="vl">Fixed LV filling; LA dilation; AF common; pulmonary hypertension</span></li>
+<li><span class="lb">Goals</span><span class="vl">Slow HR (↑ diastolic filling time); sinus rhythm preferred; avoid ↑ pulmonary pressure (hypoxia, hypercarbia, acidosis, N₂O)</span></li>
+<li><span class="lb">Avoid</span><span class="vl">Tachycardia; hypoxia; N₂O; excessive fluid</span></li>
+</ul></div>
+<div class="card"><div class="ct">Mitral Regurgitation (MR) — Principles</div><ul class="cl">
+<li><span class="lb">Goals</span><span class="vl">Maintain forward flow: slightly ↑ HR; ↓ SVR (vasodilators); avoid ↑ SVR or bradycardia</span></li>
+<li><span class="lb">Post-repair</span><span class="vl">Repair preferred over replacement; TOE confirms leaflet coaptation after discontinuing bypass; MR grade assessed</span></li>
+<li><span class="lb">RV function</span><span class="vl">↑ pulmonary pressures pre-op → RV vulnerable post-CPB; milrinone/vasopressin combination if RV failure</span></li>
+</ul></div>
+</div>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">VATS / Video-Assisted Thoracoscopic Surgery</div><div class="rtags"><span class="badge bw">OLV</span><span class="badge bg">Thoracic</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<div class="alert alert-w"><div class="ak">One-Lung Ventilation (OLV) — Key Challenge</div>Hypoxaemia during OLV is common (SpO₂ may drop to 85–90%). Optimise shunt physiology: HPV, position, CPAP to non-dependent lung. Communicate with surgeon before CPAP manoeuvres.</div>
+<div class="g2 gap">
+<div class="card"><div class="ct">Lung Isolation</div><ul class="cl">
+<li><span class="lb">DLT (preferred)</span><span class="vl">Left-sided DLT in most cases (37F female; 39F male); confirm with FOB after intubation and after positioning; recheck after repositioning</span></li>
+<li><span class="lb">Right-sided DLT</span><span class="vl">Left-sided lung disease, left pneumonectomy, left thoracic aortic surgery, left mainstem lesion</span></li>
+<li><span class="lb">Bronchial blocker</span><span class="vl">Alternative to DLT: Arndt/Cohen blocker; useful when DLT not feasible (difficult airway, tracheostomy); slower deflation</span></li>
+<li><span class="lb">Confirmation</span><span class="vl">Flexible bronchoscopy mandatory to confirm position — visual check of cuffs; correct lumen ventilating correct lung</span></li>
+</ul></div>
+<div class="card"><div class="ct">OLV Management</div><ul class="cl">
+<li><span class="lb">TV during OLV</span><span class="vl">4–5 mL/kg IBW (lower than two-lung); PEEP 5–10 cmH₂O; RR ↑ to maintain normocapnia</span></li>
+<li><span class="lb">FiO₂</span><span class="vl">Start at 1.0 during OLV; wean to 0.5 if SpO₂ ≥95%</span></li>
+<li><span class="lb">Hypoxaemia algorithm</span><span class="vl">(1) Check DLT position with FOB; (2) CPAP 5 cmH₂O to non-dependent lung; (3) ↑ FiO₂ to 1.0; (4) Intermittent reinflation; (5) TPVL (HPV); (6) surgical ligation of PA</span></li>
+<li><span class="lb">HPV</span><span class="vl">Hypoxic pulmonary vasoconstriction — beneficial reflex; volatile agents blunt HPV; TIVA (propofol) preserves HPV; use propofol/remifentanil TCI for thoracic procedures</span></li>
+</ul></div>
+</div>
+<div class="g3">
+<div class="card"><div class="ct">Specific Procedures</div>
+<table><thead><tr><th>Procedure</th><th>Key notes</th></tr></thead><tbody>
+<tr><td>Lobectomy</td><td>Left DLT; OLV; VATS preferred; TXA; post-op HDU; ↑ risk bronchopleural fistula</td></tr>
+<tr><td>Pneumonectomy</td><td>Right pneumonectomy → higher morbidity; mediastinal shift; fluid restriction post-op (↓ pulmonary oedema risk in remaining lung)</td></tr>
+<tr><td>Wedge resection</td><td>Shorter; OLV; VATS day-case or short stay; intercostal blocks at end</td></tr>
+<tr><td>Mediastinoscopy</td><td>No OLV; compression of innominate/SVC possible; right radial art line; avoid arms up (plexus); surgeon on right side</td></tr>
+</tbody></table></div>
+<div class="card"><div class="ct">Analgesia</div><ul class="cl">
+<li><span class="lb">Paravertebral block</span><span class="vl">Ropivacaine 0.375% 5 mL at T3–T5 under direct vision (surgeon-placed); excellent unilateral thoracic analgesia without epidural-level haemodynamic effect</span></li>
+<li><span class="lb">Thoracic epidural</span><span class="vl">T4–T6 insertion; levobupivacaine 0.125% + fentanyl 2 mcg/mL infusion; bilateral coverage; haemodynamic monitoring required</span></li>
+<li><span class="lb">SERRATUS anterior</span><span class="vl">Plane block: ropivacaine 0.375% 20 mL; lateral chest wall coverage; ultrasound-guided; good for VATS ports</span></li>
+<li><span class="lb">Systemic</span><span class="vl">Paracetamol + NSAID + opioid PRN; ketamine if opioid-tolerant</span></li>
+</ul></div>
+<div class="card"><div class="ct">Post-op Concerns</div><ul class="bl">
+<li>Bronchopleural fistula — avoid positive pressure ventilation if possible</li>
+<li>Sputum retention / atelectasis — chest physio, incentive spirometry, early mobilisation</li>
+<li>Arrhythmias (AF) — common post-thoracic; amiodarone; rate control</li>
+<li>Haemorrhage — drain output; return to theatre threshold</li>
+<li>Herniation of heart (post-pneumonectomy) — position dependent; re-operation</li>
+</ul></div>
+</div>
+</div></div>
+</div>
+
+
+<!-- ══════════════════ TAB 11 VASCULAR ══════════════════ -->
+<div class="plan" id="tab-11">
+
+<div class="recipe open"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">AAA Repair — Open &amp; Endovascular (EVAR)</div><div class="rtags"><span class="badge br">High risk</span><span class="badge bw">Major vascular</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<div class="alert alert-r"><div class="ak">⚠ Ruptured AAA — Immediate Life-Threatening Emergency</div>Permissive hypotension (SBP 70–80) until aortic control. Do NOT over-resuscitate. Immediate transfer to OR. MHP activated. Anaesthesiologist in OR before patient arrives.</div>
+<div class="g2 gap">
+<div class="card"><div class="ct">Open AAA — Pre-op</div><ul class="cl">
+<li><span class="lb">Risk assessment</span><span class="vl">Lee's Revised Cardiac Risk Index; CPET if available; resting echo; renal function (↑ AKI post-aortic cross-clamp)</span></li>
+<li><span class="lb">Monitoring</span><span class="vl">Arterial line (right radial if suprarenal clamp); CVC; TOE or PA catheter in complex cases; urinary catheter (UO ≥0.5 mL/kg/h)</span></li>
+<li><span class="lb">Crossmatch</span><span class="vl">≥6 units pRBC; FFP, platelets, cryo on standby; cell salvage</span></li>
+</ul></div>
+<div class="card"><div class="ct">Open AAA — Technique</div><ul class="cl">
+<li><span class="lb">Epidural</span><span class="vl">Thoracic epidural T8–T10 for analgesia; insert pre-op if coags allow; do not run until haemostasis confirmed</span></li>
+<li><span class="lb">Induction</span><span class="vl">Balanced: etomidate/propofol low-dose + fentanyl + rocuronium; avoid rapid vasodilation in AAA (plaque rupture)</span></li>
+<li><span class="lb">Aortic cross-clamp</span><span class="vl">↑ afterload → ↑ BP, ↑ LV wall stress → GTN infusion; avoid hypertension during clamp; ↑ LVEDP</span></li>
+<li><span class="lb">Clamp release</span><span class="vl">↓ SVR + reperfusion → ↓ BP; fluid load before release; vasopressor ready; metabolic acidosis from ischaemic legs</span></li>
+<li><span class="lb">AKI prevention</span><span class="vl">Adequate MAP during cross-clamp; mannitol 0.5 g/kg; avoid nephrotoxins; no evidence for dopamine renoprotection</span></li>
+</ul></div>
+</div>
+<div class="g2">
+<div class="card"><div class="ct">EVAR (Endovascular AAA Repair)</div><ul class="cl">
+<li><span class="lb">Anaesthesia</span><span class="vl">GA or regional (spinal/epidural) — spinal increasingly preferred; ↓ physiology disruption; no aortic cross-clamp in most cases</span></li>
+<li><span class="lb">Monitoring</span><span class="vl">Arterial line; radiology suite — ensure full anaesthetic monitoring and equipment available; angiography table challenges positioning</span></li>
+<li><span class="lb">Contrast</span><span class="vl">Contrast nephropathy risk — adequate hydration; acetylcysteine pre-op if renal impairment; avoid nephrotoxins</span></li>
+<li><span class="lb">Advantages over open</span><span class="vl">↓ mortality, ↓ ICU, ↓ blood loss, ↓ ileus — preferred if anatomically suitable</span></li>
+</ul></div>
+<div class="card"><div class="ct">Ruptured AAA</div><ul class="cl">
+<li><span class="lb">Approach</span><span class="vl">Permissive hypotension SBP 70–80; do not over-resuscitate pre-OR; no time for epidural</span></li>
+<li><span class="lb">Induction</span><span class="vl">Patient, surgeons and table ready BEFORE induction; ketamine 1–2 mg/kg RSI; surgeon begins immediately after intubation</span></li>
+<li><span class="lb">MHP</span><span class="vl">Activate immediately; 1:1:1 ratio pRBC:FFP:platelets; TXA 1 g immediately; warm all products</span></li>
+<li><span class="lb">Temporary control</span><span class="vl">REBOA (Resuscitative Endovascular Balloon Occlusion of Aorta) as bridge in some centres</span></li>
+</ul></div>
+</div>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Carotid Endarterectomy (CEA)</div><div class="rtags"><span class="badge bb">Regional option</span><span class="badge bw">Cerebral monitoring</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<div class="g2 gap">
+<div class="card"><div class="ct">Regional (Cervical Block) — Preferred in Many Centres</div><ul class="cl">
+<li><span class="lb">Advantage</span><span class="vl">Awake patient = best cerebral monitoring; patient reports symptoms during test clamping; ↓ cardiorespiratory complications; ↓ LOS</span></li>
+<li><span class="lb">Block</span><span class="vl">Deep cervical plexus block (C2–C4) ± superficial cervical plexus block; ropivacaine 0.5% 10–15 mL deep + 10 mL superficial</span></li>
+<li><span class="lb">Supplement</span><span class="vl">Surgeon: local infiltration along incision line; IV sedation (propofol TCI 0.5–1 mcg/mL) for anxiolysis — avoid deep sedation (obscures neurological signs)</span></li>
+<li><span class="lb">Clamp monitoring</span><span class="vl">During 3-min test clamp: talk to patient; hand squeeze; contralateral arm raise; any neurological change → shunt placement</span></li>
+</ul></div>
+<div class="card"><div class="ct">GA Option</div><ul class="cl">
+<li><span class="lb">Cerebral monitoring</span><span class="vl">EEG / cerebral oximetry (NIRS) / TCD; shunt used selectively or routinely based on surgeon preference</span></li>
+<li><span class="lb">BP management</span><span class="vl">Maintain MAP ≥80–90 during carotid cross-clamp (↑ collateral flow); vasopressor infusion ready</span></li>
+<li><span class="lb">Emergence</span><span class="vl">Smooth extubation critical — avoid hypertension, coughing (→ haematoma); consider deep extubation or remifentanil transition</span></li>
+<li><span class="lb">Post-op</span><span class="vl">Neurological checks Q15 min × 2 h; BP control (↓ hyperperfusion syndrome risk); wound haematoma → airway compromise → open at bedside</span></li>
+</ul></div>
+</div>
+<div class="alert alert-w"><div class="ak">Carotid Haematoma — Airway Emergency</div>Rapid neck swelling post-CEA → compresses trachea. Open wound clips/sutures at bedside immediately if airway compromised. Call for senior anaesthetic help and ENT/vascular surgeon. Re-intubate before going to theatre — do not wait.</div>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Peripheral Vascular Surgery (Fem-Pop / Bypass / Embolectomy)</div><div class="rtags"><span class="badge bg">Vascular</span></div><div class="rchev">▶</div></div>
+<div class="rb"><div class="g2">
+<div class="card"><div class="ct">Anaesthetic Approach</div><ul class="cl">
+<li><span class="lb">Patient profile</span><span class="vl">Elderly; high CVS comorbidity (IHD, CCF, DM, CKD, PAD); often smokers; frail — assess CFS and functional reserve</span></li>
+<li><span class="lb">Regional preference</span><span class="vl">Spinal or CSE for fem-pop — ↓ DVT, ↓ blood loss, ↓ pulmonary complications; haemodynamic stability</span></li>
+<li><span class="lb">GA option</span><span class="vl">LMA or ETT; avoid deep anaesthesia in frail/elderly — higher delirium risk</span></li>
+<li><span class="lb">Monitoring</span><span class="vl">Arterial line for prolonged or high-risk cases; bilateral SpO₂ useful; ECG V5 lead</span></li>
+</ul></div>
+<div class="card"><div class="ct">Acute Limb Ischaemia / Embolectomy</div><ul class="cl">
+<li><span class="lb">Urgency</span><span class="vl">6-h window for limb salvage — do not delay for extensive optimisation</span></li>
+<li><span class="lb">GA or LA</span><span class="vl">LA with sedation for simple femoral embolectomy under local; GA for complex revascularisation</span></li>
+<li><span class="lb">Reperfusion</span><span class="vl">After revascularisation: ↑ K⁺ (myonecrosis), metabolic acidosis, myoglobinuria — monitor and treat proactively; IV fluids to maintain UO</span></li>
+<li><span class="lb">Fasciotomy</span><span class="vl">May be required if prolonged ischaemia — compartment syndrome; add to anaesthetic plan</span></li>
+</ul></div>
+</div></div></div>
+</div>
+
+<!-- ══════════════════ TAB 12 REGIONAL ══════════════════ -->
+<div class="plan" id="tab-12">
+<div class="alert alert-b gap"><div class="ak">Regional Anaesthesia — General Principles</div>US guidance is standard of care for all peripheral nerve blocks. Confirm LAST kit (Intralipid) available at block site. Obtain verbal consent including risks: failure, LAST, nerve injury, haematoma. Document block in anaesthetic record.</div>
+
+<div class="section"><div class="section-hdr"><div class="sdot" style="background:var(--c13);box-shadow:0 0 5px var(--c13)"></div><div class="slbl">Upper Limb Blocks</div><div class="snum">01</div></div>
+<div class="card gap">
+<table><thead><tr><th>Block</th><th>Coverage</th><th>Drug / Volume</th><th>Key complications</th></tr></thead><tbody>
+<tr><td>Interscalene (ISB)</td><td>Shoulder, proximal arm</td><td>Ropivacaine 0.5% 15–20 mL</td><td>100% phrenic palsy — avoid contralateral phrenic/severe COPD; Horner's; RLN; Bezold-Jarisch; VA</td></tr>
+<tr><td>Supraclavicular</td><td>Arm, forearm, hand</td><td>Ropivacaine 0.5% 20–25 mL</td><td>Pneumothorax (1–3%); phrenic palsy (50%); vascular puncture (subclavian)</td></tr>
+<tr><td>Infraclavicular</td><td>Elbow, forearm, hand (misses shoulder)</td><td>Ropivacaine 0.5% 20–25 mL</td><td>Pneumothorax (low risk); vascular injury; less phrenic palsy than supra</td></tr>
+<tr><td>Axillary</td><td>Elbow, forearm, hand</td><td>Ropivacaine 0.5% 5 mL per nerve (musculocutaneous separately)</td><td>Vascular puncture; ↓ phrenic risk; most superficial; 4-injection technique</td></tr>
+<tr><td>Median nerve</td><td>Radial 3.5 fingers; palm</td><td>Ropivacaine 0.375% 5 mL (wrist or proximal)</td><td>Intraneural injection if too forceful; avoid high pressure injection</td></tr>
+<tr><td>Ulnar nerve</td><td>Ulnar 1.5 fingers; medial hand</td><td>Ropivacaine 0.375% 5 mL</td><td>Avoid at elbow (nerve vulnerable); prefer forearm or wrist</td></tr>
+<tr><td>Radial nerve</td><td>Dorsum of hand; lateral forearm</td><td>Ropivacaine 0.375% 5–10 mL (lateral to biceps tendon)</td><td>Haematoma; intraneural injection</td></tr>
+</tbody></table>
+</div>
+</div>
+
+<div class="section"><div class="section-hdr"><div class="sdot" style="background:var(--c13);box-shadow:0 0 5px var(--c13)"></div><div class="slbl">Lower Limb Blocks</div><div class="snum">02</div></div>
+<div class="card gap">
+<table><thead><tr><th>Block</th><th>Coverage</th><th>Drug / Volume</th><th>Notes</th></tr></thead><tbody>
+<tr><td>Femoral nerve block</td><td>Anterior thigh; medial leg</td><td>Ropivacaine 0.5% 20–30 mL</td><td>Quadriceps weakness → fall risk; prefer adductor canal for TKR</td></tr>
+<tr><td>Adductor canal (saphenous)</td><td>Medial knee, medial leg, ankle (sensory; motor-sparing)</td><td>Ropivacaine 0.375% 15–20 mL</td><td>Preferred over femoral for TKR; preserves quadriceps; US-guided in canal</td></tr>
+<tr><td>PENG block</td><td>Hip capsule (articular branches femoral, obturator, accessory obturator)</td><td>Ropivacaine 0.375% 20 mL</td><td>Motor-sparing; hip analgesia; ideal for #NOF and THR</td></tr>
+<tr><td>Fascia iliaca (infrainguinal)</td><td>Femoral, LCFN (not obturator reliably)</td><td>Ropivacaine 0.375% 40 mL</td><td>#NOF; high volume technique; US-guided infrainguinal approach</td></tr>
+<tr><td>Obturator nerve</td><td>Medial thigh; adductors</td><td>Ropivacaine 0.5% 10–15 mL</td><td>TKR complement; TURBT (prevents adductor jerk)</td></tr>
+<tr><td>Popliteal sciatic</td><td>Foot, ankle, posterior leg (below knee)</td><td>Ropivacaine 0.5% 20 mL</td><td>+ saphenous for medial ankle; 16–18 h duration; ideal foot/ankle surgery</td></tr>
+<tr><td>IPACK block</td><td>Posterior knee capsule</td><td>Ropivacaine 0.25% 20 mL</td><td>Between popliteal artery and capsule; TKR posterior pain; US-guided</td></tr>
+<tr><td>Saphenous nerve</td><td>Medial ankle and foot</td><td>Ropivacaine 0.375% 5 mL</td><td>Medial tibial condyle; supplements popliteal sciatic for ankle surgery</td></tr>
+</tbody></table>
+</div>
+</div>
+
+<div class="section"><div class="section-hdr"><div class="sdot" style="background:var(--c13);box-shadow:0 0 5px var(--c13)"></div><div class="slbl">Truncal / Plane Blocks</div><div class="snum">03</div></div>
+<div class="card gap">
+<table><thead><tr><th>Block</th><th>Coverage</th><th>Drug / Volume</th><th>Indications</th></tr></thead><tbody>
+<tr><td>TAP (oblique subcostal)</td><td>Upper abdomen T6–T10 (bilateral = T6–T10 bilaterally)</td><td>Ropivacaine 0.375% 20 mL each side</td><td>Laparoscopic upper GI / gynaecological; laparotomy</td></tr>
+<tr><td>TAP (lateral / mid-axillary)</td><td>Mid/lower abdomen T10–L1</td><td>Ropivacaine 0.375% 20 mL each side</td><td>Appendicectomy; hernia; lower laparotomy</td></tr>
+<tr><td>Rectus sheath (RSC)</td><td>Midline incision T8–T10</td><td>Ropivacaine 0.375% 20 mL each side</td><td>Laparotomy midline; catheters for prolonged analgesia</td></tr>
+<tr><td>QL block (QL2 / QL3)</td><td>Lateral abdominal wall + posterior → potential visceral coverage</td><td>Ropivacaine 0.375% 20 mL each side</td><td>Alternative to TAP; lap chole; gynaecological laparoscopy; better posterior spread</td></tr>
+<tr><td>Paravertebral (PVB)</td><td>Unilateral hemithorax; breast; kidney</td><td>Ropivacaine 0.5% 5 mL per level (T3–T6 for breast; T4–T7 for thoracic)</td><td>Thoracotomy; mastectomy; rib fractures; unilateral advantage over epidural</td></tr>
+<tr><td>Erector spinae plane (ESP)</td><td>Lateral/posterior thorax (via fascial plane spread)</td><td>Ropivacaine 0.375% 20–30 mL per level</td><td>Rib fractures; thoracic wall; less predictable than PVB; easier/safer technique</td></tr>
+<tr><td>Serratus anterior plane</td><td>Lateral thoracic wall T2–T9</td><td>Ropivacaine 0.375% 20 mL</td><td>VATS port-sites; rib fractures; mastectomy/breast procedures</td></tr>
+<tr><td>PECS I &amp; II</td><td>Medial/lateral pectoral nerves; long thoracic; thoracodorsal</td><td>Ropivacaine 0.25% 10 mL (PECS I) + 20 mL (PECS II)</td><td>Mastectomy; breast augmentation; axillary dissection</td></tr>
+<tr><td>Ilioinguinal / iliohypogastric</td><td>Inguinal region; scrotum/labia; medial thigh</td><td>Ropivacaine 0.375% 10 mL per nerve</td><td>Inguinal hernia; varicocele; orchidopexy; caesarean</td></tr>
+<tr><td>Penile block</td><td>Dorsal penis</td><td>Bupivacaine 0.25% 5–10 mL (NO adrenaline — end artery)</td><td>Circumcision; hypospadias; penile surgery</td></tr>
+</tbody></table>
+</div>
+</div>
+
+<div class="section"><div class="section-hdr"><div class="sdot" style="background:var(--c13);box-shadow:0 0 5px var(--c13)"></div><div class="slbl">Neuraxial — Practical Reference</div><div class="snum">04</div></div>
+<div class="g2">
+<div class="card"><div class="ct">Spinal Drug Options</div>
+<table><thead><tr><th>Drug</th><th>Dose range</th><th>Notes</th></tr></thead><tbody>
+<tr><td>Bupivacaine 0.5% heavy</td><td>1.5–3.5 mL</td><td>Hyperbaric; predictable spread; baricity-dependent position</td></tr>
+<tr><td>Bupivacaine 0.5% plain</td><td>2–3 mL</td><td>Isobaric; position-independent spread; use lateral bad-side-up</td></tr>
+<tr><td>Prilocaine 2% plain</td><td>2–3 mL</td><td>Day-case; faster offset; no TNS unlike lidocaine</td></tr>
+<tr><td>Fentanyl IT</td><td>15–25 mcg</td><td>Adjuvant; ↑ quality + duration; ↑ PONV; ↑ pruritus</td></tr>
+<tr><td>Morphine IT PF</td><td>100–400 mcg</td><td>Prolonged analgesia; ×24 h resp monitoring; pruritus, PONV</td></tr>
+<tr><td>Clonidine IT</td><td>15–75 mcg</td><td>Prolongs block; ↑ hypotension; avoid in obstetrics (fetal HR)</td></tr>
+<tr><td>Diamorphine IT</td><td>100–400 mcg</td><td>UK practice; prolonged analgesia; less available in Australia</td></tr>
+</tbody></table>
+</div>
+<div class="card"><div class="ct">Epidural Drug Options</div>
+<table><thead><tr><th>Drug</th><th>Dose / concentration</th><th>Use</th></tr></thead><tbody>
+<tr><td>Bupivacaine 0.1–0.125%</td><td>5–15 mL bolus / infusion</td><td>Labour analgesia maintenance; low motor block</td></tr>
+<tr><td>Ropivacaine 0.1–0.2%</td><td>Loading / PIEB</td><td>Labour; motor-sparing; slightly less potent than bupivacaine</td></tr>
+<tr><td>Ropivacaine 0.375%</td><td>10–15 mL incremental</td><td>Surgical top-up for CS; post-op thoracic infusion</td></tr>
+<tr><td>Ropivacaine 0.75%</td><td>15–20 mL for CS</td><td>Epidural LSCS (Recipe A); allow 15 min to work</td></tr>
+<tr><td>Lidocaine 2%</td><td>10–15 mL</td><td>Urgent epidural top-up; fast onset; shorter duration</td></tr>
+<tr><td>Levobupivacaine 0.125%</td><td>Infusion</td><td>Thoracic epidural post-op; cardiac-safer than bupivacaine</td></tr>
+<tr><td>Fentanyl (epidural)</td><td>50–100 mcg bolus; 1–3 mcg/mL infusion</td><td>Adjuvant; ↑ quality; visceral analgesia</td></tr>
+</tbody></table>
+</div>
+</div>
+</div>
+</div>
+
+
+<!-- ══════════════════ TAB 13 AIRWAY ══════════════════ -->
+<div class="plan" id="tab-13">
+<div class="alert alert-r gap"><div class="ak">⚠ Airway Emergency — Call for Help Early. Oxygenation is Priority, Not Intubation</div>Every airway encounter requires a Plan A, B, C and D. Have difficult airway equipment checked and available for every list.</div>
+
+<div class="recipe open"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Awake Fibre-Optic Intubation (AFOI)</div><div class="rtags"><span class="badge bw">Anticipated difficult</span><span class="badge bb">Gold standard</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<div class="g2 gap">
+<div class="card"><div class="ct">Indications</div><ul class="bl">
+<li>Predicted very difficult or impossible intubation under GA</li>
+<li>Unstable cervical spine (trauma, RA, Down's)</li>
+<li>Significant airway pathology: tumour, abscess, oedema, burn</li>
+<li>Morbid obesity with multiple predictors</li>
+<li>Previous failed intubation with documented difficult airway</li>
+<li>Severe OSA with Mallampati 4 + small mouth + restricted neck</li>
+</ul></div>
+<div class="card"><div class="ct">Equipment</div><ul class="cl">
+<li><span class="lb">Scope</span><span class="vl">Flexible bronchoscope (adult 4–6 mm OD); well-lubricated, tested</span></li>
+<li><span class="lb">ETT</span><span class="vl">Loaded on scope; size 7.0–8.0 (prewarmed in warm saline → softer)</span></li>
+<li><span class="lb">Suction</span><span class="vl">Yankauer; working scope suction channel</span></li>
+<li><span class="lb">Nasal route</span><span class="vl">Preferred for ease; xylometazoline 0.1% nasal spray + co-phenylcaine (LA + vasoconstriction)</span></li>
+<li><span class="lb">Monitoring</span><span class="vl">SpO₂, ECG, NIBP; supplemental O₂ throughout via nasal prong or high-flow nasal</span></li>
+</ul></div>
+</div>
+<div class="g2 gap">
+<div class="card"><div class="ct">Airway Preparation &amp; LA</div><ol class="steps">
+<li>Consent and explain procedure clearly — patient cooperation is essential</li>
+<li>Antisialagogue: glycopyrrolate 0.2–0.4 mg IM 30 min before (dry secretions)</li>
+<li>Nasal: xylometazoline spray → co-phenylcaine spray → nasopharyngeal airway with lidocaine gel 2%</li>
+<li>Oropharynx: lidocaine spray 10% to soft palate, uvula, tongue base — 4 actuations (max 4 mg/kg total LA)</li>
+<li>Subglottic LA: transtracheal injection 2 mL 2% lidocaine through cricothyroid membrane (cough = good) OR spray-as-you-go (SAYG) through scope</li>
+<li>Sedation (if used): remifentanil TCI 1–2 ng/mL Ce OR dexmedetomidine 0.5–1 mcg/kg over 10 min then 0.2–0.7 mcg/kg/h — maintain cooperation</li>
+</ol></div>
+<div class="card"><div class="ct">Technique</div><ol class="steps">
+<li>Scope in right hand; ETT loaded; nasal route preferred; advance under vision</li>
+<li>Identify turbinates → nasopharynx → uvula → epiglottis</li>
+<li>Pass under epiglottis (lifting with scope tip); advance through cords</li>
+<li>Visualise carina — confirms tracheal placement</li>
+<li>Railroad ETT over scope with gentle rotation (bevel facing posteriorly); remove scope</li>
+<li>Confirm EtCO₂ waveform; secure ETT; induce anaesthesia</li>
+</ol></div>
+</div>
+<div class="g3">
+<div class="card"><div class="ct">SAYG — Spray As You Go</div><ul class="bl">
+<li>2% lidocaine injected through scope suction channel as scope advances</li>
+<li>1–2 mL at each anatomical landmark: base of tongue, supraglottic, cords, subglottic</li>
+<li>Total dose: keep track — max 4 mg/kg; usually 200–400 mg total</li>
+<li>Allow 30–60 s between applications for effect</li>
+</ul></div>
+<div class="card"><div class="ct">Pitfalls</div><ul class="bl">
+<li>Excessive sedation → uncooperative, desaturating patient</li>
+<li>Secretions obscuring view → scope suction + SAYG lidocaine</li>
+<li>Vasovagal → bradycardia from tracheal stimulation; atropine available</li>
+<li>Subglottic oedema → smaller ETT needed; have sizes 6.0 and 6.5 available</li>
+<li>Failure → have Plan B ready: VL asleep with sedation; surgical airway</li>
+</ul></div>
+<div class="card"><div class="ct">After AFOI</div><ul class="bl">
+<li>Confirm patient still cooperative before inducing GA</li>
+<li>Induce gently (propofol low-dose; avoid sudden apnoea in compromised airway)</li>
+<li>Document technique in anaesthetic record and patient notes</li>
+<li>Communicate to PACU and ward: difficult airway patient</li>
+</ul></div>
+</div>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Can't Intubate / Can't Oxygenate (CICO) — Emergency FONA</div><div class="rtags"><span class="badge br">Life-threatening</span><span class="badge br">FONA</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<div class="alert alert-r"><div class="ak">⚠ CICO — Declare Immediately. Do Not Delay FONA. Every Second Counts.</div>Failure to act within 5 min = hypoxic brain damage. Do not make a fourth intubation attempt. Call for surgical help while proceeding with scalpel technique.</div>
+<div class="g2 gap">
+<div class="card"><div class="ct">CICO Recognition</div><ul class="cl">
+<li><span class="lb">Cannot intubate</span><span class="vl">2–3 attempts failed; VL + direct; grade 3–4 view; cannot railroad bougie</span></li>
+<li><span class="lb">Cannot oxygenate</span><span class="vl">SpO₂ falling despite mask ± OPA ± NPA ± 2-person technique; SGA insertion failed or inadequate</span></li>
+<li><span class="lb">Declare CICO</span><span class="vl">"This is a CICO situation — I am performing front-of-neck access"</span></li>
+</ul></div>
+<div class="card"><div class="ct">Scalpel-Bougie-Tube Technique (DAS recommended)</div><ol class="steps">
+<li>Extend neck; identify CTM (finger pinch 4-finger technique)</li>
+<li>Horizontal stab incision through skin + CTM with 10-blade scalpel (inferior to superior)</li>
+<li>Hook finger through incision caudally to maintain airway access</li>
+<li>Insert bougie through incision into trachea (caudally); feel tracheal rings</li>
+<li>Railroad 6.0 cuffed ETT over bougie; inflate cuff; confirm EtCO₂</li>
+<li>Secure ETT; ventilate 100% O₂; call ENT for formal tracheostomy</li>
+</ol></div>
+</div>
+<div class="g2">
+<div class="card"><div class="ct">Needle Cricothyroidotomy (Bridge — Not Definitive)</div><ul class="cl">
+<li><span class="lb">Indication</span><span class="vl">Unable to immediately perform scalpel technique; paediatric CICO (&lt;8 yr); bridge to surgical airway</span></li>
+<li><span class="lb">Technique</span><span class="vl">14G cannula + syringe through CTM; aspirate air to confirm; attach Luer-lock connector; jet ventilation at 1 L/yr age</span></li>
+<li><span class="lb">Limitation</span><span class="vl">Cannot provide adequate ventilation for &gt;30–45 min; CO₂ accumulates; does not secure airway; proceed to definitive airway</span></li>
+</ul></div>
+<div class="card"><div class="ct">Post-CICO Care</div><ul class="cl">
+<li><span class="lb">Formal tracheostomy</span><span class="vl">ENT/surgeon to perform formal tracheostomy to replace emergency cricothyrotomy</span></li>
+<li><span class="lb">Debriefing</span><span class="vl">Team debrief mandatory; complete incident report; inform patient when awake</span></li>
+<li><span class="lb">Documentation</span><span class="vl">Detailed record of events and timeline; MedAlert bracelet / ICE card for patient — "DIFFICULT AIRWAY"</span></li>
+</ul></div>
+</div>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Failed Intubation Algorithm (Non-Obstetric)</div><div class="rtags"><span class="badge bw">Unanticipated difficult</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<div class="card gap">
+<table><thead><tr><th>Step</th><th>Action</th><th>Notes</th></tr></thead><tbody>
+<tr><td>1. Failed intubation</td><td>Call for help immediately; state "I cannot intubate"</td><td>Maximum 3 attempts with different techniques (change device, operator, position)</td></tr>
+<tr><td>2. Optimise conditions</td><td>VL if not used; different blade; bougie; BURP/ELM; smaller ETT; head position</td><td>Do not persist beyond 3 attempts — laryngeal trauma worsens access</td></tr>
+<tr><td>3. Maintain oxygenation</td><td>Mask ± OPA ± NPA; 2-person technique; high-flow nasal O₂</td><td>Oxygenation is the priority at all times</td></tr>
+<tr><td>4. Insert supraglottic device</td><td>2nd-gen SGA (i-gel, ProSeal LMA, Supreme); if airway can be maintained</td><td>SGA provides oxygenation; may allow intubation through SGA with FOB</td></tr>
+<tr><td>5. Decision: wake up or proceed</td><td>Wake up if no immediate life-threatening indication; proceed with SGA if immediately life-threatening (e.g. Cat 1 LSCS, airway bleed)</td><td>If waking up: allow spontaneous ventilation; use sugammadex if rocuronium used; awake FOI as next step</td></tr>
+<tr><td>6. CICO</td><td>Cannot intubate, cannot oxygenate → emergency front-of-neck access (FONA)</td><td>Scalpel-bougie-tube; do not delay</td></tr>
+</tbody></table>
+</div>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Tracheostomy — Percutaneous &amp; Surgical</div><div class="rtags"><span class="badge bb">ICU</span><span class="badge bg">Elective/Emergency</span></div><div class="rchev">▶</div></div>
+<div class="rb"><div class="g2">
+<div class="card"><div class="ct">Percutaneous Dilatational Tracheostomy (PDT)</div><ul class="cl">
+<li><span class="lb">Indications</span><span class="vl">Prolonged ventilation; failed extubation; airway protection; upper airway obstruction (planned)</span></li>
+<li><span class="lb">Pre-op checks</span><span class="vl">Coags (INR &lt;1.5; platelets &gt;50); neck anatomy (palpable rings, midline trachea); bronchoscopy confirms position</span></li>
+<li><span class="lb">Technique</span><span class="vl">Bronchoscope through ETT (pull back ETT under vision); Seldinger technique: needle → wire → serial dilation (Ciaglia) → tracheostomy tube</span></li>
+<li><span class="lb">Bronchoscopic guidance</span><span class="vl">Mandatory — confirms needle placement between rings 1–3; avoids posterior wall puncture; confirms tube position</span></li>
+<li><span class="lb">Complications</td><td>Bleeding; paratracheal placement; posterior wall injury; loss of airway during procedure; surgical emphysema</span></li>
+</ul></div>
+<div class="card"><div class="ct">Surgical Tracheostomy</div><ul class="cl">
+<li><span class="lb">Indications</span><span class="vl">Emergency (CICO); complex neck anatomy; coagulopathy; previous neck surgery; paediatric; short neck; goitre</span></li>
+<li><span class="lb">Position</span><span class="vl">Shoulder roll; extended neck; maximise CTM / tracheal access</span></li>
+<li><span class="lb">Technique</span><span class="vl">Vertical midline incision; strap muscles divided; thyroid isthmus divided or retracted; incision through rings 2–3; insert Bjork flap or simple opening; insert tube</span></li>
+<li><span class="lb">Tube change</span><span class="vl">First change at 5–7 days (once tract formed); have introducers and same + smaller size tubes at bedside; FOB available</span></li>
+<li><span class="lb">Decannulation</span><span class="vl">Cuff down trials; speaking valve (Passy-Muir); downsize tube; cap trial; decannulate and observe 24 h</span></li>
+</ul></div>
+</div></div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Rapid Sequence Induction (RSI) — Optimised</div><div class="rtags"><span class="badge bw">Full stomach</span><span class="badge br">Aspiration risk</span></div><div class="rchev">▶</div></div>
+<div class="rb"><div class="g2">
+<div class="card"><div class="ct">RSI Technique</div><ol class="steps">
+<li>Pre-oxygenation: 3 min tidal breathing OR 8 vital capacity breaths; ETO₂ &gt;0.85; high-flow nasal O₂ throughout (apnoeic oxygenation)</li>
+<li>Position: ramped / head-up 20–30° — ↑ FRC, ↓ aspiration if regurgitation occurs</li>
+<li>Pre-oxygenation: avoid assisted mask ventilation (distends stomach)</li>
+<li>Propofol (or ketamine/etomidate if haemodynamic compromise) + suxamethonium 1.5 mg/kg OR rocuronium 1.2 mg/kg simultaneously</li>
+<li>Cricoid pressure: applied at loss of consciousness; 10 N awake → 30 N asleep (Sellick); release if impeding intubation</li>
+<li>Intubate at maximal paralysis (fasciculations cease with sux; or 60 s with roc); confirm EtCO₂; release cricoid</li>
+</ol></div>
+<div class="card"><div class="ct">RSI Drug Options</div>
+<table><thead><tr><th>Situation</th><th>Induction agent</th><th>NMB</th></tr></thead><tbody>
+<tr><td>Standard</td><td>Propofol 1.5–2.5 mg/kg</td><td>Suxamethonium 1.5 mg/kg</td></tr>
+<tr><td>Haemodynamic compromise</td><td>Ketamine 1–2 mg/kg</td><td>Suxamethonium 1.5 mg/kg</td></tr>
+<tr><td>Sux contraindicated</td><td>Propofol or ketamine</td><td>Rocuronium 1.2 mg/kg + sugammadex 16 mg/kg available</td></tr>
+<tr><td>Severe CVS compromise / pre-arrest</td><td>Ketamine 0.5–1 mg/kg or etomidate 0.2–0.3 mg/kg</td><td>Suxamethonium or rocuronium</td></tr>
+<tr><td>Obstetric RSI</td><td>Propofol + suxamethonium (or rocuronium if sux CI)</td><td>Prepare sugammadex if rocuronium used</td></tr>
+</tbody></table></div>
+</div></div></div>
+</div>
+
+
+<!-- ══════════════════ TAB 14 ICU/PAIN/UROLOGY ══════════════════ -->
+<div class="plan" id="tab-14">
+
+<div class="recipe open"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">TURP — Transurethral Resection of Prostate</div><div class="rtags"><span class="badge bb">Spinal</span><span class="badge bw">TURP syndrome</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<div class="alert alert-w"><div class="ak">TURP Syndrome</div>Absorption of hypotonic glycine/sorbitol irrigant → hyponatraemia, fluid overload, haemolysis, encephalopathy. Risk ↑ with resection time &gt;60 min or irrigant pressure &gt;40 cmH₂O. Spinal allows early detection (confusion = TURP syndrome).</div>
+<div class="g2 gap">
+<div class="card"><div class="ct">Technique</div><ul class="cl">
+<li><span class="lb">Spinal preferred</span><span class="vl">Allows early detection of TURP syndrome (patient becomes confused); T10 level adequate; prilocaine 2% 2.5 mL or bupivacaine 0.5% heavy 2.5 mL</span></li>
+<li><span class="lb">GA option</span><span class="vl">LMA; TURP syndrome harder to detect; BIS monitoring; send Na⁺ Q30 min if prolonged</span></li>
+<li><span class="lb">Position</span><span class="vl">Lithotomy — careful positioning; compartment syndrome risk with prolonged lithotomy; release legs simultaneously</span></li>
+<li><span class="lb">Monitoring</span><span class="vl">Urinary output; serum Na⁺ intraoperatively if resection &gt;45 min; volume of irrigant absorbed estimated from bag difference</span></li>
+</ul></div>
+<div class="card"><div class="ct">TURP Syndrome — Management</div><ul class="cl">
+<li><span class="lb">Na⁺ 120–125</span><span class="vl">Fluid restriction; furosemide 20–40 mg IV; stop surgery ASAP; monitor closely</span></li>
+<li><span class="lb">Na⁺ &lt;120 or symptoms</span><span class="vl">Hypertonic saline 3% — correct Na⁺ at &lt;1.5 mmol/L/h; avoid rapid correction (osmotic demyelination)</span></li>
+<li><span class="lb">Seizures</span><span class="vl">IV benzodiazepine; airway management; urgent electrolyte correction</span></li>
+<li><span class="lb">Bipolar TURP / HOLEP</span><span class="vl">Normal saline irrigant — eliminates TURP syndrome; increasingly standard</span></li>
+</ul></div>
+</div>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Nephrectomy (Open / Laparoscopic / Radical)</div><div class="rtags"><span class="badge bg">Major urology</span><span class="badge bb">Flank</span></div><div class="rchev">▶</div></div>
+<div class="rb"><div class="g2">
+<div class="card"><div class="ct">Open Nephrectomy</div><ul class="cl">
+<li><span class="lb">Position</span><span class="vl">Lateral flank (kidney) position — table broken to open flank; pressure area padding; check axillary roll; arm positioning</span></li>
+<li><span class="lb">Airway</span><span class="vl">COETT; ETT secured to mouth-corner away from table; check airway post-positioning</span></li>
+<li><span class="lb">Analgesia</span><span class="vl">Paravertebral catheter T8–T11 pre-op (surgeon or anaesthetist); thoracic epidural; QL block as alternative; paracetamol + NSAID systemic</span></li>
+<li><span class="lb">Access</span><span class="vl">Arterial line for complex/large tumour cases; large-bore IV; potential major haemorrhage (IVC / renal vein)</span></li>
+<li><span class="lb">VTE</span><span class="vl">Renal cell carcinoma — high VTE risk; IPC intraop + LMWH from day 1 post-op; 28-day course for malignancy</span></li>
+</ul></div>
+<div class="card"><div class="ct">Laparoscopic Nephrectomy</div><ul class="cl">
+<li><span class="lb">Lateral position</span><span class="vl">Modified lateral for laparoscopic approach; ensure patient secured to table (tilting)</span></li>
+<li><span class="lb">Pneumoperitoneum</span><span class="vl">Lateral position ↑ respiratory compromise with high IAP; lung-protective ventilation</span></li>
+<li><span class="lb">Analgesia</span><span class="vl">Port-site LA; paracetamol + NSAID; TAP or QL block for larger incision (hand-assisted); PCA if needed</span></li>
+<li><span class="lb">Conversion risk</span><span class="vl">Prepare for open conversion — have blood available if large tumour</span></li>
+</ul></div>
+</div></div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Cystectomy (Radical) &amp; Ileal Conduit</div><div class="rtags"><span class="badge bg">Major urology</span><span class="badge bw">Long case</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<div class="alert alert-b"><div class="ak">Long, Complex Case — Senior Anaesthetist Required</div>3–6 h; major blood loss; elderly high-comorbidity patients; bowel anastomosis (ERAS); post-op HDU/ICU; bleomycin history relevant (FiO₂ ≤0.35).</div>
+<div class="g2 gap">
+<div class="card"><div class="ct">Technique</div><ul class="cl">
+<li><span class="lb">Airway</span><span class="vl">COETT; arterial line + CVC; ± TOE/oesophageal Doppler for GDT in high-risk patients</span></li>
+<li><span class="lb">Bleomycin history</span><span class="vl">FiO₂ ≤0.35 throughout (bleomycin lung toxicity — O₂ ↑ fibrosis); document prominently in notes and on transfer</span></li>
+<li><span class="lb">Fluid strategy</span><span class="vl">ERAS: goal-directed; avoid liberal crystalloid; Hartmann's 3–5 mL/kg/h baseline; bolus for hypovolaemia only</span></li>
+<li><span class="lb">ERAS pre-op</span><span class="vl">CHO loading; prehabilitation; iron supplementation if anaemic; stop smoking; optimise comorbidities</span></li>
+</ul></div>
+<div class="card"><div class="ct">Analgesia</div><ul class="cl">
+<li><span class="lb">Thoracic epidural</span><span class="vl">T8–T10; preferred — excellent post-op analgesia for lower abdominal surgery; opioid-sparing</span></li>
+<li><span class="lb">Alternative</span><span class="vl">Bilateral TAP block + RSC block + IV lignocaine infusion if epidural not suitable (coagulopathy, patient refusal)</span></li>
+<li><span class="lb">Post-op</span><span class="vl">Paracetamol regular; NSAID if renal function adequate; opioid PRN; PCA if no epidural</span></li>
+<li><span class="lb">Return to theatre</span><span class="vl">Leaking anastomosis; bleeding — must be on ERAS monitoring protocol (ERAS nurse)</span></li>
+</ul></div>
+</div>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Robotic Prostatectomy (RARP)</div><div class="rtags"><span class="badge bg">Urology</span><span class="badge bw">Steep Trendelenburg</span></div><div class="rchev">▶</div></div>
+<div class="rb"><div class="g2">
+<div class="card"><div class="ct">Technique</div><ul class="cl">
+<li><span class="lb">Position</span><span class="vl">Steep Trendelenburg (30–40°) + pneumoperitoneum — most physiologically challenging part; ICP ↑, IOP ↑, ↓ FRC, ↑ Paw, facial oedema</span></li>
+<li><span class="lb">Airway</span><span class="vl">COETT; secure extremely well — impossible to reposition with robot docked; check position after Trendelenburg</span></li>
+<li><span class="lb">Ventilation</span><span class="vl">Lung-protective: TV 6 mL/kg IBW; PEEP 5–10; RR ↑; allow permissive hypercapnia (PaCO₂ 5–6 kPa) — avoid very high peak pressures</span></li>
+<li><span class="lb">Head</span><span class="vl">No direct pressure; gel ring; arms padded and tucked; shoulder supports only if robot requires (brachial plexus risk)</span></li>
+<li><span class="lb">Ocular</span><span class="vl">Tape eyes closed; gel pads; no direct pressure; check Q30–60 min if accessible</span></li>
+</ul></div>
+<div class="card"><div class="ct">Complications &amp; Analgesia</div><ul class="cl">
+<li><span class="lb">Airway oedema</span><span class="vl">Post-op facial and airway oedema from prolonged Trendelenburg; awake extubation; consider post-op sit-up for 30 min</span></li>
+<li><span class="lb">IOP ↑</span><span class="vl">Avoid in glaucoma / recent eye surgery; known glaucoma → limit steep Trendelenburg time</span></li>
+<li><span class="lb">Analgesia</span><span class="vl">Multimodal — paracetamol + NSAID (once Hb confirmed stable); port-site LA; surgeon periperitoneal LA; PCA if high pain; lignocaine infusion intraop</span></li>
+<li><span class="lb">Post-op</span><span class="vl">Day-case or 1-night stay; IDC usually overnight; early mobilisation; discharge home day 1 in many ERAS pathways</span></li>
+</ul></div>
+</div></div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">ICU Considerations / Post-op Ventilation / Critical Care Transfer</div><div class="rtags"><span class="badge bb">ICU</span><span class="badge bw">Transfer</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<div class="g2 gap">
+<div class="card"><div class="ct">Indications for Post-op ICU</div><ul class="bl">
+<li>Emergency laparotomy / damage control surgery</li>
+<li>Major vascular surgery (AAA, cardiac surgery)</li>
+<li>Massive intraoperative haemorrhage (&gt;4 units pRBC)</li>
+<li>Ongoing haemodynamic instability / vasopressor dependency</li>
+<li>Planned post-op ventilation (cardiac, thoracic, neurosurgical)</li>
+<li>Failed extubation or high-risk airway post-op</li>
+<li>Severe sepsis / septic shock perioperatively</li>
+<li>Hypothermia or severe coagulopathy requiring ongoing correction</li>
+</ul></div>
+<div class="card"><div class="ct">Lung-Protective Ventilation (ICU Setting)</div><ul class="cl">
+<li><span class="lb">TV</span><span class="vl">6 mL/kg IBW (ARDS net); max plateau pressure &lt;30 cmH₂O</span></li>
+<li><span class="lb">PEEP</span><span class="vl">5–15 cmH₂O titrated to FiO₂/oxygenation; PEEP/FiO₂ table (ARDSnet)</span></li>
+<li><span class="lb">FiO₂</span><span class="vl">Wean to SpO₂ 88–95% target in ARDS (avoid hyperoxia)</span></li>
+<li><span class="lb">Permissive hypercapnia</span><span class="vl">pH &gt;7.20 acceptable in ARDS to achieve lung-protective volumes</span></li>
+<li><span class="lb">Proning</span><span class="vl">Severe ARDS (P/F &lt;150) → 16 h prone/8 h supine cycling; ↑ survival</span></li>
+</ul></div>
+</div>
+<div class="g2">
+<div class="card"><div class="ct">Critical Care Transfer</div><ul class="cl">
+<li><span class="lb">Pre-transfer checklist</span><span class="vl">Stable haemodynamics; adequate IV access; ETT secured and confirmed; portable monitoring attached; drugs drawn up; documentation ready</span></li>
+<li><span class="lb">Monitoring</span><span class="vl">ECG, SpO₂, NIBP, capnography (if intubated), invasive arterial BP if unstable</span></li>
+<li><span class="lb">Drugs</span><span class="vl">Vasopressors in portable syringe drivers; sedation infusion; emergency drugs (adrenaline, atropine, suxamethonium); airway bag</span></li>
+<li><span class="lb">Handover</span><span class="vl">SBAR (Situation-Background-Assessment-Recommendation); include: diagnosis, key interventions, current drug infusions, anticipated problems, resuscitation decisions</span></li>
+<li><span class="lb">ISOBAR</span><span class="vl">Identify → Situation → Observation → Background → Assessment → Responsibility handover</span></li>
+</ul></div>
+<div class="card"><div class="ct">Sedation &amp; Analgesia in ICU</div>
+<table><thead><tr><th>Drug</th><th>Dose</th><th>Notes</th></tr></thead><tbody>
+<tr><td>Propofol</td><td>0.5–4 mg/kg/h</td><td>Short-term sedation; ↓ BP; propofol infusion syndrome with &gt;4 mg/kg/h &gt;48 h</td></tr>
+<tr><td>Midazolam</td><td>0.02–0.1 mg/kg/h</td><td>Longer sedation; accumulates; RASS target 0 to −2</td></tr>
+<tr><td>Dexmedetomidine</td><td>0.2–1.4 mcg/kg/h</td><td>Conscious sedation; ↓ delirium; bradycardia; useful for wean/extubation prep</td></tr>
+<tr><td>Morphine infusion</td><td>0–10 mg/h</td><td>Analgesia-first sedation (PICS reduction)</td></tr>
+<tr><td>Fentanyl infusion</td><td>25–200 mcg/h</td><td>Preferred if renal impairment or haemodynamic instability</td></tr>
+</tbody></table></div>
+</div>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Chronic Pain Procedures — Ketamine Infusion &amp; Epidural Steroid</div><div class="rtags"><span class="badge bb">Pain</span><span class="badge bg">Procedures</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<div class="g2 gap">
+<div class="card"><div class="ct">Sub-anaesthetic Ketamine Infusion</div><ul class="cl">
+<li><span class="lb">Indications</span><span class="vl">Chronic neuropathic pain; opioid-refractory pain; post-amputation pain; CRPS; fibromyalgia; central sensitisation</span></li>
+<li><span class="lb">Preparation</span><span class="vl">500 mg ketamine in 500 mL NaCl = 1 mg/mL; or 500 mg in 50 mL pump = 10 mg/mL</span></li>
+<li><span class="lb">Protocol</span><span class="vl">Inpatient: 0.1–0.5 mg/kg/h × 3–5 days; outpatient/day-case: 0.3–0.5 mg/kg/h × 4–6 h</span></li>
+<li><span class="lb">Monitoring</span><span class="vl">SpO₂, BP, HR continuous; verbal contact Q30 min; sedation scale (RASS target 0); dissociation scoring</span></li>
+<li><span class="lb">Side effects</span><span class="vl">Dysphoria, hallucinations, nausea — midazolam 1 mg IV PRN; ondansetron 4 mg; diazepam 2 mg PO at start</span></li>
+<li><span class="lb">Contraindications</span><span class="vl">Poorly controlled psychosis; recent MI (relative); uncontrolled HTN; pregnancy</span></li>
+</ul></div>
+<div class="card"><div class="ct">Epidural Steroid Injection (ESI)</div><ul class="cl">
+<li><span class="lb">Indications</span><span class="vl">Radicular pain from disc prolapse; spinal stenosis; failed conservative management; bridge to surgery or rehabilitation</span></li>
+<li><span class="lb">Approach</span><span class="vl">Interlaminar (most common) or transforaminal (targeted); fluoroscopy or CT guidance</span></li>
+<li><span class="lb">Drugs</span><span class="vl">Dexamethasone 8–12 mg PF (preferred — non-particulate, safer for transforaminal); methylprednisolone 40–80 mg; + bupivacaine 0.25% 3–5 mL</span></li>
+<li><span class="lb">Technique</span><span class="vl">Loss of resistance saline; confirm epidural space; contrast under fluoroscopy if transforaminal; inject slowly; observe 30–60 min post</span></li>
+<li><span class="lb">Risks</span><span class="vl">Dural puncture; PDPH; infection; epidural haematoma (stop anticoagulants per ASRA guidelines); steroid side effects; intravascular injection (transforaminal)</span></li>
+<li><span class="lb">Anticoagulation</span><span class="vl">ASRA guidelines: clopidogrel 7 days; warfarin INR &lt;1.5; LMWH prophylaxis dose 12 h; therapeutic 24 h; DOACs per ASRA guidance</span></li>
+</ul></div>
+</div>
+</div></div>
+</div>
+
+<!-- ══════════════════ TAB 15 REFERENCES ══════════════════ -->
+<div class="plan" id="tab-15">
+<div class="section"><div class="section-hdr"><div class="sdot" style="background:var(--c10);box-shadow:0 0 5px var(--c10)"></div><div class="slbl">Key Guidelines &amp; References</div><div class="snum">01</div></div>
+<div class="g2 gap">
+<div class="card"><div class="ct">National / College Guidelines</div>
+<table><thead><tr><th>Source</th><th>Topic</th></tr></thead><tbody>
+<tr><td>ANZCA PS18</td><td>Monitoring during anaesthesia</td></tr>
+<tr><td>ANZCA PS26</td><td>Depth of anaesthesia monitoring (NMB + DoA monitor)</td></tr>
+<tr><td>ANZCA PS55</td><td>Minimum safety requirements for anaesthetic machines</td></tr>
+<tr><td>ANZCA PS57</td><td>Guidelines on sedation and/or analgesia for diagnostic and interventional medical, dental or surgical procedures</td></tr>
+<tr><td>ANZCA / ASA difficult airway guidelines</td><td>Failed intubation algorithms; CICO management</td></tr>
+<tr><td>DAS (Difficult Airway Society) 2015</td><td>Management of unanticipated difficult intubation; failed intubation obstetric (2015); extubation guidelines</td></tr>
+<tr><td>AAGBI SIVA 2019</td><td>Anaesthesia 2019;74:211–224. TIVA and TCI — safe conduct</td></tr>
+<tr><td>NALHN Local protocols</td><td>LSCS spinal recipe; UTerOtonics; Antibiotic prophylaxis; VTE prophylaxis</td></tr>
+<tr><td>OAA / DAS 2015</td><td>Obstetric failed intubation algorithm</td></tr>
+<tr><td>AAGBI Malignant Hyperthermia 2020</td><td>UK guidelines for management of MH; dantrolene protocol</td></tr>
+</tbody></table>
+</div>
+<div class="card"><div class="ct">Key Journals &amp; Landmark Trials</div>
+<table><thead><tr><th>Trial / Paper</th><th>Relevance</th></tr></thead><tbody>
+<tr><td>ARDSnet (NEJM 2000)</td><td>Lung-protective ventilation 6 mL/kg IBW → ↓ mortality</td></tr>
+<tr><td>CRASH-2 (Lancet 2010)</td><td>TXA within 3 h of injury ↓ all-cause mortality in trauma</td></tr>
+<tr><td>WOMAN trial (Lancet 2017)</td><td>TXA ↓ death from PPH — give within 3 h</td></tr>
+<tr><td>IRIS trial (2018)</td><td>Magpie trial — MgSO₄ ↓ eclampsia in pre-eclampsia</td></tr>
+<tr><td>PRODIGY (NEJM 2022)</td><td>Prophylactic sugammadex ↓ residual neuromuscular block rate</td></tr>
+<tr><td>REGAIN (JAMA 2021)</td><td>Spinal vs GA for hip fracture — no difference in mortality at 30 days or 365 days</td></tr>
+<tr><td>Cochrane: TIVA vs volatile for cancer</td><td>Ongoing controversy; ENIGMA II; no definitive conclusion yet</td></tr>
+<tr><td>PROTECT (NEJM 2020)</td><td>Dexmedetomidine vs placebo in ICU — ↓ coma duration; no mortality benefit</td></tr>
+<tr><td>PONV: Apfel 1999</td><td>Original Apfel simplified risk score (4 factors; each = 20% ↑ risk)</td></tr>
+<tr><td>Ultrasound for vascular access (NICE 2002)</td><td>US-guided CVC — ↓ complications</td></tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="section"><div class="section-hdr"><div class="sdot" style="background:var(--c10);box-shadow:0 0 5px var(--c10)"></div><div class="slbl">Pharmacology Quick Reference</div><div class="snum">02</div></div>
+<div class="g3">
+<div class="card"><div class="ct">Suxamethonium — Contraindications</div><ul class="bl">
+<li>Burns (&gt;24 h onset) — hyperkalaemia</li>
+<li>Crush injury / prolonged immobilisation</li>
+<li>UMN / LMN denervation injury</li>
+<li>Malignant hyperthermia (personal / family history)</li>
+<li>Penetrating eye injury (↑ IOP)</li>
+<li>Myopathy (Duchenne's, myotonia)</li>
+<li>Hyperkalaemia</li>
+<li>Suxamethonium apnoea (pseudocholinesterase deficiency)</li>
+</ul></div>
+<div class="card"><div class="ct">Sugammadex — Key Points</div><ul class="cl">
+<li><span class="lb">Mechanism</span><span class="vl">Encapsulates rocuronium/vecuronium — does not work on other NMBs</span></li>
+<li><span class="lb">Immediate reversal</span><span class="vl">16 mg/kg (post-RSI-rocuronium CICO)</span></li>
+<li><span class="lb">Deep block</span><span class="vl">4 mg/kg (PTC 1–2)</span></li>
+<li><span class="lb">Moderate block</span><span class="vl">2 mg/kg (TOF ≥2)</span></li>
+<li><span class="lb">Rebound</span><span class="vl">Can occur; quantitative monitoring recommended</span></li>
+<li><span class="lb">Renal failure</span><span class="vl">Accumulates; avoid or use neostigmine</span></li>
+<li><span class="lb">TOFR target</span><span class="vl">≥0.9 before extubation</span></li>
+</ul></div>
+<div class="card"><div class="ct">Common Analgesic Ceiling Doses</div>
+<table><thead><tr><th>Drug</th><th>Max single</th><th>Max daily</th></tr></thead><tbody>
+<tr><td>Paracetamol IV</td><td>1 g</td><td>4 g (3 g if &lt;50 kg or hepatic)</td></tr>
+<tr><td>Ibuprofen PO</td><td>400 mg</td><td>2.4 g</td></tr>
+<tr><td>Celecoxib PO</td><td>200 mg</td><td>400 mg</td></tr>
+<tr><td>Diclofenac IV</td><td>75 mg</td><td>150 mg</td></tr>
+<tr><td>Morphine IV bolus</td><td>0.1 mg/kg</td><td>Titrate to effect</td></tr>
+<tr><td>Oxycodone PO (IR)</td><td>10–15 mg</td><td>Context-dependent</td></tr>
+<tr><td>Tramadol PO/IV</td><td>100 mg</td><td>400 mg</td></tr>
+<tr><td>Pregabalin PO</td><td>150 mg</td><td>600 mg</td></tr>
+<tr><td>Gabapentin PO</td><td>800–1200 mg</td><td>3600 mg</td></tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="section"><div class="section-hdr"><div class="sdot" style="background:var(--c10);box-shadow:0 0 5px var(--c10)"></div><div class="slbl">Disclaimer</div><div class="snum">03</div></div>
+<div class="alert alert-w">
+<div class="ak">Clinical Responsibility</div>
+This recipe book is an educational reference tool for trained anaesthetic practitioners. It does not replace clinical training, mentorship, or formal guidelines. Drug doses, concentrations and techniques are representative starting points — individual patient factors, local protocols, and current guidelines must always take precedence. Errors and omissions are possible. The author accepts no medico-legal responsibility for clinical decisions made using this resource.
+<br><br>Version 4.0 · April 2026 · James Hartley · ANZCA Trainee · Adelaide
+</div>
+</div>
+</div>
+
+<!-- end all tabs -->
+
+<footer>ARB v4.0 · James Hartley · ANZCA · April 2026 · Educational reference only</footer>
+
+<script>
+function showTab(n) {
+  document.querySelectorAll('.plan').forEach(function(p, i) {
+    p.classList.toggle('visible', i === n);
+  });
+  document.querySelectorAll('.tab').forEach(function(t, i) {
+    t.classList.toggle('active', i === n);
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleRecipe(hdr) {
+  hdr.closest('.recipe').classList.toggle('open');
+}
+
+// Open first recipe in each tab on initial load
+document.querySelectorAll('.recipe').forEach(function(r) {
+  // already handled by class="recipe open" in HTML
+});
+</script>
+
+</body>
+</html>
