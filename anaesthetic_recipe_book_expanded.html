@@ -117,7 +117,7 @@ footer{text-align:center;padding:14px;font-family:var(--mono);font-size:9.5px;co
     <div class="tab" style="--tab-color:var(--c5)" onclick="showTab(5)">5 · ENT</div>
     <div class="tab" style="--tab-color:var(--c6)" onclick="showTab(6)">6 · Ophthalmic</div>
     <div class="tab" style="--tab-color:var(--c7)" onclick="showTab(7)">7 · Paediatrics</div>
-    <div class="tab" style="--tab-color:var(--c8)" onclick="showTab(8)">8 · Day-case Spinal</div>
+    <div class="tab" style="--tab-color:var(--c8)" onclick="showTab(8)">8 · Spinal Recipes</div>
     <div class="tab" style="--tab-color:var(--c9)" onclick="showTab(9)">9 · Non-theatre</div>
     <div class="tab" style="--tab-color:var(--c11)" onclick="showTab(10)">10 · Cardiac/Thoracic</div>
     <div class="tab" style="--tab-color:var(--c12)" onclick="showTab(11)">11 · Vascular</div>
@@ -676,8 +676,10 @@ footer{text-align:center;padding:14px;font-family:var(--mono);font-size:9.5px;co
 <div class="alert alert-b"><div class="ak">TIVA Preference</div>Strongly consider TIVA to lower post-op delirium. If pre-op delirious — sevoflurane + haloperidol 0.5–1 mg. REGAIN 2021: spinal not superior to GA for ambulation, survival or delirium — choose technique on clinical/patient grounds.</div>
 <div class="g2 gap">
 <div class="card"><div class="ct">Anaesthetic Options</div><ul class="cl">
-<li><span class="lb">Spinal</span><span class="vl">3 mL 0.5% plain bupivacaine + 20 mcg fentanyl — lateral bad-side-up; isobaric. No superiority over GA (REGAIN); either is acceptable</span></li>
-<li><span class="lb">Long spinal</span><span class="vl">3 mL 0.5% plain + 100 mcg morphine if prolonged surgery</span></li>
+<li><span class="lb">Spinal (standard)</span><span class="vl">1.5–2 mL 0.5% hyperbaric bupivacaine (7.5–10 mg) + 10–20 mcg fentanyl — lateral bad-side-down. AAGBI 2020: keep &lt;10 mg, fentanyl only</span></li>
+<li><span class="lb">Spinal (plain bup)</span><span class="vl">1.5–2 mL 0.5% plain bupivacaine + 15 mcg fentanyl — lateral bad-side-up (denser on dependent side)</span></li>
+<li><span class="lb">Ultra-low / mini-dose</span><span class="vl">1 mL 0.5% heavy bup (5 mg) + 15–20 mcg fentanyl (Tighe 2016); or 4 mg + 20 mcg fentanyl diluted to 2 mL (Ben-David 2000) — for frail/severe cardiac</span></li>
+<li><span class="lb">No IT opioid</span><span class="vl">Avoid intrathecal morphine/diamorphine in #NOF (AAGBI 2020) — late respiratory depression risk; use peripheral block instead</span></li>
 <li><span class="lb">GA</span><span class="vl">Sparing propofol (~60 mg); LMA or ETT; bladder temperature probe; bite-block</span></li>
 <li><span class="lb">TIVA</span><span class="vl">Propofol/remifentanil TCI — preferred to ↓ delirium and PONV</span></li>
 </ul></div>
@@ -844,7 +846,8 @@ footer{text-align:center;padding:14px;font-family:var(--mono);font-size:9.5px;co
 <div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Tibia ORIF — Spinal &amp; Compartment Syndrome</div><div class="rtags"><span class="badge bg">Trauma</span><span class="badge bb">Spinal</span></div><div class="rchev">▶</div></div>
 <div class="rb"><div class="g2">
 <div class="card"><div class="ct">Technique</div><ul class="cl">
-<li><span class="lb">Spinal</span><span class="vl">3 mL 0.5% plain bupivacaine + 20 mcg fentanyl — lateral bad-side-up; isobaric</span></li>
+<li><span class="lb">Spinal (fit adult)</span><span class="vl">2.5 mL 0.5% plain bupivacaine (12.5 mg) + 15–20 mcg fentanyl — lateral bad-side-up</span></li>
+<li><span class="lb">Spinal (elderly)</span><span class="vl">2 mL 0.5% plain bupivacaine (10 mg) + 15 mcg fentanyl</span></li>
 <li><span class="lb">Consider</span><span class="vl">Popliteal sciatic + saphenous nerve block for post-op analgesia if GA used</span></li>
 </ul></div>
 <div class="card"><div class="ct">Compartment Syndrome Warning</div><ul class="cl">
@@ -1224,8 +1227,12 @@ footer{text-align:center;padding:14px;font-family:var(--mono);font-size:9.5px;co
 </div>
 
 <div class="plan" id="tab-8">
-<div class="alert alert-b gap"><div class="ak">Prilocaine 2% Plain — Day-Case Spinal Standard</div>Faster offset than bupivacaine. No transient neurological symptoms (unlike lidocaine). Adjust for height, age and patient factors. Always have GA backup prepared.</div>
-<div class="section"><div class="section-hdr"><div class="sdot" style="background:var(--c8);box-shadow:0 0 5px var(--c8)"></div><div class="slbl">Prilocaine 2% Plain — Dose Table</div><div class="snum">01</div></div>
+
+<div class="alert alert-b gap"><div class="ak">Spinal Anaesthesia — Recipes &amp; Dose Look-up</div>Two-part reference: <strong>day-case prilocaine table</strong> (rapid-recovery, ambulatory) plus <strong>general spinal recipes</strong> for major specialties (obstetric · ortho · urology · general · vascular · saddle) with intrathecal additives ready-reckoner. Always have GA backup prepared and metaraminol attached before injection.</div>
+
+<!-- 01 · Prilocaine 2% plain dose table -->
+<div class="section"><div class="section-hdr"><div class="sdot" style="background:var(--c8);box-shadow:0 0 5px var(--c8)"></div><div class="slbl">Day-Case Prilocaine 2% Plain — Dose Table</div><div class="snum">01</div></div>
+<div class="alert alert-g gap"><div class="ak">Prilocaine 2% Plain — Day-Case Standard</div>Faster offset than bupivacaine. No transient neurological symptoms (unlike lidocaine). Onset ~5 min · block resolves 90–150 min. Add fentanyl 10–20 mcg if &gt;60 min or visceral procedure. Avoid in G6PD deficiency and pregnancy.</div>
 <div class="card gap"><table><thead><tr><th>Specialty</th><th>Procedure</th><th>Duration</th><th>Dose 2% (mL)</th></tr></thead><tbody>
 <tr><td>Orthopaedic</td><td>Knee arthroscopy ± meniscectomy</td><td>30–60 min</td><td>2.5</td></tr>
 <tr><td>Orthopaedic</td><td>Autograft ACL reconstruction</td><td>45–60 min</td><td>2.5</td></tr>
@@ -1245,9 +1252,287 @@ footer{text-align:center;padding:14px;font-family:var(--mono);font-size:9.5px;co
 <tr><td>Gynaecology</td><td>Diagnostic laparoscopy</td><td>60 min</td><td>3.0</td></tr>
 </tbody></table></div>
 </div>
-<div class="section"><div class="section-hdr"><div class="sdot" style="background:var(--c8);box-shadow:0 0 5px var(--c8)"></div><div class="slbl">Day-Case Spinal — Practical Pearls</div><div class="snum">02</div></div>
-<div class="g3">
-<div class="card"><div class="ct">Discharge Criteria</div><ul class="bl">
+
+<!-- 02 · Intrathecal additives -->
+<div class="section"><div class="section-hdr"><div class="sdot" style="background:var(--c8);box-shadow:0 0 5px var(--c8)"></div><div class="slbl">Intrathecal Additives — Ready-Reckoner</div><div class="snum">02</div></div>
+<div class="card gap"><table><thead><tr><th>Additive</th><th>Typical dose</th><th>Onset · duration</th><th>Watch-points</th></tr></thead><tbody>
+<tr><td>Fentanyl</td><td>10–25 mcg <span class="drug">15 mcg typical</span></td><td>&lt;5 min · 2–4 h</td><td>Pruritus; minimal late respiratory depression — safe for day-case</td></tr>
+<tr><td>Diamorphine</td><td>300–500 mcg <span class="drug">700 mcg RALP</span></td><td>30 min · 12–18 h</td><td>Pruritus, urinary retention, mild sedation — avoid same-day discharge</td></tr>
+<tr><td>PF morphine</td><td>100–200 mcg <span class="drug">100 mcg LSCS</span></td><td>45–60 min · 18–24 h</td><td>Late respiratory depression 6–12 h — needs ward monitoring; pruritus, PONV</td></tr>
+<tr><td>Clonidine</td><td>15–30 mcg</td><td>Prolongs block 60–90 min</td><td>Sedation, hypotension, bradycardia — useful for tourniquet pain</td></tr>
+</tbody></table></div>
+<div class="alert alert-w gap"><div class="ak">Choosing the Opioid</div><strong>Fentanyl</strong> for quicker cleaner blocks (day-case). <strong>Diamorphine</strong> for ~12 h analgesia after major joint, urology, short laparotomy. <strong>PF morphine</strong> for 24 h cover in patients staying overnight (LSCS, long open laparotomy). <strong>Never combine</strong> PF morphine + diamorphine.</div>
+</div>
+
+<!-- 03 · Obstetric spinals -->
+<div class="section"><div class="section-hdr"><div class="sdot" style="background:var(--c2);box-shadow:0 0 5px var(--c2)"></div><div class="slbl">Obstetric Spinals</div><div class="snum">03</div></div>
+
+<div class="recipe open"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Elective LSCS (NALHN house recipe)</div><div class="rtags"><span class="badge bb">T4 target</span><span class="badge bp">Heavy bup</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<ul class="cl">
+<li><span class="lb">Mix</span><span class="vl">2.2–2.4 mL 0.5% hyperbaric bupivacaine + 15 mcg fentanyl + 100 mcg PF morphine</span></li>
+<li><span class="lb">Volume</span><span class="vl">2.2 mL short stature · 2.4 mL standard</span></li>
+<li><span class="lb">Target</span><span class="vl">T4 (light touch), T6 (cold), confirmed sacral block</span></li>
+<li><span class="lb">Pre-load</span><span class="vl">Co-load 500–1000 mL crystalloid at induction</span></li>
+<li><span class="lb">Vasopressor</span><span class="vl">Metaraminol attached (prophylactic infusion or boluses); phenylephrine where available</span></li>
+<li><span class="lb">Uterotonic</span><span class="vl">Carbetocin 100 mcg slow IV — two pushes post-delivery, keep syringe separate</span></li>
+<li><span class="lb">Rescue</span><span class="vl">GTN standby; IV fentanyl for breakthrough — always offer GA</span></li>
+</ul>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Category-1 LSCS (rapid sequence spinal)</div><div class="rtags"><span class="badge br">Cat 1</span><span class="badge bw">~3 min target</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<ul class="cl">
+<li><span class="lb">Mix</span><span class="vl">2.4–2.6 mL 0.5% hyperbaric bupivacaine + 15 mcg fentanyl ± 100 mcg PF morphine (omit if it would delay)</span></li>
+<li><span class="lb">Technique</span><span class="vl">No skin local; no CSF aspiration before injection; single attempt; escalate to GA if not in by ~3 min</span></li>
+<li><span class="lb">Block test</span><span class="vl">Loss of hip flexion mandatory; two-modality test (cold + light touch)</span></li>
+</ul>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Cervical cerclage</div><div class="rtags"><span class="badge bb">T10 target</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<ul class="cl">
+<li><span class="lb">Mix</span><span class="vl">2.2 mL 0.5% hyperbaric bupivacaine + 15 mcg fentanyl</span></li>
+<li><span class="lb">Position</span><span class="vl">Sit up 30–60 s; slight head-up after lying — target ≈ T10</span></li>
+<li><span class="lb">Watch</span><span class="vl">Confirm sacral block (feet) — can be sacral-sparing</span></li>
+</ul>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Manual removal of placenta / ERPC after delivery</div><div class="rtags"><span class="badge bb">T8–T10</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<ul class="cl">
+<li><span class="lb">Mix</span><span class="vl">2.0–2.2 mL 0.5% hyperbaric bupivacaine + 15 mcg fentanyl</span></li>
+<li><span class="lb">Avoid</span><span class="vl">Active bleeding → prefer GA; beware concealed loss before committing to neuraxial</span></li>
+</ul>
+</div></div>
+
+</div>
+
+<!-- 04 · Orthopaedic / trauma spinals -->
+<div class="section"><div class="section-hdr"><div class="sdot" style="background:var(--c3);box-shadow:0 0 5px var(--c3)"></div><div class="slbl">Orthopaedic &amp; Trauma Spinals</div><div class="snum">04</div></div>
+
+<div class="alert alert-r gap"><div class="ak">⚠ #NOF Dosing — Evidence Update</div>AAGBI 2020 hip-fracture guideline (Griffiths et al, <em>Anaesthesia</em> 2021;76:225–37): <strong>bupivacaine &lt;10 mg</strong>, intrathecal opioid restricted to <strong>fentanyl only</strong> (avoid intrathecal morphine/diamorphine in this frail cohort — late respiratory depression risk). Intrathecal LA dose correlates with hypotension <em>and</em> mortality; lower dose = less vasopressor, fewer adverse events. Pair every low-dose spinal with a peripheral nerve block for analgesia.</div>
+
+<div class="recipe open"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">#NOF / Hemi / DHS / TFNA / Gamma nail — standard low-dose</div><div class="rtags"><span class="badge bg">≤10 mg</span><span class="badge bb">Fentanyl only</span><span class="badge bw">AAGBI 2020</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<ul class="cl">
+<li><span class="lb">Mix</span><span class="vl">1.5–2 mL 0.5% hyperbaric bupivacaine (7.5–10 mg) + 10–20 mcg fentanyl</span></li>
+<li><span class="lb">Position</span><span class="vl">Lateral, <strong>bad-side-down</strong> for hyperbaric — block sinks to operative side; sit briefly if too high</span></li>
+<li><span class="lb">Alt (plain)</span><span class="vl">1.5–2 mL 0.5% plain bupivacaine + 15 mcg fentanyl, lateral <strong>bad-side-up</strong> — denser on dependent side</span></li>
+<li><span class="lb">No IT opioid</span><span class="vl">AAGBI 2020 advises against intrathecal morphine/diamorphine in #NOF — use peripheral block + multimodal PO/IV for analgesia</span></li>
+<li><span class="lb">Block pair</span><span class="vl">Fascia iliaca + LCFN (hemi/NOF) or PENG + LCFN — provides 12–24 h analgesia without IT opioid</span></li>
+<li><span class="lb">Adjuncts</span><span class="vl">Metaraminol attached <em>before</em> injection; midazolam 1 mg comforting; bladder temperature</span></li>
+<li><span class="lb">Reference</span><span class="vl">Griffiths R et al. Anaesthesia 2021;76:225–37. ASAP audit standard: ≤10 mg</span></li>
+</ul>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">#NOF — ultra-low / mini-dose (frail, severe cardiac)</div><div class="rtags"><span class="badge bg">4–6 mg</span><span class="badge bb">+ fentanyl</span><span class="badge bw">Tighe 2016</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<ul class="cl">
+<li><span class="lb">Ultra-low</span><span class="vl">1 mL 0.5% hyperbaric bupivacaine (<strong>5 mg</strong>) + 15–20 mcg fentanyl — adequate for hemi/DHS up to ~2 h with markedly less hypotension</span></li>
+<li><span class="lb">Mini-dose</span><span class="vl">0.8 mL 0.5% bupivacaine (<strong>4 mg</strong>) + 20 mcg fentanyl, diluted to 2 mL with 0.9% saline — covers cases up to 110 min</span></li>
+<li><span class="lb">Indication</span><span class="vl">Severe aortic stenosis, baseline hypotension, end-stage cardiac/respiratory disease, frailty CFS ≥7</span></li>
+<li><span class="lb">Position</span><span class="vl">Lateral bad-side-down (hyperbaric); slow injection; recheck block height before draping</span></li>
+<li><span class="lb">Reference</span><span class="vl">Tighe SQM. Anaesthesia 2016;71(12):1456–7. Ben-David B et al. Anesthesiology 2000;92:6–10. White SM. Anaesthesia 2017;72(3):332–8</span></li>
+</ul>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Total hip replacement (elective, lateral asleep spinal)</div><div class="rtags"><span class="badge bg">10–12.5 mg</span><span class="badge bg">PENG + LCFN</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<ul class="cl">
+<li><span class="lb">Mix</span><span class="vl">2–2.5 mL 0.5% isobaric (or hyperbaric) bupivacaine (10–12.5 mg) + 15 mcg fentanyl</span></li>
+<li><span class="lb">Frail elderly</span><span class="vl">Drop to 1.5–2 mL (7.5–10 mg) + fentanyl 15 mcg — same evidence applies</span></li>
+<li><span class="lb">Position</span><span class="vl">Asleep, lateral with operative side up (isobaric); metaraminol attached before turning</span></li>
+<li><span class="lb">Block</span><span class="vl">PENG + LCFN — preferred analgesic strategy over intrathecal morphine</span></li>
+<li><span class="lb">Adjuncts</span><span class="vl">Consider TIVA (lower delirium); TXA 1 g at induction</span></li>
+</ul>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Total knee replacement</div><div class="rtags"><span class="badge bg">10–12.5 mg</span><span class="badge bg">Adductor canal + IPACK</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<ul class="cl">
+<li><span class="lb">Mix</span><span class="vl">2–2.5 mL 0.5% hyperbaric bupivacaine (10–12.5 mg) + 15 mcg fentanyl</span></li>
+<li><span class="lb">Analgesia</span><span class="vl">Surgeon LIA + adductor canal + IPACK — gives motor-sparing post-op cover without intrathecal morphine</span></li>
+<li><span class="lb">Adjuncts</span><span class="vl">TXA 1 g; paracetamol + NSAID + oxycodone PRN</span></li>
+</ul>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Tibia / ankle ORIF (trauma)</div><div class="rtags"><span class="badge bg">Plain bup</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<ul class="cl">
+<li><span class="lb">Mix (fit adult)</span><span class="vl">2.5 mL 0.5% plain bupivacaine (12.5 mg) + 15–20 mcg fentanyl, lateral bad-side-up</span></li>
+<li><span class="lb">Mix (elderly/frail)</span><span class="vl">2 mL 0.5% plain bupivacaine (10 mg) + 15 mcg fentanyl</span></li>
+<li><span class="lb">Alt</span><span class="vl">Hyperbaric 2 mL supine + 15 mcg fentanyl; popliteal sciatic + saphenous for post-op cover</span></li>
+</ul>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Lower-limb amputation (BKA / AKA)</div><div class="rtags"><span class="badge bg">≤10 mg</span><span class="badge br">Frail vascular</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<ul class="cl">
+<li><span class="lb">Mix</span><span class="vl">1.5–2 mL 0.5% hyperbaric bupivacaine (7.5–10 mg) + 15–20 mcg fentanyl</span></li>
+<li><span class="lb">Target</span><span class="vl">T10</span></li>
+<li><span class="lb">Analgesia</span><span class="vl">Sciatic + femoral catheter (or single-shot popliteal) — superior to IT opioid in PVD; reduces phantom-limb pain risk</span></li>
+<li><span class="lb">Watch</span><span class="vl">Metaraminol low-threshold; cautious with hypotension in PVD/IHD/poor LV; consider art line if severe CV disease</span></li>
+</ul>
+</div></div>
+
+</div>
+
+<!-- 05 · Urology spinals -->
+<div class="section"><div class="section-hdr"><div class="sdot" style="background:var(--c15);box-shadow:0 0 5px var(--c15)"></div><div class="slbl">Urology Spinals</div><div class="snum">05</div></div>
+
+<div class="recipe open"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">TURP · TURBT · bladder neck incision</div><div class="rtags"><span class="badge bb">T10 target</span><span class="badge bp">Heavy bup</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<ul class="cl">
+<li><span class="lb">Mix</span><span class="vl">2.5–3 mL 0.5% hyperbaric bupivacaine + 15 mcg fentanyl</span></li>
+<li><span class="lb">Target</span><span class="vl">T10 — covers bladder distension and obturator stimulation</span></li>
+<li><span class="lb">Awake advantage</span><span class="vl">Early detection of TUR syndrome and bladder perforation</span></li>
+</ul>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Optical urethrotomy / cystoscopy ± stent</div><div class="rtags"><span class="badge bg">Prilocaine</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<ul class="cl">
+<li><span class="lb">Mix</span><span class="vl">2.0–2.5 mL prilocaine 2% plain (day-case) <em>or</em> 2 mL 0.5% hyperbaric bupivacaine if longer</span></li>
+</ul>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Hydrocele / scrotal / testicular surgery</div><div class="rtags"><span class="badge bg">Day-case</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<ul class="cl">
+<li><span class="lb">Mix</span><span class="vl">2.5–3.0 mL prilocaine 2% plain (day-case) <em>or</em> 2.5 mL 0.5% hyperbaric bupivacaine + 15 mcg fentanyl (longer cases)</span></li>
+</ul>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Robotic cystectomy (spinal + GA combo)</div><div class="rtags"><span class="badge bp">Diamorphine 500 mcg</span><span class="badge bw">Steep head-down</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<ul class="cl">
+<li><span class="lb">Mix</span><span class="vl">2 mL 0.5% hyperbaric bupivacaine + 500 mcg diamorphine</span></li>
+<li><span class="lb">GA</span><span class="vl">Propofol/remifentanil TIVA + relaxant; ETT taped/loosely tied; consider throat pack — head-down gastric pooling risk</span></li>
+<li><span class="lb">Lines</span><span class="vl">Art line after induction; temperature probe + forced-air warmer</span></li>
+</ul>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Robotic nephrectomy</div><div class="rtags"><span class="badge bp">Diamorphine 500 mcg</span><span class="badge bb">L-bupivacaine</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<ul class="cl">
+<li><span class="lb">Mix</span><span class="vl">2 mL 0.5% hyperbaric L-bupivacaine + 500 mcg diamorphine (total ~2.5 mL)</span></li>
+<li><span class="lb">Useful when</span><span class="vl">Larger incision anticipated — reduces post-op opioid requirement</span></li>
+<li><span class="lb">Position</span><span class="vl">Lateral with table break — expect hypotension</span></li>
+</ul>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Robot-assisted radical prostatectomy (RALP)</div><div class="rtags"><span class="badge bp">Diamorphine 700 mcg</span><span class="badge bw">Steep Trendelenburg</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<ul class="cl">
+<li><span class="lb">Mix</span><span class="vl">1.5 mL 0.5% hyperbaric L-bupivacaine + 700 mcg diamorphine (total ~2.2 mL)</span></li>
+<li><span class="lb">Rationale</span><span class="vl">Higher diamorphine for substantial post-op pain; spares oral opioid in recovery</span></li>
+<li><span class="lb">Adjuncts</span><span class="vl">Dex 6.6 mg + ondansetron 4 mg; paracetamol 1 g; oxycodone 5 mg; magnesium</span></li>
+</ul>
+</div></div>
+
+</div>
+
+<!-- 06 · General / colorectal spinals -->
+<div class="section"><div class="section-hdr"><div class="sdot" style="background:var(--c4);box-shadow:0 0 5px var(--c4)"></div><div class="slbl">General &amp; Colorectal Spinals</div><div class="snum">06</div></div>
+
+<div class="recipe open"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Open inguinal / femoral hernia repair</div><div class="rtags"><span class="badge bb">T8–T10</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<ul class="cl">
+<li><span class="lb">Mix</span><span class="vl">2.5–3.0 mL prilocaine 2% plain (day-case) <em>or</em> 2.5–3.0 mL 0.5% hyperbaric bupivacaine + 15 mcg fentanyl (longer/recurrent)</span></li>
+<li><span class="lb">Cover</span><span class="vl">For peritoneal traction</span></li>
+</ul>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Long laparotomy / anterior resection / pelvic exenteration</div><div class="rtags"><span class="badge bp">Diamorphine 300 mcg</span><span class="badge bg">Awake spinal + GA</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<ul class="cl">
+<li><span class="lb">Option 1</span><span class="vl">2 mL plain levobupivacaine 0.25–0.5% + 300 mcg diamorphine</span></li>
+<li><span class="lb">Option 2</span><span class="vl">2 mL plain levobupivacaine 0.25–0.5% + 100–200 mcg PF morphine + 15–40 mcg fentanyl (aim 3 mL total)</span></li>
+<li><span class="lb">Sequence</span><span class="vl">Place before induction (awake spinal), then proceed with GA</span></li>
+<li><span class="lb">End</span><span class="vl">Rectus sheath catheters or epidural at end if open</span></li>
+</ul>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Lap chole / lap appendix (rarely spinal-only)</div><div class="rtags"><span class="badge bw">Specialist technique</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<ul class="cl">
+<li><span class="lb">Default</span><span class="vl">GA with regional adjunct (TAP, port LA)</span></li>
+<li><span class="lb">Spinal-only</span><span class="vl">Needs T4 block, IV opioid + antiemetic, shoulder-tip discussion — specialist practice</span></li>
+</ul>
+</div></div>
+
+</div>
+
+<!-- 07 · Vascular spinals -->
+<div class="section"><div class="section-hdr"><div class="sdot" style="background:var(--c12);box-shadow:0 0 5px var(--c12)"></div><div class="slbl">Vascular Spinals</div><div class="snum">07</div></div>
+
+<div class="recipe open"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">Femoro-popliteal bypass / lower-limb angioplasty / embolectomy</div><div class="rtags"><span class="badge bb">T10 target</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<ul class="cl">
+<li><span class="lb">Mix</span><span class="vl">2.5–3 mL 0.5% hyperbaric bupivacaine + 15 mcg fentanyl</span></li>
+<li><span class="lb">Check</span><span class="vl">Antiplatelets per local protocol; coags + recent heparin timing before siting</span></li>
+</ul>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">EVAR (selected low-risk cases)</div><div class="rtags"><span class="badge bb">T8 target</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<ul class="cl">
+<li><span class="lb">Mix</span><span class="vl">2.5–3 mL 0.5% hyperbaric bupivacaine + 15 mcg fentanyl</span></li>
+<li><span class="lb">Discuss</span><span class="vl">CSE or LA infiltration often preferred — duration/patient tolerance with surgeon</span></li>
+</ul>
+</div></div>
+
+<div class="recipe"><div class="rh" onclick="toggleRecipe(this)"><div class="rt">AV fistula / brachio-cephalic</div><div class="rtags"><span class="badge br">Not spinal</span></div><div class="rchev">▶</div></div>
+<div class="rb">
+<ul class="cl">
+<li><span class="lb">Default</span><span class="vl">Axillary / supraclavicular brachial plexus block ± sedation — spinal not an option for upper-limb work</span></li>
+</ul>
+</div></div>
+
+</div>
+
+<!-- 08 · Saddle / perineal -->
+<div class="section"><div class="section-hdr"><div class="sdot" style="background:var(--c11);box-shadow:0 0 5px var(--c11)"></div><div class="slbl">Saddle &amp; Perineal Blocks</div><div class="snum">08</div></div>
+<div class="alert alert-b gap"><div class="ak">Saddle Technique</div>Target S2–S5. Sit patient up 5–10 min after injecting hyperbaric solution to confine block to sacral roots; glucose loading keeps injectate low. Motor sparing; ambulation early.</div>
+<div class="card gap"><table><thead><tr><th>Procedure</th><th>Mix</th><th>Notes</th></tr></thead><tbody>
+<tr><td>Haemorrhoidectomy</td><td>1.5 mL 0.5% hyperbaric bupivacaine, sit up 5–10 min</td><td>Spares motor; ambulation early</td></tr>
+<tr><td>Anal fissure / lateral sphincterotomy</td><td>1.5 mL 0.5% hyperbaric bupivacaine, sit up</td><td>Saddle suffices; minimal hypotension</td></tr>
+<tr><td>EUA rectum / proctology</td><td>1.5–2 mL 0.5% hyperbaric bupivacaine, sit up</td><td>Add 10 mcg fentanyl if visceral discomfort expected</td></tr>
+<tr><td>Pilonidal sinus (prone)</td><td>2 mL prilocaine 2% plain (see day-case)</td><td>Faster recovery for prone day-case</td></tr>
+<tr><td>Vulval / perineal biopsy</td><td>1.5 mL 0.5% hyperbaric bupivacaine, sit up</td><td>Or LA infiltration if short</td></tr>
+</tbody></table></div>
+</div>
+
+<!-- 09 · Practical pearls -->
+<div class="section"><div class="section-hdr"><div class="sdot" style="background:var(--c8);box-shadow:0 0 5px var(--c8)"></div><div class="slbl">Practical Pearls</div><div class="snum">09</div></div>
+<div class="g3 gap">
+<div class="card"><div class="ct">Choosing the LA</div><ul class="cl">
+<li><span class="lb">Prilocaine 2% plain</span><span class="vl">Day-case workhorse; resolves &lt;150 min; minimal retention. Avoid G6PD, pregnancy</span></li>
+<li><span class="lb">Heavy bupivacaine 0.5%</span><span class="vl">Predictable, dense, posture-controlled; default for LSCS, urology, ortho overnight</span></li>
+<li><span class="lb">Plain bupivacaine 0.5%</span><span class="vl">Denser on dependent side; lateral bad-side-up for trauma; less hypotension in elderly</span></li>
+<li><span class="lb">Plain levobupivacaine</span><span class="vl">0.25–0.5% — analgesic spinal alongside GA for long laparotomy</span></li>
+</ul></div>
+
+<div class="card"><div class="ct">Posture &amp; Block Height</div><ul class="cl">
+<li><span class="lb">Saddle (S2–S5)</span><span class="vl">Sit up 5–10 min with heavy LA</span></li>
+<li><span class="lb">T10 (TURP, hernia, lower limb)</span><span class="vl">Supine after heavy LA; minor head-down if block not climbing</span></li>
+<li><span class="lb">T4 (LSCS, upper abdo)</span><span class="vl">Supine then 5–10° head-down ~3 min if needed; lateral tilt for obstetric aortocaval decompression</span></li>
+</ul></div>
+
+<div class="card"><div class="ct">Vasopressor &amp; Co-load</div><ul class="bl">
+<li><strong>Metaraminol attached</strong> <em>before</em> intrathecal injection in elderly, obstetric, cardiac, and any case targeting &gt;T6</li>
+<li><strong>Co-load</strong> 5–10 mL/kg crystalloid at the time of injection (not pre-load — wears off)</li>
+<li><strong>Phenylephrine</strong> preferred in obstetric spinal where available</li>
+</ul></div>
+
+<div class="card"><div class="ct">Adjuncts</div><ul class="cl">
+<li><span class="lb">Fentanyl IT</span><span class="vl">10–25 mcg — quicker, denser block; pruritus; safe day-case</span></li>
+<li><span class="lb">Clonidine IT</span><span class="vl">15–30 mcg — prolongs block; ↑ hypotension and sedation</span></li>
+<li><span class="lb">Sedation</span><span class="vl">Propofol TCI 0.5–1.5 mcg/mL Ce — anxiolysis; SpO₂ monitoring</span></li>
+</ul></div>
+
+<div class="card"><div class="ct">Discharge Criteria (Day-Case)</div><ul class="bl">
 <li>Able to weight-bear / mobilise safely</li>
 <li>Passed urine (TURP, pelvic surgery)</li>
 <li>Motor block fully resolved (Bromage 0)</li>
@@ -1255,19 +1540,36 @@ footer{text-align:center;padding:14px;font-family:var(--mono);font-size:9.5px;co
 <li>PONV controlled; tolerating oral fluids</li>
 <li>Responsible adult escort + written instructions</li>
 </ul></div>
-<div class="card"><div class="ct">Adjuncts</div><ul class="cl">
-<li><span class="lb">Fentanyl IT</span><span class="vl">10–25 mcg — ↑ quality and duration; ↑ PONV; cautious day-case</span></li>
-<li><span class="lb">Clonidine IT</span><span class="vl">15–30 mcg — prolongs block; ↑ hypotension</span></li>
-<li><span class="lb">Sedation</span><span class="vl">Propofol TCI 0.5–1.5 mcg/mL Ce — anxiolysis without deep sedation; SpO₂ monitoring</span></li>
+
+<div class="card"><div class="ct">When to Convert / Abandon</div><ul class="bl">
+<li>Block not rising 15 min after full dose → <strong>do not redose</strong>; switch plan</li>
+<li>Sacral sparing despite adequate volume → reposition (prone-knee-chest 2 min) or top up via CSE; otherwise GA</li>
+<li>Patient distress mid-procedure → IV fentanyl 25–50 mcg; ketamine 20 mg; convert to GA early not late</li>
 </ul></div>
-<div class="card"><div class="ct">Complications</div><ul class="cl">
+</div>
+</div>
+
+<!-- 10 · Complications -->
+<div class="section"><div class="section-hdr"><div class="sdot" style="background:var(--c10);box-shadow:0 0 5px var(--c10)"></div><div class="slbl">Complications</div><div class="snum">10</div></div>
+<div class="g2 gap">
+<div class="card"><div class="ct">Acute</div><ul class="cl">
 <li><span class="lb">Failed spinal</span><span class="vl">Convert to GA; document; inform team</span></li>
-<li><span class="lb">High block</span><span class="vl">↓ SpO₂ + dyspnoea + upper limb weakness → flat, O₂, IV vasopressor; ETT if unconscious</span></li>
+<li><span class="lb">High block</span><span class="vl">↓ SpO₂ + dyspnoea + upper-limb weakness → flat, O₂, IV vasopressor; ETT if conscious level drops</span></li>
 <li><span class="lb">Total spinal</span><span class="vl">Immediate RSI + CPR if arrest; phenylephrine/metaraminol infusion; call for help</span></li>
+<li><span class="lb">Hypotension</span><span class="vl">Metaraminol boluses + infusion; co-load fluid; left lateral tilt in obstetric</span></li>
+<li><span class="lb">Bradycardia</span><span class="vl">Atropine 0.6 mg; consider unopposed parasympathetic from high block</span></li>
+</ul></div>
+<div class="card"><div class="ct">Late</div><ul class="cl">
 <li><span class="lb">PDPH</span><span class="vl">Postural headache — bed rest, hydration, caffeine, epidural blood patch if severe</span></li>
+<li><span class="lb">Pruritus (IT opioid)</span><span class="vl">Naloxone 40 mcg IV titrate; ondansetron; chlorphenamine less effective</span></li>
+<li><span class="lb">Urinary retention</span><span class="vl">Catheterise; more likely with PF morphine, longer LA, pelvic surgery</span></li>
+<li><span class="lb">Resp depression (IT morphine)</span><span class="vl">6–12 h post-injection; ward respiratory observations + naloxone protocol</span></li>
+<li><span class="lb">Neurological injury</span><span class="vl">Rare; document early, urgent MRI + neurosurg if persistent block or red flags</span></li>
 </ul></div>
 </div>
+<div class="alert alert-r gap"><div class="ak">Safety Checklist</div>Two-person check of any intrathecal opioid; label syringe with drug + dose; second syringe for the LA only. Document block level + sacral block before knife-to-skin. Follow-up next day for any patient who received intrathecal morphine or diamorphine.</div>
 </div>
+
 </div>
 
 <div class="plan" id="tab-9">
